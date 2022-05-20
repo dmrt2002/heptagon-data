@@ -116,6 +116,7 @@ export default {
 }
 .img-fluid {
   height: 200px;
+  margin-bottom: 10px;
 }
 .options {
   font-size: 16px;
