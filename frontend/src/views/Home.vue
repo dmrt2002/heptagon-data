@@ -99,8 +99,8 @@ export default {
 .p-button {
   padding: 0.5rem 2rem !important;
 }
-* {
-  font-family: "Raleway", sans-serif;
+.heading , .p-button-raised{
+  font-family: "Raleway", sans-serif !important;
 }
 .logo {
   height: 60px !important;
