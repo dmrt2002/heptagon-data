@@ -1,0 +1,90 @@
+<template>
+  <div class="background">
+    <div class="flex align-items-start flex-wrap">
+      <div class="margin-left">
+        <img :src="link[0]" class="logo" alt="" />
+      </div>
+    </div>
+    <div class="grid">
+      <div class="col-12 md:col-5 align-text-center">
+        <h1 class="l-heading md:pl-6 lg:pl-8 pl-2 pr-4">Know Your DQ - Data Quotient</h1>
+        <p class="md:pl-6 lg:pl-8 pl-2 p-text" >This is an entry level assessment for data literacy. It is designed to help a person understand their relative position when it comes to understanding Data and Analytics. </p>
+        <p class="md:pl-6 lg:pl-8 pl-2 p-text">Please read each question carefully and choose the best option which mirrors your behavior/skills when it comes to dealing with data. The final report will be customized basis your inputs and hence any random responses may lead to an inaccurate recommendation for you.</p>
+        <p class="md:pl-6 lg:pl-8 pl-2 p-text">Thanks again for taking time out to participate in the DQ survey.</p>
+        <div class="md:pl-6 lg:pl-8 pl-2">
+            <Button @click="redirect()" label="Start Test" class="p-button-raised" />
+        </div>
+      </div>
+      <div class="col-12 md:col-7">
+        <div
+          class="align-items-center flex justify-content-center align-center"
+        >
+          <img class="img-fluid" src="../assets/data.webp" alt="" />
+        </div>
+      </div>
+    </div>
+  </div>
+</template>
+
+<script>
+import Button from 'primevue/button'
+import { useRouter } from 'vue-router'
+export default {
+   components: {
+    Button,
+  },
+setup() {
+    let link = [
+      "https://raw.githubusercontent.com/dmrt2002/images/696ad09814061b0a6d1ff1653ac680969870b760/heptagon.svg",
+    ];
+    let router = useRouter()
+    const redirect = () => {
+        router.push('/questions')
+    }
+    return { link , redirect}
+}
+};
+</script>
+
+<style scoped>
+@import url("https://fonts.googleapis.com/css2?family=Raleway:wght@300&display=swap");
+* {
+  font-family: "Raleway", sans-serif;
+}
+.background {
+  background-color: rgba(241, 237, 246, 0.818);
+  min-height: 100vh;
+  overflow-y: hidden !important;
+  overflow-x: hidden !important;
+}
+.img-fluid {
+  width: 100vw;
+  height: 80vh;
+
+}
+
+@media (max-width: 768px) {
+  .img-fluid {
+    width: 100vw;
+    height: 100vh;
+      object-fit: cover;
+  }
+}
+.align-center {
+  min-height: calc(100vh - 100px);
+}
+.align-text-center{
+    margin-top: auto;
+    margin-bottom: auto;
+}
+.p-text {
+    font-weight: 800 !important;
+}
+.l-heading{
+    font-size: 40px !important;
+    font-weight: 1200 !important;
+}
+.logo {
+    height: 60px !important;
+}
+</style>
