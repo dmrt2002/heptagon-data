@@ -7,7 +7,7 @@
       <div class="align-items-center flex justify-content-center">
         <img class="img-fluid" :src="imageUrl" alt="" />
       </div>
-      <h1 class="text-center q-size">{{ currentquestion }}</h1>
+      <div class="text-center q-size">{{ currentquestion }}</div>
       <div class="field-radiobutton center-item">
         <RadioButton id="city1" name="city" value="1" v-model="city" @click="select" />
         <label for="city1" class="options">{{ option1 }}</label>
@@ -118,8 +118,10 @@ export default {
   height: 200px;
 }
 .options {
-  font-size: 24px;
+  font-size: 16px;
   margin-top: 10px;
 }
-
+.q-size {
+  font-size: 20px;
+}
 </style>
