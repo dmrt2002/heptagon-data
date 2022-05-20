@@ -116,13 +116,13 @@ export default {
 }
 .img-fluid {
   height: 200px;
-  margin-bottom: 10px;
+  margin-bottom: 25px;
 }
 .options {
   font-size: 16px;
   margin-top: 10px;
 }
 .q-size {
-  font-size: 20px;
+  font-size: 25px;
 }
 </style>
