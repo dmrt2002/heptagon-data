@@ -10,7 +10,7 @@
     >
       <div>
         <div class="align-items-center flex justify-content-center">
-          <img class="img-fluid" :src="url" alt="" />
+          <img class="img-fluid ml-2" :src="url" alt="" />
         </div>
         <p class="text-align">{{ text }}</p>
         <div class="align-items-center flex justify-content-center">
@@ -92,12 +92,16 @@ export default {
   margin-left: 20vw;
   margin-right: 20vw;
   margin-bottom: 4em;
-  font-size: 24px;
+  font-size: 20px;
 }
 .logo {
   height: 60px !important;
 }
 .align-center {
+  display: flex;
+  align-content: center;
+  justify-content: center;
+  align-items: center;
   min-height: calc(100vh - 100px);
 }
 .center-button {

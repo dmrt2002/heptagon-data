@@ -136,35 +136,8 @@ export default [
     },
     {
       _id: "6",
-      question:"My interaction with data is best described as",
-      imageUrl: "https://lists.office.com/Images/9188040d-6c67-4c5b-b112-36a304b66dad/00000000-0000-0000-0003-4001af956bb6/TEXVDVQPY8BOK452BTHSR3KICT/1609a920-09dd-42d8-b438-f8148fc9032e",
-      options: [
-        {
-          optId: "1",
-          optText:
-            "I think I input data, but no clue what happens next ",
-        },
-        {
-          optId: "2",
-          optText:
-            "I use some data to generate basic reports to understand what happened",
-        },
-        {
-          optId: "3",
-          optText:
-            "I use analysis on data to understand why something happened",
-        },
-        {
-          optId: "4",
-          optText:
-            "I analyze data and can tell what will happen next",
-        },
-      ],
-    },
-    {
-      _id: "7",
       question:"Which of these can you do if given a laptop? (If there are more than one word, then choose the one which is of higher order in complexity)",
-      imageUrl: "https://lists.office.com/Images/9188040d-6c67-4c5b-b112-36a304b66dad/00000000-0000-0000-0003-4001af956bb6/TEXVDVQPY8BOK452BTHSR3KICT/6ff61f0c-a928-4a86-ab2e-d60ac1f08fc7",
+      imageUrl: "https://lists.office.com/Images/9188040d-6c67-4c5b-b112-36a304b66dad/00000000-0000-0000-0003-4001af956bb6/TEXVDVQPY8BOK452BTHSR3KICT/1609a920-09dd-42d8-b438-f8148fc9032e",
       options: [
         {
           optId: "1",
@@ -189,9 +162,9 @@ export default [
       ],
     },
     {
-      _id: "8",
+      _id: "7",
       question:"What do you see in this table?",
-      imageUrl: "https://lists.office.com/Images/9188040d-6c67-4c5b-b112-36a304b66dad/00000000-0000-0000-0003-4001af956bb6/TEXVDVQPY8BOK452BTHSR3KICT/2697aedf-b1ca-4a44-a2b8-cd76e0211286",
+      imageUrl: "https://lists.office.com/Images/9188040d-6c67-4c5b-b112-36a304b66dad/00000000-0000-0000-0003-4001af956bb6/TEXVDVQPY8BOK452BTHSR3KICT/6ff61f0c-a928-4a86-ab2e-d60ac1f08fc7",
       options: [
         {
           optId: "1",
@@ -216,56 +189,83 @@ export default [
       ],
     },
     {
-        _id: "9",
-        question:"What best describes the role of data in your daily work life?",
-        imageUrl: "https://lists.office.com/Images/9188040d-6c67-4c5b-b112-36a304b66dad/00000000-0000-0000-0003-4001af956bb6/TEXVDVQPY8BOK452BTHSR3KICT/48a0405c-04c4-41b9-a917-b7ff891fad2a",
-        options: [
-          {
-            optId: "1",
-            optText:
-              "Data isn't what i need to do my job",
-          },
-          {
-            optId: "2",
-            optText:
-              "NOnce in a while i need some and some assistance",
-          },
-          {
-            optId: "3",
-            optText:
-              "I mostly work with data on a weekly basis",
-          },
-          {
-            optId: "4",
-            optText:
-              "Data is critical for my role and daily deliverables",
-          },
-        ],
-      },
+      _id: "8",
+      question:"What best describes the role of data in your daily work life?",
+      imageUrl: "https://lists.office.com/Images/9188040d-6c67-4c5b-b112-36a304b66dad/00000000-0000-0000-0003-4001af956bb6/TEXVDVQPY8BOK452BTHSR3KICT/2697aedf-b1ca-4a44-a2b8-cd76e0211286",
+      options: [
+        {
+          optId: "1",
+          optText:
+            "Data isn't what i need to do my job",
+        },
+        {
+          optId: "2",
+          optText:
+            "Once in a while i need some and some assistance",
+        },
+        {
+          optId: "3",
+          optText:
+            "I mostly work with data on a weekly basis",
+        },
+        {
+          optId: "4",
+          optText:
+            "Data is critical for my role and daily deliverables",
+        },
+      ],
+    },
+    {
+      _id: "9",
+      question:"When i have to convince somebody",
+      imageUrl: "https://lists.office.com/Images/9188040d-6c67-4c5b-b112-36a304b66dad/00000000-0000-0000-0003-4001af956bb6/TEXVDVQPY8BOK452BTHSR3KICT/48a0405c-04c4-41b9-a917-b7ff891fad2a",
+      options: [
+        {
+          optId: "1",
+          optText:
+            "I just speak my way through",
+        },
+        {
+          optId: "2",
+          optText:
+            "I use some numbers and charts",
+        },
+        {
+          optId: "3",
+          optText:
+            "I show trends and projections",
+        },
+        {
+          optId: "4",
+          optText:
+            "I visualize complex relationships between factors",
+        },
+      ],
+    },
       {
         _id: "10",
-        question:"When i have to convince somebody",
+        question:"This is what i think of Industry 4.0",
         imageUrl: "https://lists.office.com/Images/9188040d-6c67-4c5b-b112-36a304b66dad/00000000-0000-0000-0003-4001af956bb6/TEXVDVQPY8BOK452BTHSR3KICT/1e61e94d-1dea-429d-98be-db9069adc4c8",
         options: [
           {
             optId: "1",
             optText:
-              "I just speak my way through",
+              "Oh my god... The machines are coming",
           },
           {
             optId: "2",
             optText:
-              "I use some numbers and charts",
+              "I am curious",
           },
           {
             optId: "3",
             optText:
-              "I show trends and projections",
+              "I am ready for it ",
           },
           {
             optId: "4",
             optText:
-              "I visualize complex relationships between factors",
+              "I been waiting for it",
           },
         ],
       },

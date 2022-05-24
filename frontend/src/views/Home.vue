@@ -8,7 +8,7 @@
     <div class="align-items-center flex justify-content-center align-center">
       <Card class="login-card">
         <template #title>
-          <div class="heading text-center">Heptagon Technologies</div>
+          <div class="heading text-center">Know Your Data Quotient</div>
         </template>
         <template #content class="p-card-content">
             <div class=" p-2">

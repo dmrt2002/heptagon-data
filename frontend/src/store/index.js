@@ -15,6 +15,7 @@ export default createStore({
     },
     deleteOption(state) {
       state.options.shift()
+      state.questionNumber = state.questionNumber - 1
     }
   },
   actions: {

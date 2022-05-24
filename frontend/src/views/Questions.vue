@@ -24,12 +24,13 @@ export default {
     let router = useRouter();
     let refresh = ref(0)
     let questionval = ref(true)
-    let n = ref(store.getters.getQuestion)
-    if(n.value === 11) {
+    let ne = ref(store.getters.getQuestion)
+    if(ne.value === 11) {
       questionval.value = false
       router.push('/results')
     }
     let submit = () => {
+      let n = ref(store.getters.getQuestion)
       let value = n.value  + 1
       store.dispatch('saveQuestion', value)
       n.value++;
@@ -41,8 +42,14 @@ export default {
       }
     }
     let back = () => {
+      let n = ref(store.getters.getQuestion)
+      if(n.value == 1) {
+        router.push('/landingpage')
+      }
+      else {
       store.dispatch('deleteOption')
       refresh.value++
+      }
     }
     let link = [
       "https://raw.githubusercontent.com/dmrt2002/images/696ad09814061b0a6d1ff1653ac680969870b760/heptagon.svg",
