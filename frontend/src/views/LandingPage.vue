@@ -19,7 +19,7 @@
         <div
           class="align-items-center flex justify-content-center align-center"
         >
-          <img class="img-fluid" src="../assets/data.webp" alt="" />
+          <img class="img-fluid" src="../assets/landingpage.svg" alt="" />
         </div>
       </div>
     </div>
@@ -59,7 +59,7 @@ setup() {
 }
 .img-fluid {
   width: 100vw;
-  height: 80vh;
+  height: 60vh;
 
 }
 

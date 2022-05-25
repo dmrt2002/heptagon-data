@@ -2,7 +2,7 @@ export default [
     {
       _id: "1",
       question:"When I see the word Data I think...",
-      imageUrl:"https://lists.office.com/Images/9188040d-6c67-4c5b-b112-36a304b66dad/00000000-0000-0000-0003-4001af956bb6/TEXVDVQPY8BOK452BTHSR3KICT/709fbede-beba-42fd-b084-f8f20691e88c",
+      imageUrl:"https://images.pexels.com/photos/590022/pexels-photo-590022.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
       options: [
         {
           optId: "1",
@@ -191,7 +191,7 @@ export default [
     {
       _id: "8",
       question:"What best describes the role of data in your daily work life?",
-      imageUrl: "https://lists.office.com/Images/9188040d-6c67-4c5b-b112-36a304b66dad/00000000-0000-0000-0003-4001af956bb6/TEXVDVQPY8BOK452BTHSR3KICT/2697aedf-b1ca-4a44-a2b8-cd76e0211286",
+      imageUrl: "https://images.pexels.com/photos/669614/pexels-photo-669614.jpeg?auto=compress&cs=tinysrgb&h=750&w=1260",
       options: [
         {
           optId: "1",
@@ -218,7 +218,7 @@ export default [
     {
       _id: "9",
       question:"When i have to convince somebody",
-      imageUrl: "https://lists.office.com/Images/9188040d-6c67-4c5b-b112-36a304b66dad/00000000-0000-0000-0003-4001af956bb6/TEXVDVQPY8BOK452BTHSR3KICT/48a0405c-04c4-41b9-a917-b7ff891fad2a",
+      imageUrl: "https://images.pexels.com/photos/3184328/pexels-photo-3184328.jpeg?auto=compress&cs=tinysrgb&h=750&w=1260",
       options: [
         {
           optId: "1",

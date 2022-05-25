@@ -10,7 +10,7 @@
     >
       <div>
         <div class="align-items-center flex justify-content-center">
-          <img class="img-fluid ml-2" :src="url" alt="" />
+          <img class="img-fluid ml-2" :src="require(`../assets/${url}`)" alt="" />
         </div>
         <p class="text-align">{{ text }}</p>
         <div class="align-items-center flex justify-content-center">
