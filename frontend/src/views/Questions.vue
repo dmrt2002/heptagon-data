@@ -1,10 +1,6 @@
 <template>
-  <div class="background">
-    <div class="flex align-items-start flex-wrap">
-      <div class="margin-left">
-        <img :src="link[0]" class="logo" alt="" />
-      </div>
-    </div>
+  <div>
+
     <question v-if="questionval" @submit=submit @back=back :key= refresh /> 
   </div>
 </template>
@@ -38,6 +34,7 @@ export default {
         router.push('/results')
       } else {
         questionval.value = true
+        store.dispatch('updateClass')
          refresh.value++
       }
     }
@@ -48,13 +45,11 @@ export default {
       }
       else {
       store.dispatch('deleteOption')
+      store.dispatch('degradeClass')
       refresh.value++
       }
     }
-    let link = [
-      "https://raw.githubusercontent.com/dmrt2002/images/696ad09814061b0a6d1ff1653ac680969870b760/heptagon.svg",
-    ];
-    return { submit, refresh, link, questionval, back };
+    return { submit, refresh, questionval, back};
   },
 };
 </script>
@@ -63,14 +58,5 @@ export default {
 @import url("https://fonts.googleapis.com/css2?family=Raleway:wght@300&display=swap");
 * {
   font-family: "Raleway", sans-serif;
-}
-.background {
-  background-color: rgba(241, 237, 246, 0.818);
-  min-height: 100vh;
-  overflow-y: hidden !important;
-  overflow-x: hidden !important;
-}
-.logo {
-  height: 60px !important;
 }
 </style>

@@ -1,4 +1,10 @@
 <template>
+<div :class="currentClass">
+      <div class="flex align-items-start flex-wrap">
+      <div class="margin-left">
+        <img :src="link[0]" class="logo" alt="" />
+      </div>
+    </div>
   <div class="grid  fadein animation-duration-2000">
     <div class="col-12 md:col-7 flex align-items-center justify-content-center">
       <img class="img-fluid" :src="imageUrl" alt="" />
@@ -16,7 +22,7 @@
               v-model="option"
               @click="select"
             />
-            <label for="city1" class="options cursor-pointer"> A.&nbsp;{{ option1 }}</label>
+            <label for="city1" class="options cursor-pointer"><span class="font-bold">A</span>.&nbsp;{{ option1 }}</label>
           </div>
           <div :class="{ active: option === '2' }" class="field-radiobutton cursor-pointer">
             <RadioButton
@@ -26,7 +32,7 @@
               v-model="option"
               @click="select"
             />
-            <label for="city2" class="options cursor-pointer">B.&nbsp;{{ option2 }}</label>
+            <label for="city2" class="options cursor-pointer"> <span class="font-bold">B</span>.&nbsp;{{ option2 }}</label>
           </div>
           <div :class="{ active: option === '3' }" class="field-radiobutton cursor-pointer">
             <RadioButton
@@ -36,7 +42,7 @@
               v-model="option"
               @click="select"
             />
-            <label for="city3" class="options cursor-pointer">C .&nbsp;{{ option3 }}</label>
+            <label for="city3" class="options cursor-pointer"><span class="font-bold">C</span>.&nbsp;{{ option3 }}</label>
           </div>
           <div :class="{ active: option === '4' }" class="field-radiobutton cursor-pointer">
             <RadioButton
@@ -46,7 +52,7 @@
               v-model="option"
               @click="select"
             />
-            <label for="city4" class="options cursor-pointer">D.&nbsp;{{ option4 }}</label>
+            <label for="city4" class="options cursor-pointer"><span class="font-bold">D</span>.&nbsp;{{ option4 }}</label>
           </div>
           <div class="flex justify-content-center align-items-center">
             <a  @click="back()" class="cta-back cursor-pointer">
@@ -64,6 +70,7 @@
       </div>
     </div>
   </div>
+</div>
 </template>
 
 <script>
@@ -80,6 +87,10 @@ export default {
   setup(props, context) {
     let store = useStore();
     let router = useRouter();
+    let currentClass = ref(store.getters.getClass)
+    let link = [
+      "https://raw.githubusercontent.com/dmrt2002/images/696ad09814061b0a6d1ff1653ac680969870b760/heptagon.svg",
+    ];
     let selected = ref(false);
     let n = ref(store.getters.getQuestion);
     console.log(n.value)
@@ -117,12 +128,37 @@ export default {
       back,
       select,
       selected,
+      link,
+      currentClass
     };
   },
 };
 </script>
 
 <style scoped>
+.bg-1, .bg-2, .bg-3, .bg-4 , .bg-5 {
+  min-height: 100vh;
+  overflow-y: hidden !important;
+  overflow-x: hidden !important;
+}
+.bg-1 {
+  background-color: rgba(241, 237, 246, 0.818);
+}
+.bg-2 {
+  background-color: rgb(245, 245, 225);
+}
+.bg-3 {
+  background-color: rgb(227, 245, 225) ;
+}
+.bg-4 {
+  background-color: rgb(240, 216, 240) ;
+}
+.bg-5 {
+  background-color: rgb(243, 232, 217);
+}
+.logo {
+  height: 60px !important;
+}
 .field-radiobutton {
   padding: 10px;
 }
