@@ -15,7 +15,7 @@
         <h1 class="head">{{ title }}</h1>
         <p class="text-align font-bold">{{ text }}</p>
         <div class="align-items-center flex justify-content-center">
-            <a :href="`https://hept-data.herokuapp.com//${pdfUrl}`" download="pathway.pdf" class="cta cursor-pointer">
+            <a :href="`https://hept-data.herokuapp.com/${pdfUrl}`" download="pathway.pdf" class="cta cursor-pointer">
               <span>Dowload your learning pathway</span>
               <svg width="13px" height="10px" viewBox="0 0 13 10">
                 <path d="M1,5 L11,5"></path>
