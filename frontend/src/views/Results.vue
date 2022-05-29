@@ -15,7 +15,7 @@
         <h1 class="head">{{ title }}</h1>
         <p class="text-align font-bold">{{ text }}</p>
         <div class="align-items-center flex justify-content-center">
-            <a  @click="submit()" :class="{ invisible : !option }" class="cta cursor-pointer">
+            <a :href="`http://localhost:5000/${pdfUrl}`" download="pathway.pdf" class="cta cursor-pointer">
               <span>Dowload your learning pathway</span>
               <svg width="13px" height="10px" viewBox="0 0 13 10">
                 <path d="M1,5 L11,5"></path>
@@ -65,7 +65,9 @@ export default {
     let url = images[0].options[imageId - 1].imageUrl;
     let text = images[0].options[imageId - 1].text;
     let title = images[0].options[imageId - 1].title
-    return { url, text, link, title };
+    let pdfUrl = images[0].options[imageId - 1].pdfUrl
+    let  publicPath = process.env.BASE_URL
+    return { url, text, link, title, pdfUrl, publicPath};
   },
 };
 </script>

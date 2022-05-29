@@ -11,8 +11,15 @@
         <p class="md:pl-6 lg:pl-8 pl-2 p-text" >This is an entry level assessment for data literacy. It is designed to help a person understand their relative position when it comes to understanding Data and Analytics. </p>
         <p class="md:pl-6 lg:pl-8 pl-2 p-text">Please read each question carefully and choose the best option which mirrors your behavior/skills when it comes to dealing with data. The final report will be customized basis your inputs and hence any random responses may lead to an inaccurate recommendation for you.</p>
         <p class="md:pl-6 lg:pl-8 pl-2 p-text">Thanks again for taking time out to participate in the DQ survey.</p>
-        <div class="md:pl-6 lg:pl-8 pl-2">
-            <Button @click="redirect()" label="Start Test" class="p-button-raised" />
+        <br>
+        <div class="md:pl-6 lg:pl-8 pl-2 mb-2">
+            <a  @click="redirect()" class="cta cursor-pointer">
+              <span>Start Test</span>
+              <svg width="13px" height="10px" viewBox="0 0 13 10">
+                <path d="M1,5 L11,5"></path>
+                <polyline points="8 1 12 5 8 9"></polyline>
+              </svg>
+            </a>
         </div>
       </div>
       <div class="col-12 md:col-7">
@@ -27,12 +34,8 @@
 </template>
 
 <script>
-import Button from 'primevue/button'
 import { useRouter } from 'vue-router'
 export default {
-   components: {
-    Button,
-  },
 setup() {
     let link = [
       "https://raw.githubusercontent.com/dmrt2002/images/696ad09814061b0a6d1ff1653ac680969870b760/heptagon.svg",
@@ -86,5 +89,71 @@ setup() {
 }
 .logo {
     height: 60px !important;
+}
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+.cta  , .cta-back {
+  position: relative;
+  margin: auto;
+  padding: 19px 22px;
+  transition: all 0.2s ease;
+}
+.cta:before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: block;
+  border-radius: 28px;
+  background: rgba(10, 217, 240, 0.9);
+  width: 56px;
+  height: 56px;
+  transition: all 0.3s ease;
+}
+.cta-back:before {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  display: block;
+  border-radius: 28px;
+  background: rgba(10, 217, 240, 0.9);
+  width: 56px;
+  height: 56px;
+  transition: all 0.3s ease;
+}
+.cta span, .cta-back span {
+  position: relative;
+  font-size: 14px;
+  line-height: 18px;
+  font-weight: 900;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  vertical-align: middle;
+}
+.cta svg, .cta i {
+  position: relative;
+  top: 0;
+  margin-left: 10px;
+  fill: none;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke: #111;
+  stroke-width: 2;
+  transform: translateX(-5px);
+  transition: all 0.3s ease;
+}
+.cta:hover:before, .cta-back:hover:before {
+  width: 100%;
+  background: lightblue;
+}
+.cta:hover svg, .cta-back i {
+  transform: translateX(0);
+}
+.cta:active , .cta-back:active {
+  transform: scale(0.96);
 }
 </style>

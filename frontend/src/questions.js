@@ -110,7 +110,7 @@ export default [
     {
       _id: "5",
       question:"My interaction with data is best described as",
-      imageUrl: "https://lists.office.com/Images/9188040d-6c67-4c5b-b112-36a304b66dad/00000000-0000-0000-0003-4001af956bb6/TEXVDVQPY8BOK452BTHSR3KICT/22b1e02c-5a30-4660-8318-767b73b919cf",
+      imageUrl: "https://raw.githubusercontent.com/dmrt2002/images/137d73e83cb150c06610b09ee96499fd25ac8216/5.svg",
       options: [
         {
           optId: "1",
@@ -137,7 +137,7 @@ export default [
     {
       _id: "6",
       question:"Which of these can you do if given a laptop? (If there are more than one word, then choose the one which is of higher order in complexity)",
-      imageUrl: "https://lists.office.com/Images/9188040d-6c67-4c5b-b112-36a304b66dad/00000000-0000-0000-0003-4001af956bb6/TEXVDVQPY8BOK452BTHSR3KICT/1609a920-09dd-42d8-b438-f8148fc9032e",
+      imageUrl: "https://raw.githubusercontent.com/dmrt2002/images/53c57705ebe143aa8709184613efdffa6c12c93f/6.svg",
       options: [
         {
           optId: "1",
@@ -191,7 +191,7 @@ export default [
     {
       _id: "8",
       question:"What best describes the role of data in your daily work life?",
-      imageUrl: "https://images.pexels.com/photos/669614/pexels-photo-669614.jpeg?auto=compress&cs=tinysrgb&h=750&w=1260",
+      imageUrl: "https://raw.githubusercontent.com/dmrt2002/images/137d73e83cb150c06610b09ee96499fd25ac8216/8.svg",
       options: [
         {
           optId: "1",
@@ -218,7 +218,7 @@ export default [
     {
       _id: "9",
       question:"When i have to convince somebody",
-      imageUrl: "https://images.pexels.com/photos/3184328/pexels-photo-3184328.jpeg?auto=compress&cs=tinysrgb&h=750&w=1260",
+      imageUrl: "https://raw.githubusercontent.com/dmrt2002/images/137d73e83cb150c06610b09ee96499fd25ac8216/9.svg",
       options: [
         {
           optId: "1",

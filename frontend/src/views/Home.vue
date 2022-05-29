@@ -16,7 +16,7 @@
                 <span class="p-inputgroup-addon">
                   <i class="pi pi-user"></i>
                 </span>
-                <InputText placeholder="First Name" />
+                <InputText v-model="firstName" placeholder="First Name" />
               </div>
             </div>
             <div class="p-2">
@@ -24,7 +24,7 @@
                 <span class="p-inputgroup-addon">
                   <i class="pi pi-user"></i>
                 </span>
-                <InputText placeholder="Last Name" />
+                <InputText v-model="lastName" placeholder="Last Name" />
               </div>
             </div>
             <div class="p-2">
@@ -32,7 +32,7 @@
                 <span class="p-inputgroup-addon">
                   <i class="pi pi-envelope"></i>
                 </span>
-                <InputText placeholder="Email" />
+                <InputText v-model="email" placeholder="Email" />
               </div>
             </div>
             <div class=" p-2">
@@ -40,7 +40,7 @@
                 <span class="p-inputgroup-addon">
                   <i class="pi pi-building"></i>
                 </span>
-                <InputText placeholder="Company" />
+                <InputText v-model="company" placeholder="Company" />
               </div>
             </div>
             <div class=" p-2">
@@ -71,7 +71,8 @@ import Dropdown from "primevue/dropdown";
 import Button from "primevue/button";
 import { countrynames } from '../countries'
 import { useRouter } from 'vue-router'
-import { ref } from "vue";
+import axios from 'axios'
+import { reactive, ref, toRefs } from "vue";
 export default {
   components: {
     Card,
@@ -83,13 +84,24 @@ export default {
     let link = [
       "https://raw.githubusercontent.com/dmrt2002/images/696ad09814061b0a6d1ff1653ac680969870b760/heptagon.svg",
     ];
-    const selectedCountry = ref();
     const countries = ref(countrynames);
     const router = useRouter()
-    let redirect = () => {
+      const state = reactive({
+        firstName: "",
+        lastName:"",
+        email:"",
+        company:"",
+        selectedCountry:"",
+      })
+    let redirect = async () => {
+      try {
+      await axios.post('user/register', state)
       router.push('/landingpage')
+      } catch(e) {
+        console.log(e)
+      }
     }
-    return { link, countries, selectedCountry, redirect };
+    return { link, countries, ...toRefs(state), redirect };
   },
 };
 </script>
