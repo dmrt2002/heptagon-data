@@ -1,3 +1,4 @@
+const { default: axios } = require("axios");
 const User = require("../modals/User");
 
 exports.registerNewUser = async (req, res) => {
@@ -14,7 +15,8 @@ exports.registerNewUser = async (req, res) => {
             lastName: lastName,
             email: email,
             company: company,
-            country: country
+            country: country,
+            role: ""
         }, async function (err, user) {
             if (err) {
                 console.log("Error creating User: ", err);
@@ -29,3 +31,15 @@ exports.registerNewUser = async (req, res) => {
             }
         })
   };
+
+  exports.updateRole = async(req,res) => {
+     let userId = req.body.userId
+     let role = req.body.role
+     let user = await User.findOne({_id: userId})
+     console.log(user)
+     let updated = await User.findOneAndUpdate({
+        _id: userId
+      },{
+        role: role
+      });
+  }

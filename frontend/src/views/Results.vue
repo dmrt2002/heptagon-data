@@ -31,12 +31,13 @@
 <script>
 import { useStore } from "vuex";
 import images from "../images";
+import axios from 'axios'
+import { onMounted } from '@vue/runtime-core';
 export default {
   setup() {
     let store = useStore();
     let options = store.getters.getOptions;
     let length = options.length;
-    console.log(options)
     let link = [
       "https://raw.githubusercontent.com/dmrt2002/images/696ad09814061b0a6d1ff1653ac680969870b760/heptagon.svg",
     ];
@@ -67,6 +68,13 @@ export default {
     let title = images[0].options[imageId - 1].title
     let pdfUrl = images[0].options[imageId - 1].pdfUrl
     let  publicPath = process.env.BASE_URL
+    onMounted(async () => {
+      let param = {
+        userId: store.getters.getId,
+        role: title
+      }
+       await axios.post('/user/role', param)
+    })
     return { url, text, link, title, pdfUrl, publicPath};
   },
 };

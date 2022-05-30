@@ -18,6 +18,9 @@ const userSchema = mongoose.Schema({
   country: {
     type: String,
   },
+  role: {
+    type: String
+  }
 });
 
 const User = mongoose.model("User", userSchema, "data users");

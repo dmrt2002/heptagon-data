@@ -8,6 +8,7 @@ export default createStore({
     options: [],
     classes: ["bg-1","bg-2","bg-3","bg-4","bg-5"],
     class: 0,
+    userId: ""
   },
   mutations: {
     saveQuestion(state,questNumb) {
@@ -30,6 +31,9 @@ export default createStore({
       state.options.shift()
       state.questionNumber = state.questionNumber - 1
     },
+    storeId(state, id) {
+      state.userId = id
+    } 
   },
   actions: {
     saveQuestion(context, questNumb) {
@@ -46,6 +50,9 @@ export default createStore({
     },
     degradeClass(context) {
       context.commit('degradeClass')
+    },
+    storeId(context, id) {
+      context.commit('storeId', id)
     }
   },
   getters: {
@@ -57,6 +64,9 @@ export default createStore({
     },
     getClass(state) {
       return state.classes[state.class]
+    },
+    getId(state) {
+      return state.userId
     }
   }
 })

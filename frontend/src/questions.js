@@ -2,7 +2,7 @@ export default [
     {
       _id: "1",
       question:"When I see the word Data I think...",
-      imageUrl:"https://images.pexels.com/photos/590022/pexels-photo-590022.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+      imageUrl:"https://raw.githubusercontent.com/dmrt2002/images/c41e99d4e01dd1ab3e5988377a5c27a893525d83/undraw_data_processing_yrrv.svg",
       options: [
         {
           optId: "1",

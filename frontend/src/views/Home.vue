@@ -77,6 +77,7 @@ import Button from "primevue/button";
 import { countrynames } from '../countries'
 import { useRouter } from 'vue-router'
 import axios from 'axios'
+import { useStore } from 'vuex'
 import { reactive, ref, toRefs } from "vue";
 export default {
   components: {
@@ -90,6 +91,7 @@ export default {
       "https://raw.githubusercontent.com/dmrt2002/images/696ad09814061b0a6d1ff1653ac680969870b760/heptagon.svg",
     ];
     const countries = ref(countrynames);
+    const store = useStore()
     const errors =  reactive({
       emaile: false,
       firstNamee: false,
@@ -137,8 +139,9 @@ export default {
       else if(state.selectedCountry !== "") {
         errors.countrye = false
       try {
-      await axios.post('user/register', state)
-      console.log("hi")
+      let res = await axios.post('user/register', state)
+      let id = res.data._id
+      store.dispatch('storeId', id)
       router.push('/landingpage')
       errors.firstNamee = false
       errors.lastNamee = false
