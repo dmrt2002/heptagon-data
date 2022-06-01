@@ -94,6 +94,7 @@ export default {
       let users = res.data;
       const usersProps = [];
       for (let i = 0; i < users.length; i++) {
+          if(res.data[i].role !== "") {
         usersProps.push({
           index: usersProps.length + 1,
           Name: res.data[i].firstName,
@@ -104,12 +105,10 @@ export default {
           _id: res.data[i]._id,
           deleteButton: "delete",
         });
-        if(res.data[i].role === "") {
-            usersProps[i].role = "Incomplete"
-        }
+          }
+      }
         products.value = usersProps;
         console.log(usersProps);
-    }
     }
     onMounted(() => {
       retrieveUsers();
