@@ -9,5 +9,8 @@ var urlencodedParser = bodyParser.urlencoded({ extended: false })
 
 router.post("/register", jsonParser, userController.registerNewUser);
 router.post("/role", jsonParser, userController.updateRole);
+router.post("/adminlogin", jsonParser, userController.adminLogin)
+router.post("/deleteUser", jsonParser, userController.deleteUser)
+router.post("/retrieveAllUsers", jsonParser, userController.retriveAllUsers)
 
 module.exports = router;

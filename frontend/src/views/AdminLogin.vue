@@ -8,27 +8,9 @@
     <div class="align-items-center flex justify-content-center align-center">
       <Card class="login-card">
         <template #title>
-          <div class="heading text-center">Know Your Data Quotient</div>
+          <div class="heading text-center">Login</div>
         </template>
         <template #content class="p-card-content">
-            <div class=" p-2">
-              <div class="p-inputgroup">
-                <span class="p-inputgroup-addon">
-                  <i class="pi pi-user"></i>
-                </span>
-                <InputText v-model="firstName" placeholder="First Name" />
-              </div>
-              <span class="error pl-2" v-if="firstNamee">Enter firstName</span>
-            </div>
-            <div class="p-2">
-              <div class="p-inputgroup">
-                <span class="p-inputgroup-addon">
-                  <i class="pi pi-user"></i>
-                </span>
-                <InputText  v-model="lastName" placeholder="Last Name" />
-              </div>
-              <span class="error pl-2" v-if="lastNamee">Enter lastName</span>
-            </div>
             <div class="p-2">
               <div class="p-inputgroup">
                 <span class="p-inputgroup-addon">
@@ -38,24 +20,9 @@
               </div>
               <span class="error pl-2" v-if="emaile">Enter valid Email</span>
             </div>
-            <div class=" p-2">
-              <div class="p-inputgroup">
-                <span class="p-inputgroup-addon">
-                  <i class="pi pi-building"></i>
-                </span>
-                <InputText v-model="company" placeholder="Company" />
-              </div>
-              <span class="error pl-2" v-if="companye">Enter valid Company</span>
+            <div class="p-2 center">
+                <Password v-model="password" toggleMask></Password>
             </div>
-            <div class=" p-2">
-              <Dropdown
-                v-model="selectedCountry"
-                :options="countries"
-                optionLabel="name"
-                optionValue="name"
-                placeholder="Select a country"
-              />
-          </div>
           <span class="error pl-3" v-if="countrye">Enter valid Country</span>
           <br><br>
           <div class="grid">
@@ -72,88 +39,57 @@
 <script>
 import Card from "primevue/card";
 import InputText from "primevue/inputtext";
-import Dropdown from "primevue/dropdown";
 import Button from "primevue/button";
-import { countrynames } from '../countries'
+import Password from 'primevue/password'
 import { useRouter } from 'vue-router'
 import axios from 'axios'
 import { useStore } from 'vuex'
-import { reactive, ref, toRefs } from "vue";
+import { reactive, toRefs } from "vue";
 export default {
   components: {
     Card,
     InputText,
-    Dropdown,
+    Password,
     Button,
   },
   setup() {
     let link = [
       "https://raw.githubusercontent.com/dmrt2002/images/696ad09814061b0a6d1ff1653ac680969870b760/heptagon.svg",
     ];
-    const countries = ref(countrynames);
     const store = useStore()
     const errors =  reactive({
       emaile: false,
-      firstNamee: false,
-      lastNamee: false,
-      countrye: false,
-      companye: false
+      passworde: false
     })
     const router = useRouter()
       const state = reactive({
-        firstName: "",
-        lastName:"",
         email:"",
-        company:"",
-        selectedCountry:"",
+        password:""
       })
     let redirect = async () => {
-      console.log(state)
-      if(state.firstName === "") {
-        errors.firstNamee = true
-      }
-      else {
-        errors.firstNamee = false
-      }
-      if(state.lastName === "") {
-        errors.lastNamee = true
-      }
-      else {
-        errors.lastNamee = false
-      }
       if(state.email === "") {
         errors.emaile = true
       }
       else {
         errors.emaile = false
-      }
-       if(state.company === "") {
-        errors.companye = true
+      } 
+      if(state.password === "") {
+          errors.passworde = true
       }
       else {
-        errors.companye = false
-      }
-      if(state.selectedCountry === "") {
-        errors.countrye = true
-      }
-      else if(state.selectedCountry !== "") {
-        errors.countrye = false
+          errors.passworde = false
       try {
-      let res = await axios.post('user/register', state)
+      let res = await axios.post('user/adminlogin', state)
       let id = res.data._id
       store.dispatch('storeId', id)
       router.push('/landingpage')
-      errors.firstNamee = false
-      errors.lastNamee = false
       errors.emaile = false
-      errors.companye = false
-      errors.countrye = false
       } catch(e) {
         console.log(e)
       }
       }
     }
-    return { link, countries, ...toRefs(state),  ...toRefs(errors), redirect};
+    return { link, ...toRefs(state),  ...toRefs(errors), redirect};
   },
 };
 </script>
@@ -210,5 +146,13 @@ export default {
 }
 .error {
   color: red;
+}
+.p-input-icon-right > .p-inputtext {
+    padding-left: 120px !important;
+}
+.center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 </style>

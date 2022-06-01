@@ -3,6 +3,8 @@ import Home from '../views/Home.vue'
 import LandingPage from '../views/LandingPage.vue'
 import Questions from '../views/Questions.vue'
 import Results from '../views/Results.vue'
+import AdminLogin from '../views/AdminLogin.vue'
+import AdminPanel from '../views/AdminPanel.vue'
 
 const routes = [
   {
@@ -24,6 +26,16 @@ const routes = [
     path: '/results',
     name: 'results',
     component: Results
+  },
+  {
+    path: '/adminlogin',
+    name: 'adminlogin',
+    component: AdminLogin
+  },
+  {
+    path: '/adminpanel',
+    name: 'adminpanel',
+    component: AdminPanel
   }
 ]
 
