@@ -104,10 +104,8 @@ export default {
           _id: res.data[i]._id,
           deleteButton: "delete",
         });
-        if (users[i].lastQuestionAttempted === "27") {
-          usersProps[i].details = "Complete";
-        } else {
-          usersProps[i].details = "Incomplete";
+        if(res.data[i].role === "") {
+            usersProps[i].role = "Incomplete"
         }
         products.value = usersProps;
         console.log(usersProps);
