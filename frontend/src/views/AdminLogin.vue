@@ -23,7 +23,8 @@
             <div class="p-2 center">
                 <Password v-model="password" toggleMask></Password>
             </div>
-          <span class="error pl-3" v-if="countrye">Enter valid Country</span>
+          <span class="error pl-3" v-if="passworde">Enter Password</span>
+          <span class="error pl-3 text-center"  v-if="invalidCredentialsE">Invalid Credentials</span>
           <br><br>
           <div class="grid">
             <div class="col-12 md:col-12 w-full pt-1">
@@ -43,8 +44,7 @@ import Button from "primevue/button";
 import Password from 'primevue/password'
 import { useRouter } from 'vue-router'
 import axios from 'axios'
-import { useStore } from 'vuex'
-import { reactive, toRefs } from "vue";
+import { reactive, ref, toRefs } from "vue";
 export default {
   components: {
     Card,
@@ -56,7 +56,7 @@ export default {
     let link = [
       "https://raw.githubusercontent.com/dmrt2002/images/696ad09814061b0a6d1ff1653ac680969870b760/heptagon.svg",
     ];
-    const store = useStore()
+    let invalidCredentialsE = ref(false)
     const errors =  reactive({
       emaile: false,
       passworde: false
@@ -79,17 +79,16 @@ export default {
       else {
           errors.passworde = false
       try {
-      let res = await axios.post('user/adminlogin', state)
-      let id = res.data._id
-      store.dispatch('storeId', id)
-      router.push('/landingpage')
+      await axios.post('user/adminlogin', state)
+      router.push('/adminpanel')
       errors.emaile = false
       } catch(e) {
         console.log(e)
+        invalidCredentialsE.value = true
       }
       }
     }
-    return { link, ...toRefs(state),  ...toRefs(errors), redirect};
+    return { link, ...toRefs(state),  ...toRefs(errors), redirect, invalidCredentialsE};
   },
 };
 </script>
