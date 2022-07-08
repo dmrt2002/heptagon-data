@@ -11,6 +11,9 @@ router.post("/register", jsonParser, userController.registerNewUser);
 router.post("/role", jsonParser, userController.updateRole);
 router.post("/adminlogin", jsonParser, userController.adminLogin)
 router.post("/deleteUser", jsonParser, userController.deleteUser)
-router.post("/retrieveAllUsers", jsonParser, userController.retriveAllUsers)
+router.post("/addAnswer", jsonParser, userController.addAnswer)
+router.post("/addEvent", jsonParser, userController.addEvent)
+
+// router.post("/removeAnswer", jsonParser, userController.removeAnswer)
 
 module.exports = router;

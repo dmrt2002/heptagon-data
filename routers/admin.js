@@ -1,0 +1,19 @@
+const express = require("express");
+const router = express.Router();
+const userController = require("../controllers/usercontroller");
+const bodyParser = require("body-parser");
+var jsonParser = bodyParser.json()
+ 
+// create application/x-www-form-urlencoded parser
+var urlencodedParser = bodyParser.urlencoded({ extended: false })
+
+router.post("/adminlogin", jsonParser, userController.adminLogin)
+router.post("/addEvent", jsonParser, userController.addEvent)
+router.post("/getEventDetails", jsonParser, userController.getEventDetails)
+router.post("/addParticipant", jsonParser, userController.addParticipant)
+router.post("/retrieveAllEvents", jsonParser, userController.retriveAllEvents)
+router.post("/retrieveAllParticipants", jsonParser, userController.retriveAllParticipants)
+router.post("/bulkUpload", jsonParser, userController.bulkUpload)
+// router.post("/removeAnswer", jsonParser, userController.removeAnswer)
+
+module.exports = router;

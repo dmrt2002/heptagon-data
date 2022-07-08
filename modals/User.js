@@ -18,6 +18,9 @@ const userSchema = mongoose.Schema({
   country: {
     type: String,
   },
+  answerSheet: {
+    type: Array
+  },
   role: {
     type: String
   }

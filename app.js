@@ -22,7 +22,9 @@ mongoose.connect(process.env.DB_URI, {
 app.use(cors());
 
 const userRoutes = require("./routers/index.js");
+const adminRoutes = require("./routers/admin.js")
 app.use("/user", userRoutes);
+app.use("/admin", adminRoutes);
 
 
   app.use(express.static(__dirname + "/dist/"))

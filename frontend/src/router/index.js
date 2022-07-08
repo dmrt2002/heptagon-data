@@ -4,7 +4,12 @@ import LandingPage from '../views/LandingPage.vue'
 import Questions from '../views/Questions.vue'
 import Results from '../views/Results.vue'
 import AdminLogin from '../views/AdminLogin.vue'
-import AdminPanel from '../views/AdminPanel.vue'
+import EventsPage from '../views/EventsPage.vue'
+import AddEvent from '../views/AddEvent.vue'
+import Participants from '../views/Participants.vue'
+import AddParticipant from '../views/AddParticipant.vue'
+import EventDetails from '../views/EventsDetail.vue'
+import bulkUpload from '../views/bulkUpload.vue'
 
 const routes = [
   {
@@ -33,9 +38,34 @@ const routes = [
     component: AdminLogin
   },
   {
-    path: '/adminpanel',
-    name: 'adminpanel',
-    component: AdminPanel
+    path: '/events',
+    name: 'events',
+    component: EventsPage
+  },
+  {
+    path: '/addevent',
+    name: 'addevent',
+    component: AddEvent
+  },
+  {
+    path: '/addparticipant',
+    name: 'addparticipant',
+    component: AddParticipant
+  },
+  {
+    path: '/participants',
+    name: 'participants',
+    component: Participants
+  },
+  {
+    path: '/eventdetails',
+    name: 'eventsdetail',
+    component: EventDetails
+  },
+  {
+    path: '/upload',
+    name: 'bulkupload',
+    component: bulkUpload
   }
 ]
 

@@ -1,6 +1,5 @@
 <template>
   <div>
-
     <question v-if="questionval" @submit=submit @back=back :key= refresh /> 
   </div>
 </template>

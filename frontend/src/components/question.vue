@@ -77,6 +77,7 @@
 import RadioButton from "primevue/radiobutton";
 import { ref } from "vue";
 import questions from "../questions";
+import axios from 'axios'
 import { useStore } from "vuex";
 import { useRouter } from "vue-router";
 export default {
@@ -107,8 +108,15 @@ export default {
     let option3 = questions[n.value - 1].options[2].optText;
     let option4 = questions[n.value - 1].options[3].optText;
     let imageUrl = questions[n.value - 1].imageUrl;
-    let submit = () => {
+    let submit = async () => {
       let value = option.value;
+      let param = {
+        optId: value,
+        questionId: n.value,
+        userId: store.getters.getId
+      }
+      let res = await axios.post('user/addAnswer', param)
+      console.log(res)
       store.dispatch("saveOption", value);
       context.emit("submit", value);
     };

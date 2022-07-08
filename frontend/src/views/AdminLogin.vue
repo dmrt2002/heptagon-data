@@ -11,24 +11,43 @@
           <div class="heading text-center">Login</div>
         </template>
         <template #content class="p-card-content">
-            <div class="p-2">
-              <div class="p-inputgroup">
-                <span class="p-inputgroup-addon">
-                  <i class="pi pi-envelope"></i>
-                </span>
-                <InputText v-model="email" placeholder="Email" />
-              </div>
-              <span class="error pl-2" v-if="emaile">Enter valid Email</span>
+          <div class="p-2">
+            <div class="p-inputgroup">
+              <span class="p-inputgroup-addon">
+                <i class="pi pi-envelope"></i>
+              </span>
+              <InputText v-model="email" placeholder="Email" />
             </div>
-            <div class="p-2 center">
-                <Password v-model="password" toggleMask></Password>
-            </div>
-          <span class="error pl-3" v-if="passworde">Enter Password</span>
-          <span class="error pl-3 text-center"  v-if="invalidCredentialsE">Invalid Credentials</span>
-          <br><br>
+            <span class="error pl-2" v-if="emaile">Enter valid Email</span>
+          </div>
+          <div class="p-2 center">
+            <Password v-model="password">
+              <template #header class="mt-10">
+                <h3>Pick a password</h3>
+              </template>
+              <template #footer="sp">
+                {{ sp.level }}
+                <Divider />
+                <p class="mt-2">Suggestions</p>
+                <ul class="pl-2 ml-2 mt-0" style="line-height: 1.5">
+                  <li>At least one number and special character</li>
+                  <li>Minimum 8 characters</li>
+                </ul>
+              </template>
+            </Password>
+          </div>
+          <span class="error pl-3" v-if="passworde">Invalid Password</span>
+          <span class="error pl-3 text-center" v-if="invalidCredentialsE"
+            >Invalid Credentials</span
+          >
+          <br /><br />
           <div class="grid">
             <div class="col-12 md:col-12 w-full pt-1">
-              <Button @click="redirect()" label="Submit" class="p-button-raised" />
+              <Button
+                @click="redirect()"
+                label="Submit"
+                class="p-button-raised"
+              />
             </div>
           </div>
         </template>
@@ -41,9 +60,9 @@
 import Card from "primevue/card";
 import InputText from "primevue/inputtext";
 import Button from "primevue/button";
-import Password from 'primevue/password'
-import { useRouter } from 'vue-router'
-import axios from 'axios'
+import Password from "primevue/password";
+import { useRouter } from "vue-router";
+import axios from "axios";
 import { reactive, ref, toRefs } from "vue";
 export default {
   components: {
@@ -56,39 +75,48 @@ export default {
     let link = [
       "https://raw.githubusercontent.com/dmrt2002/images/696ad09814061b0a6d1ff1653ac680969870b760/heptagon.svg",
     ];
-    let invalidCredentialsE = ref(false)
-    const errors =  reactive({
+    let invalidCredentialsE = ref(false);
+    const errors = reactive({
       emaile: false,
-      passworde: false
-    })
-    const router = useRouter()
-      const state = reactive({
-        email:"",
-        password:""
-      })
+      passworde: false,
+    });
+    const router = useRouter();
+    const state = reactive({
+      email: "",
+      password: "",
+    });
     let redirect = async () => {
-      if(state.email === "") {
-        errors.emaile = true
+      const regex = /\d/;
+      if (state.email === "") {
+        errors.emaile = true;
+      } else {
+        errors.emaile = false;
       }
-      else {
-        errors.emaile = false
-      } 
-      if(state.password === "") {
-          errors.passworde = true
+      if (
+        state.password === "" ||
+        state.password.length < 8 ||
+        !regex.test(state.password)
+      ) {
+        errors.passworde = true;
+      } else {
+        errors.passworde = false;
+        try {
+          await axios.post("admin/adminlogin", state);
+          router.push("/adminpanel");
+          errors.emaile = false;
+        } catch (e) {
+          console.log(e);
+          invalidCredentialsE.value = true;
+        }
       }
-      else {
-          errors.passworde = false
-      try {
-      await axios.post('user/adminlogin', state)
-      router.push('/adminpanel')
-      errors.emaile = false
-      } catch(e) {
-        console.log(e)
-        invalidCredentialsE.value = true
-      }
-      }
-    }
-    return { link, ...toRefs(state),  ...toRefs(errors), redirect, invalidCredentialsE};
+    };
+    return {
+      link,
+      ...toRefs(state),
+      ...toRefs(errors),
+      redirect,
+      invalidCredentialsE,
+    };
   },
 };
 </script>
@@ -98,12 +126,16 @@ export default {
 .p-button {
   padding: 0.5rem 2rem !important;
 }
-.heading , .p-button-raised{
+.heading,
+.p-button-raised {
   font-family: "Raleway", sans-serif !important;
 }
 .logo {
   height: 60px !important;
   z-index: 999 !important;
+}
+::v-deep(.p-password input) {
+  width: 30vw;
 }
 .login-card {
   background: white;
@@ -119,11 +151,11 @@ export default {
   min-height: calc(100vh - 100px);
 }
 .background {
-   background-color: rgba(241, 237, 246, 0.818);
-   min-height: 100vh;
+  background-color: rgba(241, 237, 246, 0.818);
+  min-height: 100vh;
 }
 .p-inputtext {
-    font-size: 1.2rem !important;
+  font-size: 1.2rem !important;
 }
 .p-button {
   font-size: 1.2rem !important;
@@ -147,11 +179,11 @@ export default {
   color: red;
 }
 .p-input-icon-right > .p-inputtext {
-    padding-left: 120px !important;
+  padding-left: 120px !important;
 }
 .center {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 </style>

@@ -63,7 +63,6 @@ setup() {
 .img-fluid {
   width: 100vw;
   height: 60vh;
-
 }
 
 @media (max-width: 768px) {

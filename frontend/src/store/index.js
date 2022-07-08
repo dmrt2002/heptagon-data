@@ -6,7 +6,11 @@ export default createStore({
     options: [],
     classes: ["bg-1","bg-2","bg-3","bg-4","bg-5"],
     class: 0,
-    userId: ""
+    userId: "",
+    eventObj:{
+      id:"",
+      code:""
+    }
   },
   mutations: {
     saveQuestion(state,questNumb) {
@@ -31,7 +35,10 @@ export default createStore({
     },
     storeId(state, id) {
       state.userId = id
-    } 
+    },
+    storeEventId(state,obj) {
+      state.eventObj = obj
+    }
   },
   actions: {
     saveQuestion(context, questNumb) {
@@ -51,6 +58,9 @@ export default createStore({
     },
     storeId(context, id) {
       context.commit('storeId', id)
+    },
+    storeEventId(context,id) {
+      context.commit('storeEventId', id)
     }
   },
   getters: {
@@ -65,6 +75,9 @@ export default createStore({
     },
     getId(state) {
       return state.userId
+    },
+    getEventId(state) {
+      return state.eventObj
     }
   }
 })
