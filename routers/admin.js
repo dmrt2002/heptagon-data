@@ -14,6 +14,9 @@ router.post("/addParticipant", jsonParser, userController.addParticipant)
 router.post("/retrieveAllEvents", jsonParser, userController.retriveAllEvents)
 router.post("/retrieveAllParticipants", jsonParser, userController.retriveAllParticipants)
 router.post("/bulkUpload", jsonParser, userController.bulkUpload)
+router.post("/eventBulkUpdate", jsonParser, userController.eventBulkUpdate)
+router.post("/updateEvent", jsonParser, userController.updateEvent)
+
 // router.post("/removeAnswer", jsonParser, userController.removeAnswer)
 
 module.exports = router;

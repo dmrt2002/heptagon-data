@@ -83,7 +83,7 @@ export default {
       router.go(-1)
     }
     const submit = async () => {
-       let res = await axios.post('http://localhost:5000/admin/addParticipant' , state)
+       let res = await axios.post('/admin/addParticipant' , state)
        console.log(res)
       toast.add({
         severity: "success",

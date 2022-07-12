@@ -39,11 +39,12 @@ var XLSX = require("xlsx");
 import axios from "axios";
 import SidebarMenuAkahon from "../components/dashboard.vue";
 import Dialog from "primevue/dialog";
-import { ref } from "vue";
+import { onMounted, ref } from "vue";
 import { useToast } from "primevue/usetoast";
 import Toast from "primevue/toast";
 import Button from 'primevue/button'
 import { useRouter } from 'vue-router'
+import { useStore } from 'vuex'
 export default {
   components: {
     SidebarMenuAkahon,
@@ -53,7 +54,9 @@ export default {
   },
   setup() {
     const toast = useToast();
-    const router = useRouter()
+    const store = useStore();
+    const router = useRouter();
+    const param = ref({})
     const displayBasic = ref(false);
     let myObj = ref([]);
     const attach = () => {
@@ -74,8 +77,10 @@ export default {
             let rowObject = XLSX.utils.sheet_to_row_object_array(
               workbook.Sheets[sheet]
             );
+            console.log(rowObject)
             myObj.value = rowObject;
             try {
+              axios.post("/admin/eventBulkUpdate", param.value)
               axios.post("/admin/bulkUpload", myObj.value);
             } catch (e) {
               console.log(e);
@@ -93,6 +98,14 @@ export default {
     const back = () => {
       router.go(-1)
     }
+    onMounted(() => {
+      let obj = store.getters.getEventId;
+      let parameter = {
+        name: obj['name'],
+        description: obj['description']
+      }
+      param.value = parameter
+    })
     return { displayBasic, attach, onUpload, back };
   },
 };

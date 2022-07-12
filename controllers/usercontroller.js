@@ -3,6 +3,8 @@ const User = require("../modals/User");
 const Admin = require("../modals/Admin");
 const Event = require("../modals/Events");
 const Participant = require("../modals/Participants")
+var nodemailer = require('nodemailer');
+let eventObj
 
 exports.registerNewUser = async (req, res) => {
   var firstName = req.body.firstName;
@@ -145,11 +147,64 @@ exports.getEventDetails = async(req,res) => {
   res.status(200).json(resp[0])
 }
 
+exports.eventBulkUpdate = async(req,res) => {
+  eventObj = req.body
+  res.status(200).json("sent successfully")
+}
+
 exports.bulkUpload = async(req,res) => {
   const obj = req.body
+  console.log(obj)
   Participant.insertMany(obj).then(function(){
     console.log("Data inserted")  
 }).catch(function(error){
     console.log(error)    
 })
+  for(let i = 0; i < obj.length; i++) {
+    let code = Math.floor(1000 + Math.random() * 9000);
+    var transporter = nodemailer.createTransport({
+      service: 'gmail',
+      auth: {
+        user: 'dataheptagon@gmail.com',
+        pass: 'ectkgqitwrvmuzvt'
+      }
+    });
+    var mailOptions = {
+      from: 'dataheptagon@gmail.com',
+      to: obj[i].Email,
+      subject: ` Welcome  - Know Your Data Quotient`,
+      html:
+      `<h2>Dear ${obj[i].FirstName}</h2>
+       <p>Please click on the Button/URL below to access the DQ Assessment</p>
+       <h3>Your username will be your Official Email ID</h3>
+        <p>Your passcode  will be the ${code}</p>
+        <p>Your Event will be ${eventObj.name}</p>
+        <p>For any support you can write to  digital@heptagon.in </p>`
+    };
+    transporter.sendMail(mailOptions, function(error, info){
+      if (error) {
+        console.log(error);
+      } else {
+        console.log('Email sent: ' + info.response);
+      }
+    });
+  }
+}
+
+exports.updateEvent = async(req,res) => {
+  console.log(req.body)
+  let replaceObj = req.body
+  let original = await Event.findOne({ _id: replaceObj._id})
+  console.log(replaceObj.name)
+  replaceObj.type = replaceObj.type.name;
+  let updated = await Event.findOneAndUpdate({
+    _id: replaceObj._id
+  },{
+    Name: replaceObj.name,
+    Code: replaceObj.code,
+    Type: replaceObj.type,
+    Date: replaceObj.date,
+    Description: replaceObj.description
+  });
+  res.status(200).json("successfully updated")
 }

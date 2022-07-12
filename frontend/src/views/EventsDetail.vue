@@ -131,10 +131,18 @@ export default {
       };
       if(obj['id'] !== "") {
       let res = await axios.post(
-        "http://localhost:5000/admin/getEventDetails",
+        "/admin/getEventDetails",
         param
       );
       res.data.Date = res.data.Date.toString().split("T")[0]
+      let parameter = {
+        id: res.data._id,
+        code: res.data.Code,
+        name: res.data.Name,
+        description: res.data.Description        
+      }
+      console.log(parameter)
+      store.dispatch('storeEventId' , parameter)
       eventDetails.value = res.data;
       console.log(eventDetails.value);
       }
@@ -150,7 +158,7 @@ export default {
     ]);
     const retrieveEvents = async () => {
       let res = await axios.post(
-        "http://localhost:5000/admin/retrieveAllParticipants"
+        "/admin/retrieveAllParticipants"
       );
       let events = res.data;
       console.log(res.data);

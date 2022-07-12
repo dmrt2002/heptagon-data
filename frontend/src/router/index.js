@@ -10,6 +10,7 @@ import Participants from '../views/Participants.vue'
 import AddParticipant from '../views/AddParticipant.vue'
 import EventDetails from '../views/EventsDetail.vue'
 import bulkUpload from '../views/bulkUpload.vue'
+import EventEdit from '../views/EventEdit.vue'
 
 const routes = [
   {
@@ -66,6 +67,11 @@ const routes = [
     path: '/upload',
     name: 'bulkupload',
     component: bulkUpload
+  },
+  {
+    path: '/editevent',
+    name: 'editevent',
+    component: EventEdit
   }
 ]
 

@@ -88,7 +88,7 @@ export default {
       router.push('/events')
     }
     const submit = async () => {
-       let res = await axios.post('http://localhost:5000/admin/addEvent' , state)
+       let res = await axios.post('/admin/addEvent' , state)
        console.log(res)
       toast.add({
         severity: "success",

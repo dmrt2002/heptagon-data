@@ -7,7 +7,7 @@
     <DataTable
       :value="Events"
       v-model:filters="filters1"
-      @rowSelect="onRowSelect"
+      filterDisplay="menu"
       stateStorage="session"
       responsiveLayout="scroll"
       selectionMode="single"
@@ -38,13 +38,15 @@
         field="name"
         header="Event Name"
       >
-        <template #filter="{ filterModel, filterCallback }">
+        <template #body="{ data }">
+          {{ data.name }}
+        </template>
+        <template #filter="{ filterModel }">
           <InputText
             type="text"
             v-model="filterModel.value"
-            @input="filterCallback()"
             class="p-column-filter"
-            :placeholder="`Search by name - ${filterModel.matchMode}`"
+            placeholder="Search by name"
           /> </template
       ></Column>
       <Column
@@ -60,8 +62,48 @@
         dataKey="id"
         field="type"
         header="Event Type"
-      ></Column>
-      <Column :key="field" dataKey="id" field="date" header="Event Date">
+        filterField="type"
+        style="min-width:12rem"
+      >
+        <template #body="{ data }">
+          {{ data.type }}
+        </template>
+        <template #filter="{ filterModel, filterCallback }">
+          <Dropdown
+            v-model="filterModel.value"
+            @change="filterCallback()"
+            :options="types"
+            placeholder="Any"
+            class="p-column-filter"
+          >
+            <template #value="slotProps">
+              <span v-if="slotProps.value">{{ slotProps.value }}</span>
+              <span v-else>{{ slotProps.placeholder }}</span>
+            </template>
+            <template #option="slotProps">
+              <span>{{ slotProps.option }}</span>
+            </template>
+          </Dropdown>
+        </template>
+      </Column>
+      <Column
+        :key="field"
+        filterField="date"
+        dataType="date"
+        dataKey="id"
+        field="date"
+        header="Event Date"
+      >
+        <template #body="{ data }">
+          {{ data.date }}
+        </template>
+        <template #filter="{ filterModel }">
+          <Calendar
+            v-model="filterModel.value"
+            dateFormat="mm/dd/yy"
+            placeholder="mm/dd/yyyy"
+          />
+        </template>
       </Column>
       <Column
         :key="field"
@@ -69,6 +111,21 @@
         field="created"
         header="Created-Date/Edited-Date"
       ></Column>
+      <Column :key="field" dataKey="id" id="btn" field="Edit" header="">
+        <template #body="{ data }">
+          <div @click="currEvent(data)">
+            <i
+              class="pi pi-ellipsis-v"
+              @click="toggle"
+              aria-haspopup="true"
+              aria-controls="overlay_menu"
+              type="button"
+            >
+            </i>
+          </div>
+          <Menu id="overlay_tmenu" ref="menu" :model="items" :popup="true" />
+        </template>
+      </Column>
     </DataTable>
   </div>
 </template>
@@ -82,8 +139,11 @@ import Column from "primevue/column";
 import Button from "primevue/button";
 import { useRouter } from "vue-router";
 import InputText from "primevue/inputtext";
-import { FilterMatchMode, FilterService } from "primevue/api";
-import { useStore } from 'vuex'
+import { useStore } from "vuex";
+import Menu from "primevue/menu";
+import Calendar from "primevue/calendar";
+import Dropdown from "primevue/dropdown";
+import { FilterMatchMode, FilterOperator } from "primevue/api";
 
 export default {
   components: {
@@ -92,45 +152,81 @@ export default {
     SidebarMenuAkahon,
     Button,
     InputText,
+    Menu,
+    Calendar,
+    Dropdown,
   },
 
   setup() {
+    const currEventObj = ref();
+    const menu = ref();
     const router = useRouter();
+
+    const toggle = (event) => {
+      menu.value.toggle(event);
+    };
     const store = useStore();
     const Events = ref();
     const filters1 = ref({
       global: { value: null, matchMode: FilterMatchMode.CONTAINS },
+      name: {
+        operator: FilterOperator.AND,
+        constraints: [{ value: null, matchMode: FilterMatchMode.STARTS_WITH }],
+      },
+      date: {
+        operator: FilterOperator.AND,
+        constraints: [{ value: null, matchMode: FilterMatchMode.DATE_IS }],
+      },
+      type: { value: null, matchMode: FilterMatchMode.EQUALS },
     });
-
+    const types = ref([
+     "New York",
+      "Rome",
+      "London",
+     "Istanbul",
+     "Paris" 
+    ]);
+    const items = ref([
+      {
+        label: "Edit",
+        icon: "pi pi-pencil",
+        command: () => {
+          let currEvent = currEventObj.value;
+          let param = {
+            id: currEvent._id,
+            code: currEvent.code,
+            name: currEvent.name,
+            description: "",
+          };
+          store.dispatch("storeEventId", param);
+          router.push("/editevent");
+        },
+      },
+      {
+        label: "View",
+        icon: "pi pi-eye",
+        command: () => {
+          let currEvent = currEventObj.value;
+          let param = {
+            id: currEvent._id,
+            code: currEvent.code,
+            name: currEvent.name,
+            description: "",
+          };
+          store.dispatch("storeEventId", param);
+          router.push("/eventdetails");
+        },
+      },
+    ]);
     onMounted(() => {
       retrieveEvents();
-      FilterService.register(YOUR_FILTER.value, (value, filter) => {
-        if (filter === undefined || filter === null || filter.trim() === "") {
-          return true;
-        }
-
-        if (value === undefined || value === null) {
-          return false;
-        }
-
-        return value.toString() === filter.toString();
-      });
     });
-    const YOUR_FILTER = ref("YOUR FILTER");
-    const filters = ref({
-      name: { value: null, matchMode: YOUR_FILTER.value },
-      "country.name": { value: null, matchMode: FilterMatchMode.STARTS_WITH },
-    });
-    const matchModeOptions = ref([
-      { label: "Your Equals", value: YOUR_FILTER.value },
-      { label: "Starts With", value: FilterMatchMode.STARTS_WITH },
-    ]);
     const retrieveEvents = async () => {
       let res = await axios.post(
-        "http://localhost:5000/admin/retrieveAllEvents"
+        "/admin/retrieveAllEvents"
       );
       let events = res.data;
-      console.log(res.data);
+      console.log(res.data[0].Name);
       const eventsProps = [];
       for (let i = 0; i <= events.length; i++) {
         eventsProps.push({
@@ -140,6 +236,7 @@ export default {
           date: res.data[i].Date.toString().split("T")[0],
           code: res.data[i].Code,
           _id: res.data[i]._id,
+          Edit: "Edit",
           created: res.data[i].created.toString().split("T")[0],
         });
         Events.value = eventsProps;
@@ -149,15 +246,27 @@ export default {
     const redirect = () => {
       router.push("/addevent");
     };
-    const onRowSelect = (event) => {
-      let param = {
-        id: event.data._id,
-        code: event.data.code
-      }
-      store.dispatch('storeEventId' , param)
-     router.push("/eventdetails")
-    }
-    return { Events, redirect, filters1, filters, matchModeOptions, onRowSelect };
+    const currEvent = (Data) => {
+      currEventObj.value = Data;
+    };
+    const formatDate = (data) => {
+      return data.toLocaleDateString("en-US", {
+        day: "2-digit",
+        month: "2-digit",
+        year: "numeric",
+      });
+    };
+    return {
+      Events,
+      redirect,
+      filters1,
+      items,
+      menu,
+      toggle,
+      currEvent,
+      formatDate,
+      types
+    };
   },
 };
 </script>
