@@ -132,7 +132,7 @@
         type: Array,
         default: () => [
           {
-            link: 'http://localhost:8080/#/events',
+            link: 'http://hept-data.herokuapp.com/#//#/events',
             name: 'Event',
             tooltip: 'Event',
             icon: 'bx-grid-alt',
