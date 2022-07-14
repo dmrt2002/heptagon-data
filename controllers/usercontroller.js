@@ -208,3 +208,23 @@ exports.updateEvent = async(req,res) => {
   });
   res.status(200).json("successfully updated")
 }
+
+exports.getCompanies = async(req,res) => {
+  let participants = await Participant.find();
+  let companies = participants.map((obj) => obj.Organization )
+  res.status(200).json(companies)
+}
+
+exports.removePartcipant = async(req,res) => {
+  let id = req.body.id
+  let partcipants = await Participant.deleteOne({_id:id})
+  res.status(200).json("successfully deleted")
+}
+
+exports.getEventPartcipants = async(req,res) => {
+  let id = req.body.id
+  let event = await Event.find({_id: id})
+  console.log(event[0].Code)
+  let participants = await Participant.find();
+  res.status(200).json((participants.filter(obj => obj.EventCode === event[0].Code)))
+}

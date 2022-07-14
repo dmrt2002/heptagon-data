@@ -2,7 +2,11 @@
   <div class="top">
     <sidebar-menu-akahon />
     <h2 class="margin-left-2 margin-bottom-2">
-      <Button @click="back()" icon="pi pi-arrow-left" class="p-button-rounded p-button-text margin-left-1" />
+      <Button
+        @click="back()"
+        icon="pi pi-arrow-left"
+        class="p-button-rounded p-button-text margin-left-1"
+      />
       <span class="align-center">&nbsp;{{ eventDetails.Name }}</span>
     </h2>
     <div class="grid margin-left-1">
@@ -24,10 +28,20 @@
       </div>
     </div>
     <div class="flex justify-content-end flex-wrap margins">
-      <Button @click="redirect()" icon="pi pi-plus" class="margin-auto" label="Create Participant" />
-      <Button @click="upload()" icon="pi pi-file-excel" class="margin-auto" label="Bulk Upload" />
+      <Button
+        @click="redirect()"
+        icon="pi pi-plus"
+        class="margin-auto"
+        label="Create Participant"
+      />
+      <Button
+        @click="upload()"
+        icon="pi pi-file-excel"
+        class="margin-auto"
+        label="Bulk Upload"
+      />
     </div>
-<DataTable
+    <DataTable
       :value="Events"
       v-model:filters="filters1"
       @rowSelect="onRowSelect"
@@ -47,6 +61,9 @@
           />
         </span>
       </template>
+            <template #empty>
+                <span class="text-center">No partcipants found.</span>
+            </template>
       <Column
         sortable
         :key="field"
@@ -54,13 +71,7 @@
         field="index"
         header="Index"
       ></Column>
-      <Column
-        sortable
-        :key="field"
-        dataKey="id"
-        field="name"
-        header="Name"
-      >
+      <Column sortable :key="field" dataKey="id" field="name" header="Name">
         <template #filter="{ filterModel, filterCallback }">
           <InputText
             type="text"
@@ -90,7 +101,12 @@
         field="assessment"
         header="Date Of Assessment"
       ></Column>
-      <Column :key="field" dataKey="id" field="Actions" header="Event Date"></Column>
+      <Column
+        :key="field"
+        dataKey="id"
+        field="Actions"
+        header="Event Date"
+      ></Column>
     </DataTable>
   </div>
 </template>
@@ -99,12 +115,12 @@
 import { onMounted, ref } from "vue";
 import { useStore } from "vuex";
 import SidebarMenuAkahon from "../components/dashboard.vue";
-import Button from 'primevue/button'
-import { useRouter }  from 'vue-router'
+import Button from "primevue/button";
+import { useRouter } from "vue-router";
 import DataTable from "primevue/datatable";
 import Column from "primevue/column";
-import { FilterMatchMode} from "primevue/api";
-import InputText from 'primevue/inputtext'
+import { FilterMatchMode } from "primevue/api";
+import InputText from "primevue/inputtext";
 import axios from "axios";
 export default {
   components: {
@@ -112,39 +128,35 @@ export default {
     Button,
     DataTable,
     Column,
-    InputText
+    InputText,
   },
   setup() {
     const store = useStore();
     const router = useRouter();
-     const Events = ref();
+    let obj = store.getters.getEventId;
+    const Events = ref();
     const eventDetails = ref({});
     const filters1 = ref({
       global: { value: null, matchMode: FilterMatchMode.CONTAINS },
     });
     onMounted(async () => {
-        retrieveEvents();
-      let obj = store.getters.getEventId;
-      console.log(obj['id'])
+      retrieveEvents();
       let param = {
         id: obj["id"],
       };
-      if(obj['id'] !== "") {
-      let res = await axios.post(
-        "/admin/getEventDetails",
-        param
-      );
-      res.data.Date = res.data.Date.toString().split("T")[0]
-      let parameter = {
-        id: res.data._id,
-        code: res.data.Code,
-        name: res.data.Name,
-        description: res.data.Description        
-      }
-      console.log(parameter)
-      store.dispatch('storeEventId' , parameter)
-      eventDetails.value = res.data;
-      console.log(eventDetails.value);
+      if (obj["id"] !== "") {
+        let res = await axios.post("/admin/getEventDetails", param);
+        res.data.Date = res.data.Date.toString().split("T")[0];
+        let parameter = {
+          id: res.data._id,
+          code: res.data.Code,
+          name: res.data.Name,
+          description: res.data.Description,
+        };
+        console.log(parameter);
+        store.dispatch("storeEventId", parameter);
+        eventDetails.value = res.data;
+        console.log(eventDetails.value);
       }
     });
     const YOUR_FILTER = ref("YOUR FILTER");
@@ -157,9 +169,11 @@ export default {
       { label: "Starts With", value: FilterMatchMode.STARTS_WITH },
     ]);
     const retrieveEvents = async () => {
-      let res = await axios.post(
-        "/admin/retrieveAllParticipants"
-      );
+      let param = {
+        id: obj["id"],
+      }
+      let res = await axios.post("/admin/getEventPartcipants", param);
+      console.log(res)
       let events = res.data;
       console.log(res.data);
       const eventsProps = [];
@@ -175,26 +189,38 @@ export default {
         });
         Events.value = eventsProps;
         console.log(Events.value);
-    }
-    }
+      }
+    };
     const back = () => {
-        console.log("fuck you")
-        router.push('/events')
-    }
+      console.log("fuck you");
+      router.push("/events");
+    };
     const redirect = () => {
-        router.push('/addparticipant')
-    }
+      router.push("/addparticipant");
+    };
     const upload = () => {
-      router.push('/upload')
-    }
-    return { eventDetails , back,filters1, filters, upload, matchModeOptions , Events, redirect};
+      router.push("/upload");
+    };
+    return {
+      eventDetails,
+      back,
+      filters1,
+      filters,
+      upload,
+      matchModeOptions,
+      Events,
+      redirect,
+    };
   },
 };
 </script>
 
 <style scoped>
+.text-center {
+  text-align: center;
+}
 .margin-left-1 {
-    margin-left: 20px;
+  margin-left: 20px;
 }
 .margin-bottom-2 {
   margin-bottom: 20px;

@@ -132,13 +132,13 @@
         type: Array,
         default: () => [
           {
-            link: 'http://hept-data.herokuapp.com/#//#/events',
+            link: 'http://hept-data.herokuapp.com/#/events',
             name: 'Event',
             tooltip: 'Event',
             icon: 'bx-grid-alt',
           },
           {
-            link: '#',
+            link: 'http://hept-data.herokuapp.com/#/participants',
             name: 'Participants',
             tooltip: 'Participants',
             icon: 'bx-user',

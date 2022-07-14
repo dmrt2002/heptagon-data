@@ -12,7 +12,7 @@ router.post("/role", jsonParser, userController.updateRole);
 router.post("/adminlogin", jsonParser, userController.adminLogin)
 router.post("/deleteUser", jsonParser, userController.deleteUser)
 router.post("/addAnswer", jsonParser, userController.addAnswer)
-router.post("/addEvent", jsonParser, userController.addEvent)
+
 
 // router.post("/removeAnswer", jsonParser, userController.removeAnswer)
 
