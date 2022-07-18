@@ -11,6 +11,7 @@ import AddParticipant from '../views/AddParticipant.vue'
 import EventDetails from '../views/EventsDetail.vue'
 import bulkUpload from '../views/bulkUpload.vue'
 import EventEdit from '../views/EventEdit.vue'
+import PartcipantDetails from '../views/ParticipantDetails.vue'
 
 const routes = [
   {
@@ -72,6 +73,11 @@ const routes = [
     path: '/editevent',
     name: 'editevent',
     component: EventEdit
+  },
+  {
+    path: '/participantdetails',
+    name: 'partcipantdetails',
+    component: PartcipantDetails
   }
 ]
 

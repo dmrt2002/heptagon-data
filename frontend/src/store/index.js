@@ -14,6 +14,14 @@ export default createStore({
       code:"",
       name:"",
       description:""
+    },
+    participantObj: {
+      id:"",
+      email:"",
+      organization: "",
+      department:"",
+      gender: "",
+      attempts: ""
     }
   },
   mutations: {
@@ -42,6 +50,9 @@ export default createStore({
     },
     storeEventId(state,obj) {
       state.eventObj = obj
+    },
+    storeParticipantId(state,obj) {
+      state.participantObj = obj
     }
   },
   actions: {
@@ -65,6 +76,9 @@ export default createStore({
     },
     storeEventId(context,id) {
       context.commit('storeEventId', id)
+    },
+    storeParticipantId(context,id) {
+      context.commit('storeParticipantId', id)
     }
   },
   getters: {
@@ -82,6 +96,9 @@ export default createStore({
     },
     getEventId(state) {
       return state.eventObj
+    },
+    getParticipantId(state) {
+      return state.participantObj
     }
   }
 })

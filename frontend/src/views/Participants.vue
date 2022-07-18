@@ -131,6 +131,7 @@ import axios from "axios";
 import Dropdown from "primevue/dropdown";
 import Menu from "primevue/menu";
 import { useConfirm } from "primevue/useconfirm";
+import { useStore } from "vuex";
 import ConfirmDialog from 'primevue/confirmdialog';
 export default {
   components: {
@@ -145,6 +146,7 @@ export default {
   },
   setup() {
     const router = useRouter();
+    const store = useStore();
     const currParticipantObj = ref();
     let types = ref()
     const Partcipants = ref();
@@ -192,6 +194,18 @@ export default {
       {
         label: "View",
         icon: "pi pi-eye",
+        command : () => {
+          let currParticipant = currParticipantObj.value;
+          let param = {
+            id: currParticipant._id,
+            attempts: currParticipant.attempts,
+            organization: currParticipant.organization,
+            department: currParticipant.department,
+            email:currParticipant.email
+          };
+          store.dispatch("storeParticipantId", param);
+          router.push("/participantdetails");       
+        }
       },
     ]);
     onMounted(async () => {
@@ -211,7 +225,9 @@ export default {
           name: res.data[i].FirstName,
           email: res.data[i].Email,
           organization: res.data[i].Organization,
+          attempts: res.data[i].Attempts,
           assessment: "-",
+          department: res.data[i].Department,
           _id: res.data[i]._id,
           Edit: "Edit",
         });
