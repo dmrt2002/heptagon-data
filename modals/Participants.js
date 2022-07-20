@@ -6,6 +6,9 @@ const userSchema = mongoose.Schema({
   LastName: {
     type: String,
   },
+  PassCode: {
+    type: String
+  },
   Email: {
     type: String,
   },
@@ -25,6 +28,17 @@ const userSchema = mongoose.Schema({
     type: String
   }
 });
+
+//this method search for a user by email and password.
+userSchema.statics.findByCredentials = async (Email, password) => {
+const user = await Participants.findOne({ Email })
+console.log(user.PassCode, password)
+if(password === user.PassCode) {
+  return user;
+} else {
+  return null;
+}
+};
 
 const Participants = mongoose.model("Participants", userSchema, "participants");
 module.exports = Participants;

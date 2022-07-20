@@ -4,6 +4,7 @@ const Admin = require("../modals/Admin");
 const Event = require("../modals/Events");
 const Participant = require("../modals/Participants")
 var nodemailer = require('nodemailer');
+const Participants = require("../modals/Participants");
 let eventObj
 
 exports.registerNewUser = async (req, res) => {
@@ -126,7 +127,33 @@ exports.addEvent = (req, res) => {
 exports.addParticipant = async(req, res) => {
   let participant = req.body;
   participant.Gender = participant.Gender.name;
-  console.log(participant);
+  let code = Math.floor(1000 + Math.random() * 9000);
+  var transporter = nodemailer.createTransport({
+    service: 'gmail',
+    auth: {
+      user: 'dataheptagon@gmail.com',
+      pass: 'ectkgqitwrvmuzvt'
+    }
+  });
+  var mailOptions = {
+    from: 'dataheptagon@gmail.com',
+    to: participant.Email,
+    subject: ` Welcome  - Know Your Data Quotient`,
+    html:
+    ` <h2>Dear ${participant.FirstName}</h2>
+      <p>Please click on the Button/URL below to access the DQ Assessment</p>
+      <h3>http://localhost:8080/#/login</h3>
+      <p>Your passcode  will be the ${code}</p>
+      <p>Your Event will be ${eventObj.name}</p>
+      <p>For any support you can write to  digital@heptagon.in </p>`
+  };
+  transporter.sendMail(mailOptions, function(error, info){
+    if (error) {
+      console.log(error);
+    } else {
+      console.log('Email sent: ' + info.response);
+    }
+  });
   await Participant.create({
     FirstName: participant.FirstName,
     LastName: participant.LastName,
@@ -135,14 +162,14 @@ exports.addParticipant = async(req, res) => {
     Organization: participant.Organization,
     Department: participant.Department,
     Attempts: participant.Attempts,
-    EventCode: participant.EventCode
+    EventCode: participant.EventCode,
+    PassCode: code
   });
   res.status(200).json("successfully added");
 };
 
 exports.getEventDetails = async(req,res) => {
   let id = req.body.id
-  console.log(id)
   let resp = await Event.find({_id: id})
   res.status(200).json(resp[0])
 }
@@ -174,9 +201,9 @@ exports.bulkUpload = async(req,res) => {
       to: obj[i].Email,
       subject: ` Welcome  - Know Your Data Quotient`,
       html:
-      `<h2>Dear ${obj[i].FirstName}</h2>
-       <p>Please click on the Button/URL below to access the DQ Assessment</p>
-       <h3>Your username will be your Official Email ID</h3>
+      ` <h2>Dear ${obj[i].FirstName}</h2>
+        <p>Please click on the Button/URL below to access the DQ Assessment</p>
+        <h3>http://hept-data.herokuapp.com/#/login</h3>
         <p>Your passcode  will be the ${code}</p>
         <p>Your Event will be ${eventObj.name}</p>
         <p>For any support you can write to  digital@heptagon.in </p>`
@@ -188,6 +215,12 @@ exports.bulkUpload = async(req,res) => {
         console.log('Email sent: ' + info.response);
       }
     });
+    let updated = await Participants.findOneAndUpdate({
+      Email: obj[i].Email
+    },{
+      PassCode: code,                                                                        
+    });
+
   }
 }
 
@@ -227,4 +260,19 @@ exports.getEventPartcipants = async(req,res) => {
   console.log(event[0].Code)
   let participants = await Participant.find();
   res.status(200).json((participants.filter(obj => obj.EventCode === event[0].Code)))
+}
+
+exports.Login = async(req,res) => {
+  try {
+    const email = req.body.email;
+    const password = req.body.password;
+    const user = await Participants.findByCredentials(email, password);
+    console.log(user)
+    if (user === null) {
+      return res.status(401).json("Invalid Credentials");
+    }
+    res.status(200).json({ user });
+  } catch (err) {
+    res.status(400).json("Incorrect Password");
+  }
 }

@@ -77,11 +77,13 @@ export default {
             let rowObject = XLSX.utils.sheet_to_row_object_array(
               workbook.Sheets[sheet]
             );
-            console.log(rowObject)
+            for(let i = 0; i< rowObject.length ; i++) {
+              rowObject[i].PassCode = "1"
+            }
             myObj.value = rowObject;
             try {
-              axios.post("/admin/eventBulkUpdate", param.value)
-              axios.post("/admin/bulkUpload", myObj.value);
+              axios.post("http://localhost:5000/admin/eventBulkUpdate", param.value)
+              axios.post("http://localhost:5000/admin/bulkUpload", myObj.value);
             } catch (e) {
               console.log(e);
             }

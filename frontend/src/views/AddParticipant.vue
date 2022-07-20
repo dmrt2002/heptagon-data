@@ -46,13 +46,14 @@
 
 <script>
 import InputText from "primevue/inputtext";
-import { ref, toRefs, reactive } from "vue";
+import { ref, toRefs, reactive, onMounted } from "vue";
 import Dropdown from "primevue/dropdown";
 import SidebarMenuAkahon from "../components/dashboard.vue";
 import Button from "primevue/button";
 import { useToast } from "primevue/usetoast";
 import Toast from "primevue/toast";
 import { useRouter } from 'vue-router';
+import { useStore } from 'vuex'
 import axios from 'axios'
 export default {
   components: {
@@ -65,6 +66,8 @@ export default {
   setup() {
     const toast = useToast();
     const router = useRouter();
+    const store = useStore();
+    const param = ref({})
     const cities = ref([
       { name: "Male", code: "NY" },
       { name: "Female", code: "RM" },
@@ -79,6 +82,15 @@ export default {
       Attempts:"",
       EventCode:""
     });
+    onMounted(async() => {
+      let obj = store.getters.getEventId;
+      let parameter = {
+        name: obj['name'],
+        description: obj['description']
+      }
+      param.value = parameter
+      await axios.post("/admin/eventBulkUpdate", param.value)
+    })
     const back = async () => {
       router.go(-1)
     }
@@ -90,6 +102,7 @@ export default {
         summary: "Created Successfully",
         life: 3000,
       });
+      router.go(-1)
     };
     return { cities, ...toRefs(state), submit, back };
   },

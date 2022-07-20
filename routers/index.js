@@ -9,7 +9,7 @@ var urlencodedParser = bodyParser.urlencoded({ extended: false })
 
 router.post("/register", jsonParser, userController.registerNewUser);
 router.post("/role", jsonParser, userController.updateRole);
-router.post("/adminlogin", jsonParser, userController.adminLogin)
+router.post("/login", jsonParser, userController.Login)
 router.post("/deleteUser", jsonParser, userController.deleteUser)
 router.post("/addAnswer", jsonParser, userController.addAnswer)
 

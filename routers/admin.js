@@ -19,6 +19,7 @@ router.post("/updateEvent", jsonParser, userController.updateEvent)
 router.post("/getCompanies", jsonParser, userController.getCompanies)
 router.post("/removePartcipant", jsonParser, userController.removePartcipant)
 router.post("/getEventPartcipants", jsonParser, userController.getEventPartcipants)
+
 // router.post("/removeAnswer", jsonParser, userController.removeAnswer)
 
 module.exports = router;
