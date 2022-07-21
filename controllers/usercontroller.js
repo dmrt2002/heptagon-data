@@ -268,10 +268,15 @@ exports.Login = async(req,res) => {
     const password = req.body.password;
     const user = await Participants.findByCredentials(email, password);
     console.log(user)
-    if (user === null) {
+    if(user === "Email not registered") {
+      return res.status(400).json(user)
+    }
+    else if (user === null) {
       return res.status(401).json("Invalid Credentials");
     }
-    res.status(200).json({ user });
+    else {
+      res.status(200).json({ user });
+    }
   } catch (err) {
     res.status(400).json("Incorrect Password");
   }

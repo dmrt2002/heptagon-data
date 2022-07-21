@@ -55,6 +55,7 @@ import Toast from "primevue/toast";
 import { useRouter } from 'vue-router';
 import { useStore } from 'vuex'
 import axios from 'axios'
+
 export default {
   components: {
     InputText,
@@ -72,6 +73,9 @@ export default {
       { name: "Male", code: "NY" },
       { name: "Female", code: "RM" },
     ]);
+    let obj;
+    obj = store.getters.getEventId
+    console.log(obj['code'])
     const state = reactive({
       FirstName: "",
       LastNmae: "",
@@ -80,10 +84,11 @@ export default {
       Department: "",
       Gender:"",
       Attempts:"",
-      EventCode:""
+      EventCode:obj['code']
     });
     onMounted(async() => {
       let obj = store.getters.getEventId;
+      console.log(router)
       let parameter = {
         name: obj['name'],
         description: obj['description']

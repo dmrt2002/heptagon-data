@@ -22,7 +22,7 @@ export default createStore({
       department:"",
       gender: "",
       attempts: ""
-    }
+    },
   },
   mutations: {
     saveQuestion(state,questNumb) {

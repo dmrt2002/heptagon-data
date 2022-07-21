@@ -32,7 +32,9 @@ const userSchema = mongoose.Schema({
 //this method search for a user by email and password.
 userSchema.statics.findByCredentials = async (Email, password) => {
 const user = await Participants.findOne({ Email })
-console.log(user.PassCode, password)
+if(user == null) {
+  return "Email not registered"
+}
 if(password === user.PassCode) {
   return user;
 } else {

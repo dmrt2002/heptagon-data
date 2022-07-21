@@ -141,6 +141,7 @@ export default {
     });
     onMounted(async () => {
       retrieveEvents();
+            console.log(router)
       let param = {
         id: obj["id"],
       };
@@ -196,7 +197,7 @@ export default {
       router.push("/events");
     };
     const redirect = () => {
-      router.push("/addparticipant");
+      router.push({path:"/addparticipant", params: eventDetails});
     };
     const upload = () => {
       router.push("/upload");

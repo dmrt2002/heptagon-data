@@ -48,6 +48,14 @@
               <span class="error pl-2" v-if="companye">Enter valid Company</span>
             </div>
             <div class=" p-2">
+              <div class="p-inputgroup">
+                <span class="p-inputgroup-addon">
+                  <i class="pi pi-hashtag"></i>
+                </span>
+                <InputText v-model="code" placeholder="Event Code" />
+              </div>
+            </div>
+            <div class=" p-2">
               <Dropdown
                 v-model="selectedCountry"
                 :options="countries"
