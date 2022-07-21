@@ -10,6 +10,7 @@ var urlencodedParser = bodyParser.urlencoded({ extended: false })
 router.post("/register", jsonParser, userController.registerNewUser);
 router.post("/role", jsonParser, userController.updateRole);
 router.post("/login", jsonParser, userController.Login)
+router.post("/resetPassword", jsonParser, userController.resetPassword)
 router.post("/deleteUser", jsonParser, userController.deleteUser)
 router.post("/addAnswer", jsonParser, userController.addAnswer)
 
