@@ -45,7 +45,7 @@
                 </span>
                 <InputText v-model="company" placeholder="Company" />
               </div>
-              <span class="error pl-2" v-if="companye">Enter valid Company</span>
+              <span class="error pl-3" v-if="codee">Enter valid Code</span>
             </div>
             <div class=" p-2">
               <div class="p-inputgroup">
@@ -105,7 +105,8 @@ export default {
       firstNamee: false,
       lastNamee: false,
       countrye: false,
-      companye: false
+      companye: false,
+      codee:false
     })
     const router = useRouter()
       const state = reactive({
@@ -114,9 +115,9 @@ export default {
         email:"",
         company:"",
         selectedCountry:"",
+        code:""
       })
     let redirect = async () => {
-      console.log(state)
       if(state.firstName === "") {
         errors.firstNamee = true
       }
@@ -143,6 +144,9 @@ export default {
       }
       if(state.selectedCountry === "") {
         errors.countrye = true
+      }
+      if(state.code === "") {
+        errors.codee = true
       }
       else if(state.selectedCountry !== "") {
         errors.countrye = false

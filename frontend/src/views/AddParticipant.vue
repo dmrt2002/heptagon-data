@@ -86,9 +86,11 @@ export default {
       Attempts:"",
       EventCode:obj['code']
     });
+    if(router.options.history.state.back === "/participants") {
+      state.EventCode = ""
+    }
     onMounted(async() => {
       let obj = store.getters.getEventId;
-      console.log(router)
       let parameter = {
         name: obj['name'],
         description: obj['description']

@@ -13,16 +13,21 @@ exports.registerNewUser = async (req, res) => {
   var email = req.body.email;
   var company = req.body.company;
   var country = req.body.selectedCountry;
+  var code = req.body.code
 
-  User.create(
+  Participant.create(
     {
-      firstName: firstName,
-      lastName: lastName,
-      email: email,
-      company: company,
-      country: country,
-      role: "",
-      answerSheet: [],
+      FirstName: firstName,
+      LastName: lastName,
+      Email: email,
+      Organization: company,
+      EventCode: code,
+      Role:"",
+      PassCode:"",
+      Department: "",
+      Gender:"",
+      Attempts:"1",
+      AnswerSheet: [],
     },
     async function (err, user) {
       if (err) {
@@ -170,6 +175,7 @@ exports.addParticipant = async (req, res) => {
 exports.getEventDetails = async (req, res) => {
   let id = req.body.id;
   let resp = await Event.find({ _id: id });
+  console.log(resp[0])
   res.status(200).json(resp[0]);
 };
 

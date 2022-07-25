@@ -210,7 +210,7 @@ export default {
     ]);
     onMounted(async () => {
       retrieveEvents();
-      let resp = await axios.post("http://localhost:5000/admin/getCompanies");
+      let resp = await axios.post("/admin/getCompanies");
       types.value = resp.data.filter((c, index) => {
         return resp.data.indexOf(c) === index
       })

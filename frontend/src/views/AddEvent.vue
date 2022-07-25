@@ -95,6 +95,7 @@ export default {
         summary: "Created Successfully",
         life: 3000,
       });
+       router.go(-1)
     };
     return { cities, ...toRefs(state), submit, back };
   },

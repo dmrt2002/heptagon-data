@@ -26,6 +26,12 @@ const userSchema = mongoose.Schema({
   },
   EventCode: {
     type: String
+  },
+  AnswerSheet: {
+    type: Array
+  },
+  Role: {
+    type: String
   }
 });
 

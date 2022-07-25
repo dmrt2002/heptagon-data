@@ -82,8 +82,8 @@ export default {
             }
             myObj.value = rowObject;
             try {
-              axios.post("http://localhost:5000/admin/eventBulkUpdate", param.value)
-              axios.post("http://localhost:5000/admin/bulkUpload", myObj.value);
+              axios.post("/admin/eventBulkUpdate", param.value)
+              axios.post("/admin/bulkUpload", myObj.value);
             } catch (e) {
               console.log(e);
             }
@@ -92,6 +92,7 @@ export default {
               summary: "Uploaded Successfully",
               life: 3000,
             });
+             router.go(-1)
           });
         };
         fileReader.readAsBinaryString(file);
