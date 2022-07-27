@@ -146,7 +146,7 @@ exports.addParticipant = async (req, res) => {
     subject: ` Welcome  - Know Your Data Quotient`,
     html: ` <h2>Dear ${participant.FirstName}</h2>
       <p>Please click on the Button/URL below to access the DQ Assessment</p>
-      <h3>http://localhost:8080/#/login</h3>
+      <h3>http://hept-data.herokuapp.com/#/login</h3>
       <p>Your passcode  will be the ${code}</p>
       <p>Your Event will be ${eventObj.name}</p>
       <p>For any support you can write to  digital@heptagon.in </p>`,
