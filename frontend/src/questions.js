@@ -29,7 +29,7 @@ export default [
     {
       _id: "2",
       question:"I relate this picture to..",
-      imageUrl: "https://lists.office.com/Images/9188040d-6c67-4c5b-b112-36a304b66dad/00000000-0000-0000-0003-4001af956bb6/TEXVDVQPY8BOK452BTHSR3KICT/b1aa8637-e6bc-42e3-88a4-4d9ca8cecb65",
+      imageUrl: "https://img.freepik.com/premium-vector/closed-traditional-glass-bottle-natural-milk-wooden-box-blue-logo-isolated-white_533573-582.jpg?w=2000",
       options: [
         {
           optId: "1",
@@ -56,7 +56,7 @@ export default [
     {
       _id: "3",
       question:"I see..",
-      imageUrl: "https://lists.office.com/Images/9188040d-6c67-4c5b-b112-36a304b66dad/00000000-0000-0000-0003-4001af956bb6/TEXVDVQPY8BOK452BTHSR3KICT/c9666c1b-4a39-4867-9035-01123575284b",
+      imageUrl: "https://img.freepik.com/free-vector/pie-chart-concept-illustration_114360-1360.jpg?w=360&t=st=1659538698~exp=1659539298~hmac=73d4ea8ba57be85f108e2b2ec126634924b0b19b6a7240fc685044496cdade98",
       options: [
         {
           optId: "1",
@@ -83,7 +83,7 @@ export default [
     {
       _id: "4",
       question:"A dashboard is",
-      imageUrl: "https://lists.office.com/Images/9188040d-6c67-4c5b-b112-36a304b66dad/00000000-0000-0000-0003-4001af956bb6/TEXVDVQPY8BOK452BTHSR3KICT/9ab0c116-903e-478d-afc8-fa54c856b4b6",
+      imageUrl: "https://hept-data.herokuapp.com/img/4.jpg",
       options: [
         {
           optId: "1",
@@ -164,7 +164,7 @@ export default [
     {
       _id: "7",
       question:"What do you see in this table?",
-      imageUrl: "https://lists.office.com/Images/9188040d-6c67-4c5b-b112-36a304b66dad/00000000-0000-0000-0003-4001af956bb6/TEXVDVQPY8BOK452BTHSR3KICT/6ff61f0c-a928-4a86-ab2e-d60ac1f08fc7",
+      imageUrl: "https://media.istockphoto.com/photos/excel-table-with-numbers-picture-id185094983?s=612x612",
       options: [
         {
           optId: "1",
@@ -245,7 +245,7 @@ export default [
       {
         _id: "10",
         question:"This is what i think of Industry 4.0",
-        imageUrl: "https://lists.office.com/Images/9188040d-6c67-4c5b-b112-36a304b66dad/00000000-0000-0000-0003-4001af956bb6/TEXVDVQPY8BOK452BTHSR3KICT/1e61e94d-1dea-429d-98be-db9069adc4c8",
+        imageUrl: "https://img.freepik.com/free-vector/industry-4-0-illustration-with-programmer-worker-robotic-arm_1150-41590.jpg?w=740&t=st=1659538325~exp=1659538925~hmac=30b4001ab8c21414635a0918c270362c7af3bd5856b85feffe21c5279ba00ab2",
         options: [
           {
             optId: "1",
