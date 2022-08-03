@@ -164,7 +164,7 @@ export default [
     {
       _id: "7",
       question:"What do you see in this table?",
-      imageUrl: "https://media.istockphoto.com/photos/excel-table-with-numbers-picture-id185094983?s=612x612",
+      imageUrl: "https://images.saymedia-content.com/.image/ar_16:9%2Cc_fill%2Ccs_srgb%2Cq_auto:eco%2Cw_1200/MTc1OTY0MTEyOTkwNDQ3MDE3/create-a-button-in-excel-to-generate-random-numbers.png",
       options: [
         {
           optId: "1",
