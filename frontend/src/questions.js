@@ -83,7 +83,7 @@ export default [
     {
       _id: "4",
       question:"A dashboard is",
-      imageUrl: "https://hept-data.herokuapp.com/img/4.jpg",
+      imageUrl: "https://github.com/dmrt2002/images/blob/main/4.jpg?raw=true",
       options: [
         {
           optId: "1",

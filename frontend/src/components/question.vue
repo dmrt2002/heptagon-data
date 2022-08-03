@@ -162,7 +162,7 @@ export default {
   background-color: rgb(240, 216, 240) ;
 }
 .bg-5 {
-  background-color: rgb(143, 183, 236);
+  background-color: rgb(231, 236, 203);
 }
 .logo {
   height: 60px !important;
