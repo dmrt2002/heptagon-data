@@ -149,6 +149,9 @@ export default {
   overflow-y: hidden !important;
   overflow-x: hidden !important;
 }
+.options {
+  font-size: 25px;
+}
 .bg-1 {
   background-color: rgb(244, 242, 246);
 }
@@ -218,7 +221,7 @@ a {
 }
 .cta span, .cta-back span {
   position: relative;
-  font-size: 14px;
+  font-size: 20px;
   line-height: 18px;
   font-weight: 900;
   letter-spacing: 0.25em;
@@ -248,7 +251,7 @@ a {
   transform: scale(0.96);
 }
 .q-size {
-  font-size: 30px;
+  font-size: 35px;
 }
 .active {
   background: lightblue;

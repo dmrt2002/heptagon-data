@@ -10,7 +10,7 @@
         <h1 class="l-heading md:pl-6 lg:pl-8 pl-2 pr-4">Know Your DQ - Data Quotient</h1>
         <p class="md:pl-6 lg:pl-8 pl-2 p-text" >This is an entry level assessment for data literacy. It is designed to help a person understand their relative position when it comes to understanding Data and Analytics. </p>
         <p class="md:pl-6 lg:pl-8 pl-2 p-text">Please read each question carefully and choose the best option which mirrors your behavior/skills when it comes to dealing with data. The final report will be customized basis your inputs and hence any random responses may lead to an inaccurate recommendation for you.</p>
-        <p class="md:pl-6 lg:pl-8 pl-2 p-text">Thanks again for taking time out to participate in the DQ survey.</p>
+        <p class="md:pl-6 lg:pl-8 pl-2 p-text" id="lastp">Thanks again for taking time out to participate in the DQ survey.</p>
         <br>
         <div class="md:pl-6 lg:pl-8 pl-2 mb-2">
             <a  @click="redirect()" class="cta cursor-pointer">
@@ -54,6 +54,9 @@ setup() {
 * {
   font-family: "Raleway", sans-serif;
 }
+#lastp {
+  padding-bottom: 3vh;
+}
 .background {
   background-color: rgba(241, 237, 246, 0.818);
   min-height: 100vh;
@@ -81,9 +84,11 @@ setup() {
 }
 .p-text {
     font-weight: 800 !important;
+    font-size: 25px;
 }
 .l-heading{
     font-size: 40px !important;
+    padding-bottom: 3vh;
     font-weight: 1200 !important;
 }
 .logo {
@@ -126,7 +131,7 @@ a {
 }
 .cta span, .cta-back span {
   position: relative;
-  font-size: 14px;
+  font-size: 25px;
   line-height: 18px;
   font-weight: 900;
   letter-spacing: 0.25em;
