@@ -29,7 +29,7 @@ export default [
     {
       _id: "2",
       question:"I relate this picture to..",
-      imageUrl: "https://img.freepik.com/premium-vector/closed-traditional-glass-bottle-natural-milk-wooden-box-blue-logo-isolated-white_533573-582.jpg?w=2000",
+      imageUrl: "https://github.com/dmrt2002/images/blob/main/milk.png?raw=true",
       options: [
         {
           optId: "1",
@@ -56,7 +56,7 @@ export default [
     {
       _id: "3",
       question:"I see..",
-      imageUrl: "https://img.freepik.com/free-vector/pie-chart-concept-illustration_114360-1360.jpg?w=360&t=st=1659538698~exp=1659539298~hmac=73d4ea8ba57be85f108e2b2ec126634924b0b19b6a7240fc685044496cdade98",
+      imageUrl: "https://github.com/dmrt2002/images/blob/main/pie.png?raw=true",
       options: [
         {
           optId: "1",
@@ -83,7 +83,7 @@ export default [
     {
       _id: "4",
       question:"A dashboard is",
-      imageUrl: "https://github.com/dmrt2002/images/blob/main/4.jpg?raw=true",
+      imageUrl: "https://github.com/dmrt2002/images/blob/main/speedo.png?raw=true",
       options: [
         {
           optId: "1",
