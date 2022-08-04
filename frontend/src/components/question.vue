@@ -150,19 +150,7 @@ export default {
   overflow-x: hidden !important;
 }
 .bg-1 {
-  background-color: rgba(241, 237, 246, 0.818);
-}
-.bg-2 {
-  background-color: rgb(245, 245, 225);
-}
-.bg-3 {
-  background-color: rgb(227, 245, 225) ;
-}
-.bg-4 {
-  background-color: rgb(240, 216, 240) ;
-}
-.bg-5 {
-  background-color: rgb(231, 236, 203);
+  background-color: rgb(244, 242, 246);
 }
 .logo {
   height: 60px !important;
@@ -260,7 +248,7 @@ a {
   transform: scale(0.96);
 }
 .q-size {
-  font-size: 25px;
+  font-size: 30px;
 }
 .active {
   background: lightblue;

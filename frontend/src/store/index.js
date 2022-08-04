@@ -6,7 +6,7 @@ export default createStore({
   state: {
     questionNumber: 1,
     options: [],
-    classes: ["bg-1","bg-2","bg-3","bg-4","bg-5"],
+    classes: ["bg-1","bg-1","bg-1","bg-1","bg-1"],
     class: 0,
     userId: "",
     eventObj:{

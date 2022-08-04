@@ -164,7 +164,7 @@ export default [
     {
       _id: "7",
       question:"What do you see in this table?",
-      imageUrl: "https://lh3.googleusercontent.com/chat_attachment/AJh6FpptKccw1TqdYrTPZ1vo7X1dEEpyIkNgpPwuO0JmfEKp_CBe-zuexSQ7obnmxB74jaBPdE0fVckDv1fVnaHjCeW8h2hL80rMP65mAxiGfUC4mIY1TYbMKajAHhT0ZfGjK3qZyAc6losx96Zwc6wzBPSpobD-SIC52PvxlrEM_2PrYKfdU_kG_tHJuNsaV94nYmozTH8UfsFsC0prOLVA2xtskY2oanho=w1080",
+      imageUrl: "https://github.com/dmrt2002/images/blob/main/DATA%20Q%20(1).png?raw=true",
       options: [
         {
           optId: "1",
