@@ -5,7 +5,7 @@ export default [
                 title:"Newbie",
                 imageUrl: "undraw_data_input_fxv2.svg",
                 text:"Your daily job involves working with some numbers. You occasionally use tool like excel sheet to create surveys/lists/reports etc. You share data inputs to others and the quality of that data is important for the departmentYou often hear terms like “Big Data” “Analytics” “Insights” etc and curious to update yourself. You want to know how you can become more efficient and avoid reworks in tasks involving data",
-                pdfUrl:"undraw_data_input_fxv2"
+                pdfUrl:"undraw_data_input_fxv2.pdf"
             },
             {
                 title:"Data Operator",

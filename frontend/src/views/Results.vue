@@ -11,7 +11,7 @@
       <div>
         <h1 class="text-center main-head">Persona Blend</h1>
         <div class="grid">
-          <div class="col-3">
+          <div class="md:col-3 col-12">
             <img
               :src="require('../assets/explorer.png')"
               alt="Image"
@@ -20,7 +20,7 @@
             <div class="text-center persona">Data explorer</div>
             <div class="text-center perc">{{personas.one}}%</div>
           </div>
-          <div class="col-3">
+          <div class="md:col-3 col-12">
             <img
               :src="require('../assets/operator.png')"
               alt="Image"
@@ -29,7 +29,7 @@
             <div class="text-center persona">Data operator</div>
             <div class="text-center perc">{{personas.two}}%</div>
           </div>
-          <div class="col-3">
+          <div class="md:col-3 col-12">
             <img
               :src="require('../assets/interpreter.png')"
               alt="Image"
@@ -38,7 +38,7 @@
             <div class="text-center persona">Data interpreter</div>
             <div class="text-center perc">{{personas.three}}%</div>
           </div>
-          <div class="col-3">
+          <div class="md:col-3 col-12">
             <img
               :src="require('../assets/influencer.png')"
               alt="Image"
@@ -215,6 +215,12 @@ export default {
 .image {
   width: 20vw;
   height: 250px;
+}
+
+@media ( max-width: 768px) {
+  .image {
+    width: 90vw;
+  }
 }
 .text-center {
   text-align: left;
