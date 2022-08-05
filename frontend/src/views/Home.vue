@@ -154,6 +154,11 @@ export default {
       let res = await axios.post('user/register', state)
       let id = res.data._id
       store.dispatch('storeId', id)
+      let user = {
+        email: state.email,
+        company: state.company
+      }
+      store.dispatch("storeUserObj", user)
       router.push('/landingpage')
       errors.firstNamee = false
       errors.lastNamee = false

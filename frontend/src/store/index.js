@@ -23,6 +23,10 @@ export default createStore({
       gender: "",
       attempts: ""
     },
+    userObj: {
+      email:"",
+      company:""
+    }
   },
   mutations: {
     saveQuestion(state,questNumb) {
@@ -53,6 +57,9 @@ export default createStore({
     },
     storeParticipantId(state,obj) {
       state.participantObj = obj
+    },
+    storeUserObj(state, obj) {
+      state.userObj = obj
     }
   },
   actions: {
@@ -79,6 +86,9 @@ export default createStore({
     },
     storeParticipantId(context,id) {
       context.commit('storeParticipantId', id)
+    },
+    storeUserObj(context,obj) {
+      context.commit('storeUserObj', obj)
     }
   },
   getters: {
@@ -99,6 +109,9 @@ export default createStore({
     },
     getParticipantId(state) {
       return state.participantObj
+    },
+    getUserObj(state) {
+      return state.userObj
     }
   }
 })

@@ -5,6 +5,10 @@
         <img :src="link[0]" class="logo" alt="" />
       </div>
     </div>
+    <div id="report">
+    <div class="header-one">
+      {{ userObj.email }}  &nbsp;  &nbsp; &nbsp; &nbsp;     {{ userObj.company }}
+    </div>
     <div
       class="align-items-center flex justify-content-center fadein animation-duration-1500 align-center"
     >
@@ -98,10 +102,12 @@
             </p>
           </div>
         </div>
-        <div class="align-items-center flex justify-content-center">
+        </div>
+        </div>
+  </div>
+          <div class="align-items-center flex justify-content-center">
           <a
-            :href="`https://hept-data.herokuapp.com/${pdfUrl}`"
-            download="pathway.pdf"
+          @click="savePdf"
             class="cta cursor-pointer"
           >
             <span>Dowload your learning pathway</span>
@@ -110,15 +116,16 @@
               <polyline points="8 1 12 5 8 9"></polyline>
             </svg>
           </a>
-        </div>
-      </div>
     </div>
   </div>
+  
 </template>
 
 <script>
 import { useStore } from "vuex";
 import images from "../images";
+import html2canvas from "html2canvas";
+import { jsPDF } from "jspdf";
 import axios from "axios";
 import { onMounted, reactive } from "@vue/runtime-core";
 export default {
@@ -126,6 +133,10 @@ export default {
     let store = useStore();
     let options = store.getters.getOptions;
     let length = options.length;
+    const userObj = reactive({
+      email: "",
+      company: ""
+    })
     const personas = reactive({
       one: null,
       two: null,
@@ -166,17 +177,38 @@ export default {
 
       return res;
     };
+    const savePdf = () => {
+      html2canvas(document.getElementById('report'), { allowTaint: true }).then(function (
+        canvas
+      ) {
+        canvas.getContext("3d");
+        var pdf = new jsPDF("l", "mm","a4");
+        console.log(pdf)
+        const imgData = canvas.toDataURL('image/png');
+        const pdfWidth = pdf.internal.pageSize.getWidth() + 6 ;
+        const pdfHeight = pdf.internal.pageSize.getHeight();
+        pdf.addImage(
+          imgData,
+          "JPEG",0,0,pdfWidth,pdfHeight
+        );
+        pdf.save("Report.pdf");
+      });
+    };
     let imageId = mostFrequent(options, length);
     const title = images[0].options[imageId - 1].title;
     let pdfUrl = images[0].options[imageId - 1].pdfUrl;
     onMounted(async () => {
+      let user = store.getters.getUserObj
+      console.log(user)
+      userObj.email = user.email
+      userObj.company = user.company
       let param = {
         userId: store.getters.getId,
         role: title,
       };
       await axios.post("/user/role", param);
     });
-    return { link, pdfUrl, personas };
+    return { link, pdfUrl, personas, savePdf, userObj };
   },
 };
 </script>
@@ -200,7 +232,7 @@ export default {
 } 
 #grid-box {
   margin-left: 2vw;
-  grid-gap: 10vw;
+  grid-gap: 5vw;
 }
 }
 .persona {
@@ -215,14 +247,19 @@ export default {
 .heading {
   padding-top: 5vh;
   text-align: center;
-  font-size: 35px;
+  font-size: 30px;
   padding-bottom: 15px;
 }
-
+.header-one, .header-two {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  text-align: center;
+  font-size: 25px;
+}
 .information {
   margin-left: 5vw;
   margin-right: 5vw;
-  font-size: 20px;
+  font-size: 15px;
   padding-bottom: 15px;
 }
 
