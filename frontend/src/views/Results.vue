@@ -10,8 +10,8 @@
     >
       <div>
         <h1 class="text-center main-head">Persona Blend</h1>
-        <div class="grid">
-          <div class="md:col-3 col-12">
+        <div class="grid" id="grid-box">
+          <div class="md:col-2 col-12 box">
             <img
               :src="require('../assets/explorer.png')"
               alt="Image"
@@ -20,7 +20,7 @@
             <div class="text-center persona">Data explorer</div>
             <div class="text-center perc">{{ personas.one }}%</div>
           </div>
-          <div class="md:col-3 col-12">
+          <div class="md:col-2 col-12 box">
             <img
               :src="require('../assets/operator.png')"
               alt="Image"
@@ -29,7 +29,7 @@
             <div class="text-center persona">Data operator</div>
             <div class="text-center perc">{{ personas.two }}%</div>
           </div>
-          <div class="md:col-3 col-12">
+          <div class="md:col-2 col-12 box">
             <img
               :src="require('../assets/interpreter.png')"
               alt="Image"
@@ -38,7 +38,7 @@
             <div class="text-center persona">Data interpreter</div>
             <div class="text-center perc">{{ personas.three }}%</div>
           </div>
-          <div class="md:col-3 col-12">
+          <div class="md:col-2 col-12 box">
             <img
               :src="require('../assets/influencer.png')"
               alt="Image"
@@ -189,8 +189,19 @@ export default {
 #lastp {
   margin-bottom: 10px;
 }
+#grid-box {
+  margin-left: 2vw;
+  grid-gap: 10vw;
+}
 .main-head {
+  margin-bottom: 20px;
   font-size: 40px;
+}
+@media (min-width:768px) {
+.box {
+  border: solid 1px rgb(13, 13, 13);
+  border-radius: 50px;
+} 
 }
 .persona {
   font-size: 25px;
@@ -226,13 +237,14 @@ export default {
   margin-bottom: 4em;
 }
 .image {
-  width: 20vw;
-  height: 250px;
+  width: 15vw;
+  height: 200px;
 }
 
 @media (max-width: 768px) {
   .image {
-    width: 90vw;
+    width: 75vw;
+    margin-top: 10px;
   }
 }
 .text-center {
