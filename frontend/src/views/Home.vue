@@ -156,7 +156,8 @@ export default {
       store.dispatch('storeId', id)
       let user = {
         email: state.email,
-        company: state.company
+        company: state.company,
+        name: state.firstName
       }
       store.dispatch("storeUserObj", user)
       router.push('/landingpage')

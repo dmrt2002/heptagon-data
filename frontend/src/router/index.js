@@ -13,6 +13,7 @@ import bulkUpload from '../views/bulkUpload.vue'
 import EventEdit from '../views/EventEdit.vue'
 import PartcipantDetails from '../views/ParticipantDetails.vue'
 import LoginPage from '../views/LoginPage.vue'
+import template from '../views/template.vue'
 
 const routes = [
   {
@@ -84,6 +85,11 @@ const routes = [
     path: '/login',
     name: 'login',
     component: LoginPage
+  },
+  {
+    path: '/template',
+    name: 'template',
+    component: template
   }
 ]
 

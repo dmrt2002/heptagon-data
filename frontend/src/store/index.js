@@ -25,7 +25,8 @@ export default createStore({
     },
     userObj: {
       email:"",
-      company:""
+      company:"",
+      name:""
     }
   },
   mutations: {

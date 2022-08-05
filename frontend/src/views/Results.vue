@@ -6,6 +6,9 @@
       </div>
     </div>
     <div id="report">
+      <div class="header-two">
+        {{ userObj.name }}
+      </div>
     <div class="header-one">
       {{ userObj.email }}  &nbsp;  &nbsp; &nbsp; &nbsp;     {{ userObj.company }}
     </div>
@@ -107,7 +110,7 @@
   </div>
           <div class="align-items-center flex justify-content-center">
           <a
-          @click="savePdf"
+           @click="redirect"
             class="cta cursor-pointer"
           >
             <span>Dowload your learning pathway</span>
@@ -124,18 +127,19 @@
 <script>
 import { useStore } from "vuex";
 import images from "../images";
-import html2canvas from "html2canvas";
-import { jsPDF } from "jspdf";
 import axios from "axios";
+import { useRouter } from 'vue-router'
 import { onMounted, reactive } from "@vue/runtime-core";
 export default {
   setup() {
     let store = useStore();
+    const router = useRouter();
     let options = store.getters.getOptions;
     let length = options.length;
     const userObj = reactive({
       email: "",
-      company: ""
+      company: "",
+      name:""
     })
     const personas = reactive({
       one: null,
@@ -177,23 +181,6 @@ export default {
 
       return res;
     };
-    const savePdf = () => {
-      html2canvas(document.getElementById('report'), { allowTaint: true }).then(function (
-        canvas
-      ) {
-        canvas.getContext("3d");
-        var pdf = new jsPDF("l", "mm","a4");
-        console.log(pdf)
-        const imgData = canvas.toDataURL('image/png');
-        const pdfWidth = pdf.internal.pageSize.getWidth() + 6 ;
-        const pdfHeight = pdf.internal.pageSize.getHeight();
-        pdf.addImage(
-          imgData,
-          "JPEG",0,0,pdfWidth,pdfHeight
-        );
-        pdf.save("Report.pdf");
-      });
-    };
     let imageId = mostFrequent(options, length);
     const title = images[0].options[imageId - 1].title;
     let pdfUrl = images[0].options[imageId - 1].pdfUrl;
@@ -202,13 +189,17 @@ export default {
       console.log(user)
       userObj.email = user.email
       userObj.company = user.company
+      userObj.name = user.name
       let param = {
         userId: store.getters.getId,
         role: title,
       };
       await axios.post("/user/role", param);
     });
-    return { link, pdfUrl, personas, savePdf, userObj };
+    const redirect = () => {
+      router.push("/template")
+    }
+    return { link, pdfUrl, personas, redirect, userObj };
   },
 };
 </script>
@@ -231,8 +222,8 @@ export default {
   border-radius: 50px;
 } 
 #grid-box {
-  margin-left: 2vw;
-  grid-gap: 5vw;
+  margin-left: 18vw;
+  grid-gap: 2vw;
 }
 }
 .persona {
@@ -274,7 +265,7 @@ export default {
   margin-bottom: 4em;
 }
 .image {
-  width: 15vw;
+  width: 13vw;
   height: 200px;
 }
 
