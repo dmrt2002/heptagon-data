@@ -18,7 +18,7 @@
               class="image"
             />
             <div class="text-center persona">Data explorer</div>
-            <div class="text-center perc">{{personas.one}}%</div>
+            <div class="text-center perc">{{ personas.one }}%</div>
           </div>
           <div class="md:col-3 col-12">
             <img
@@ -27,7 +27,7 @@
               class="image"
             />
             <div class="text-center persona">Data operator</div>
-            <div class="text-center perc">{{personas.two}}%</div>
+            <div class="text-center perc">{{ personas.two }}%</div>
           </div>
           <div class="md:col-3 col-12">
             <img
@@ -36,7 +36,7 @@
               class="image"
             />
             <div class="text-center persona">Data interpreter</div>
-            <div class="text-center perc">{{personas.three}}%</div>
+            <div class="text-center perc">{{ personas.three }}%</div>
           </div>
           <div class="md:col-3 col-12">
             <img
@@ -45,46 +45,59 @@
               class="image"
             />
             <div class="text-center persona">Data influencer</div>
-            <div class="text-center perc">{{personas.four}}%</div>
+            <div class="text-center perc">{{ personas.four }}%</div>
           </div>
         </div>
-        <div class="heading">Data Explorer</div>
-        <p class="information">
-          Your daily job involves working with some numbers. You occasionally
-          use tool like excel sheet to create surveys/lists/reports etc. You
-          share data inputs to others and the quality of that data is important
-          for the department You often hear terms like “Big Data” “Analytics”
-          “Insights” etc and curious to update yourself. You want to know how
-          you can become more efficient and avoid reworks in tasks involving
-          data
-        </p>
-        <div class="heading">Data Operator</div>
-        <p class="information">
-          A significant part of your work involves collecting/collating data
-          from different sources. You may work with sources like CRM / HRM /
-          Supply ERP / Surveys etc. You make reports which is then used by you
-          or mostly by someone else for further analysis. You make these data
-          sheets in excel and often have a set calendar to share with others
-        </p>
-        <div class="heading">Data Interpreter</div>
-        <p class="information">
-          Your work involves reading various data tables / reports / graphs /
-          dashboards. You often are looking at solving tactical problems in
-          business. You generate reports describing What has happened in your
-          line of work From a given data set you often try to identify what is
-          causing a trend and come up with call to action / suggestions /
-          recommendations based on your analysis
-        </p>
-        <div class="heading">Data Influencer</div>
-        <p class="information" id="lastp">
-          Your daily job involves working with some numbers. You occasionally
-          use tool like excel sheet to create surveys/lists/reports etc. You
-          share data inputs to others and the quality of that data is important
-          for the department You often hear terms like “Big Data” “Analytics”
-          “Insights” etc and curious to update yourself. You want to know how
-          you can become more efficient and avoid reworks in tasks involving
-          data
-        </p>
+        <div class="grid">
+          <div class="md:col-6 col-12">
+            <div class="heading">Data Explorer</div>
+            <p class="information">
+              Your daily job involves working with some numbers. You
+              occasionally use tool like excel sheet to create
+              surveys/lists/reports etc. You share data inputs to others and the
+              quality of that data is important for the department You often
+              hear terms like “Big Data” “Analytics” “Insights” etc and curious
+              to update yourself. You want to know how you can become more
+              efficient and avoid reworks in tasks involving data
+            </p>
+          </div>
+          <div class="md:col-6 col-12">
+            <div class="heading">Data Operator</div>
+            <p class="information">
+              A significant part of your work involves collecting/collating data
+              from different sources. You may work with sources like CRM / HRM /
+              Supply ERP / Surveys etc. You make reports which is then used by
+              you or mostly by someone else for further analysis. You make these
+              data sheets in excel and often have a set calendar to share with
+              others
+            </p>
+          </div>
+        </div>
+        <div class="grid">
+          <div class="col-12 md:col-6">
+            <div class="heading">Data Interpreter</div>
+            <p class="information">
+              Your work involves reading various data tables / reports / graphs
+              / dashboards. You often are looking at solving tactical problems
+              in business. You generate reports describing What has happened in
+              your line of work From a given data set you often try to identify
+              what is causing a trend and come up with call to action /
+              suggestions / recommendations based on your analysis
+            </p>
+          </div>
+          <div class="col-12 md:col-6">
+            <div class="heading">Data Influencer</div>
+            <p class="information" id="lastp">
+              Your daily job involves working with some numbers. You
+              occasionally use tool like excel sheet to create
+              surveys/lists/reports etc. You share data inputs to others and the
+              quality of that data is important for the department You often
+              hear terms like “Big Data” “Analytics” “Insights” etc and curious
+              to update yourself. You want to know how you can become more
+              efficient and avoid reworks in tasks involving data
+            </p>
+          </div>
+        </div>
         <div class="align-items-center flex justify-content-center">
           <a
             :href="`https://hept-data.herokuapp.com/${pdfUrl}`"
@@ -117,8 +130,8 @@ export default {
       one: null,
       two: null,
       three: null,
-      four: null
-    })
+      four: null,
+    });
     const count = {};
     let link = [
       "https://raw.githubusercontent.com/dmrt2002/images/696ad09814061b0a6d1ff1653ac680969870b760/heptagon.svg",
@@ -130,11 +143,11 @@ export default {
         count[element] = 1;
       }
     }
-    personas.one = count[1]/10 * 100
-    personas.two = count[2]/10 * 100
-    personas.three = count[3]/10 * 100
-    personas.four = count[4]/10 * 100
-    console.log(personas.one)
+    personas.one = (count[1] / 10) * 100;
+    personas.two = (count[2] / 10) * 100;
+    personas.three = (count[3] / 10) * 100;
+    personas.four = (count[4] / 10) * 100;
+    console.log(personas.one);
     const mostFrequent = (arr, n) => {
       arr.sort();
       let max_count = 1,
@@ -154,7 +167,7 @@ export default {
       return res;
     };
     let imageId = mostFrequent(options, length);
-    const title = images[0].options[imageId - 1].title
+    const title = images[0].options[imageId - 1].title;
     let pdfUrl = images[0].options[imageId - 1].pdfUrl;
     onMounted(async () => {
       let param = {
@@ -163,7 +176,7 @@ export default {
       };
       await axios.post("/user/role", param);
     });
-    return {  link, pdfUrl , personas};
+    return { link, pdfUrl, personas };
   },
 };
 </script>
@@ -217,7 +230,7 @@ export default {
   height: 250px;
 }
 
-@media ( max-width: 768px) {
+@media (max-width: 768px) {
   .image {
     width: 90vw;
   }
