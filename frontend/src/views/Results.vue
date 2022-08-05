@@ -189,10 +189,6 @@ export default {
 #lastp {
   margin-bottom: 10px;
 }
-#grid-box {
-  margin-left: 2vw;
-  grid-gap: 10vw;
-}
 .main-head {
   margin-bottom: 20px;
   font-size: 40px;
@@ -202,6 +198,10 @@ export default {
   border: solid 1px rgb(13, 13, 13);
   border-radius: 50px;
 } 
+#grid-box {
+  margin-left: 2vw;
+  grid-gap: 10vw;
+}
 }
 .persona {
   font-size: 25px;
