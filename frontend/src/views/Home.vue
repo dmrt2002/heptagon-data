@@ -106,7 +106,6 @@ export default {
       lastNamee: false,
       countrye: false,
       companye: false,
-      codee:false
     })
     const router = useRouter()
       const state = reactive({
@@ -146,7 +145,7 @@ export default {
         errors.countrye = true
       }
       if(state.code === "") {
-        errors.codee = true
+        state.code = "GENERAL"
       }
       else if(state.selectedCountry !== "") {
         errors.countrye = false

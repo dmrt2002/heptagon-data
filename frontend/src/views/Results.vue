@@ -6,146 +6,182 @@
       </div>
     </div>
     <div id="report">
-      <div class="header-two">
-        {{ userObj.name }}
+      <div class="header">
+        <div class="grid">
+          <div class="md:col-8 col-12">
+            <h2 class="header-two">
+              {{ userObj.name }}
+            </h2>
+            <h3 class="header-one">
+              {{ userObj.email }}
+            </h3>
+            <h3 class="header-three">
+              {{ userObj.company }}
+            </h3>
+          </div>
+          <div class="md:col-4 col-12">
+            <div class="box">
+              <div class="score">
+               {{ score }}
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
-    <div class="header-one">
-      {{ userObj.email }}  &nbsp;  &nbsp; &nbsp; &nbsp;     {{ userObj.company }}
+      <div class="align-items-center flex justify-content-center">
+        <Knob v-model="score" :valueColor="color" :size="200" readonly/>
+      </div>
+            <div class="persona-header">
+        Persona Definition
+      </div>
+      <div
+        class="align-items-center flex justify-content-center  align-center"
+      >
+        <div>
+          <div class="grid">
+            <div class="md:col-6 col-12">
+              <div class="info-box">
+              <div class="heading">Data Explorer</div>
+              <p class="information">
+                Your daily job involves working with some numbers. You
+                occasionally use tool like excel sheet to create
+                surveys/lists/reports etc. You share data inputs to others and
+                the quality of that data is important for the department You
+                often hear terms like “Big Data” “Analytics” “Insights” etc and
+                curious to update yourself. You want to know how you can become
+                more efficient and avoid reworks in tasks involving data
+              </p>
+              </div>
+            </div>
+            <div class="md:col-6 col-12">
+              <div class="info-box-l">
+              <div class="heading">Data Operator</div>
+              <p class="information">
+                A significant part of your work involves collecting/collating
+                data from different sources. You may work with sources like CRM
+                / HRM / Supply ERP / Surveys etc. You make reports which is then
+                used by you or mostly by someone else for further analysis. You
+                make these data sheets in excel and often have a set calendar to
+                share with others
+              </p>
+              </div>
+            </div>
+          </div>
+          <div class="grid">
+            <div class="col-12 md:col-6 ">
+              <div class="info-box">
+              <div class="heading">Data Interpreter</div>
+              <p class="information">
+                Your work involves reading various data tables / reports /
+                graphs / dashboards. You often are looking at solving tactical
+                problems in business. You generate reports describing What has
+                happened in your line of work From a given data set you often
+                try to identify what is causing a trend and come up with call to
+                action / suggestions / recommendations based on your analysis
+              </p>
+              </div>
+            </div>
+            <div class="col-12 md:col-6">
+              <div class="info-box-l">
+              <div class="heading">Data Influencer</div>
+              <p class="information" id="lastp">
+                Your daily job involves working with some numbers. You
+                occasionally use tool like excel sheet to create
+                surveys/lists/reports etc. You share data inputs to others and
+                the quality of that data is important for the department You
+                often hear terms like “Big Data” “Analytics” “Insights” etc and
+                curious to update yourself. You want to know how you can become
+                more efficient and avoid reworks in tasks involving data
+              </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
-    <div
-      class="align-items-center flex justify-content-center fadein animation-duration-1500 align-center"
-    >
-      <div>
-        <h1 class="text-center main-head">Persona Blend</h1>
-        <div class="grid" id="grid-box">
-          <div class="md:col-2 col-12 box">
-            <img
-              :src="require('../assets/explorer.png')"
-              alt="Image"
-              class="image"
-            />
-            <div class="text-center persona">Data explorer</div>
-            <div class="text-center perc">{{ personas.one }}%</div>
-          </div>
-          <div class="md:col-2 col-12 box">
-            <img
-              :src="require('../assets/operator.png')"
-              alt="Image"
-              class="image"
-            />
-            <div class="text-center persona">Data operator</div>
-            <div class="text-center perc">{{ personas.two }}%</div>
-          </div>
-          <div class="md:col-2 col-12 box">
-            <img
-              :src="require('../assets/interpreter.png')"
-              alt="Image"
-              class="image"
-            />
-            <div class="text-center persona">Data interpreter</div>
-            <div class="text-center perc">{{ personas.three }}%</div>
-          </div>
-          <div class="md:col-2 col-12 box">
-            <img
-              :src="require('../assets/influencer.png')"
-              alt="Image"
-              class="image"
-            />
-            <div class="text-center persona">Data influencer</div>
-            <div class="text-center perc">{{ personas.four }}%</div>
-          </div>
+    <div class="things-to-do-header">
+      Things to Improve your Dq Score
+    </div>
+    <div class="grid">
+      <div class="col">
+        <div class="sub-box-l">
+        <div class="sub-header">
+          Data Literacy
         </div>
-        <div class="grid">
-          <div class="md:col-6 col-12">
-            <div class="heading">Data Explorer</div>
-            <p class="information">
-              Your daily job involves working with some numbers. You
-              occasionally use tool like excel sheet to create
-              surveys/lists/reports etc. You share data inputs to others and the
-              quality of that data is important for the department You often
-              hear terms like “Big Data” “Analytics” “Insights” etc and curious
-              to update yourself. You want to know how you can become more
-              efficient and avoid reworks in tasks involving data
-            </p>
-          </div>
-          <div class="md:col-6 col-12">
-            <div class="heading">Data Operator</div>
-            <p class="information">
-              A significant part of your work involves collecting/collating data
-              from different sources. You may work with sources like CRM / HRM /
-              Supply ERP / Surveys etc. You make reports which is then used by
-              you or mostly by someone else for further analysis. You make these
-              data sheets in excel and often have a set calendar to share with
-              others
-            </p>
-          </div>
-        </div>
-        <div class="grid">
-          <div class="col-12 md:col-6">
-            <div class="heading">Data Interpreter</div>
-            <p class="information">
-              Your work involves reading various data tables / reports / graphs
-              / dashboards. You often are looking at solving tactical problems
-              in business. You generate reports describing What has happened in
-              your line of work From a given data set you often try to identify
-              what is causing a trend and come up with call to action /
-              suggestions / recommendations based on your analysis
-            </p>
-          </div>
-          <div class="col-12 md:col-6">
-            <div class="heading">Data Influencer</div>
-            <p class="information" id="lastp">
-              Your daily job involves working with some numbers. You
-              occasionally use tool like excel sheet to create
-              surveys/lists/reports etc. You share data inputs to others and the
-              quality of that data is important for the department You often
-              hear terms like “Big Data” “Analytics” “Insights” etc and curious
-              to update yourself. You want to know how you can become more
-              efficient and avoid reworks in tasks involving data
-            </p>
-          </div>
+        <div class="sub-para">
+          Build your foundations and familiarize yoruself with the key terminologies associated with Data
         </div>
         </div>
+      </div>
+      <div class="col">
+        <div class="sub-box">
+        <div class="sub-header">
+          Data Analytics
         </div>
-  </div>
-          <div class="align-items-center flex justify-content-center">
-          <a
-           @click="redirect"
-            class="cta cursor-pointer"
-          >
-            <span>Dowload your learning pathway</span>
-            <svg width="13px" height="10px" viewBox="0 0 13 10">
-              <path d="M1,5 L11,5"></path>
-              <polyline points="8 1 12 5 8 9"></polyline>
-            </svg>
-          </a>
+        <div class="sub-para">
+          Learn how to use the right tools to to mining insights from data
+        </div>
+        </div>
+      </div>
+      <div class="col">
+        <div class="sub-box">
+        <div class="sub-header">
+          Data Visualisation
+        </div>
+        <div class="sub-para">
+          Learn the art of presenting data visually.
+        </div>
+        </div>
+      </div>
+      <div class="col">
+        <div class="sub-box">
+        <div class="sub-header">
+          Data 2  insights
+        </div>
+        <div class="sub-para">
+          Learn the art of connecting the data from data to information, information to insights and insights to actions
+        </div>
+        </div>
+      </div>
+      <div class="col">
+        <div class="sub-box-r">
+        <div class="sub-header">
+          Data Story telling
+        </div>
+        <div class="sub-para">
+          learn how to use data and influence decisions by presenting insights in a compelling way
+        </div>
+        </div>
+      </div>
+    </div>
+    <div class="align-items-center flex justify-content-center">
+      <a @click="redirect" class="cta cursor-pointer">
+        <span>Dowload your learning pathway</span>
+        <svg width="13px" height="10px" viewBox="0 0 13 10">
+          <path d="M1,5 L11,5"></path>
+          <polyline points="8 1 12 5 8 9"></polyline>
+        </svg>
+      </a>
     </div>
   </div>
-  
 </template>
 
 <script>
 import { useStore } from "vuex";
-import images from "../images";
-import axios from "axios";
-import { useRouter } from 'vue-router'
-import { onMounted, reactive } from "@vue/runtime-core";
+// import axios from "axios";
+import { useRouter } from "vue-router";
+import { onMounted, reactive, ref } from "@vue/runtime-core";
 export default {
   setup() {
     let store = useStore();
+    let score = ref(null)
+    let color = ref("")
     const router = useRouter();
     let options = store.getters.getOptions;
-    let length = options.length;
     const userObj = reactive({
       email: "",
       company: "",
-      name:""
-    })
-    const personas = reactive({
-      one: null,
-      two: null,
-      three: null,
-      four: null,
+      name: "",
     });
     const count = {};
     let link = [
@@ -158,48 +194,32 @@ export default {
         count[element] = 1;
       }
     }
-    personas.one = (count[1] / 10) * 100;
-    personas.two = (count[2] / 10) * 100;
-    personas.three = (count[3] / 10) * 100;
-    personas.four = (count[4] / 10) * 100;
-    console.log(personas.one);
-    const mostFrequent = (arr, n) => {
-      arr.sort();
-      let max_count = 1,
-        res = arr[0];
-      let curr_count = 1;
-
-      for (let i = 1; i < n; i++) {
-        if (arr[i] == arr[i - 1]) curr_count++;
-        else curr_count = 1;
-
-        if (curr_count > max_count) {
-          max_count = curr_count;
-          res = arr[i - 1];
-        }
-      }
-
-      return res;
-    };
-    let imageId = mostFrequent(options, length);
-    const title = images[0].options[imageId - 1].title;
-    let pdfUrl = images[0].options[imageId - 1].pdfUrl;
+    for(let i =1; i <= 4; i++) {
+      score.value = score.value + count[i] * i
+    }
+    score.value  = Math.ceil(score.value / 40 * 100)
+    if(score.value < 25) {
+      color.value = "Red"
+    }
+    else if(score.value < 50 && score.value > 25) {
+      color.value = "Yellow"
+    }
+    else if(score.value < 75 && score.value > 50) {
+      color.value = "Orange"
+    }
+    else if(score.value <= 100 && score.value > 75) {
+      color.value = "Green"
+    }
     onMounted(async () => {
-      let user = store.getters.getUserObj
-      console.log(user)
-      userObj.email = user.email
-      userObj.company = user.company
-      userObj.name = user.name
-      let param = {
-        userId: store.getters.getId,
-        role: title,
-      };
-      await axios.post("/user/role", param);
+      let user = store.getters.getUserObj;
+      userObj.email = user.email;
+      userObj.company = user.company;
+      userObj.name = user.name;
     });
     const redirect = () => {
-      router.push("/template")
-    }
-    return { link, pdfUrl, personas, redirect, userObj };
+      router.push("/template");
+    };
+    return { link,  redirect, userObj, score, color };
   },
 };
 </script>
@@ -209,31 +229,68 @@ export default {
 * {
   font-family: "Raleway", sans-serif;
 }
+.sub-header {
+  font-size: 25px;
+  margin-bottom: 15px;
+  padding-left: 15px;
+  padding-top: 15px;
+}
+.sub-para {
+  font-size: 20px;
+  padding-left: 15px;
+}
+.sub-box, .sub-box-r, .sub-box-l {
+  background: rgb(227, 227, 244);
+  height: 300px;
+  margin-bottom: 5vh;
+}
+.sub-box-r {
+  margin-right: 2vw;
+}
+.sub-box-l {
+  margin-left: 2vw;
+}
+.persona-header, .things-to-do-header {
+  margin-left: 5vw;
+  margin-bottom: 5vh;
+  font-size: 35px;
+  color:blue;
+  font-weight: 800;
+}
 #lastp {
   margin-bottom: 10px;
 }
-.main-head {
-  margin-bottom: 20px;
-  font-size: 40px;
+.header {
+  background: blue;
+  margin: 30px 55px;
+  padding: 5vh 5vw;
 }
-@media (min-width:768px) {
-.box {
-  border: solid 1px rgb(13, 13, 13);
-  border-radius: 50px;
-} 
-#grid-box {
-  margin-left: 18vw;
-  grid-gap: 2vw;
+.info-box, .info-box-l {
+  background-color: rgb(227, 227, 244);
+  padding-bottom: 5vh;
 }
+.info-box {
+  margin-left: 2vw;
 }
-.persona {
-  font-size: 25px;
-  font-weight: 800;
-  padding-top: 10px;
+.info-box-l {
+  margin-right: 2vw;
 }
-.perc {
-  font-size: 25px;
-  padding-top: 10px;
+.score {
+  color: black;
+  text-align: center;
+  font-size: 50px;
+}
+.box{
+  background: whitesmoke;
+  padding-top: 5vh;
+  padding-bottom: 5vh;
+  border-radius: 20px;
+}
+@media (min-width: 768px) {
+  #grid-box {
+    margin-left: 18vw;
+    grid-gap: 2vw;
+  }
 }
 .heading {
   padding-top: 5vh;
@@ -241,16 +298,30 @@ export default {
   font-size: 30px;
   padding-bottom: 15px;
 }
-.header-one, .header-two {
-  margin-top: 10px;
-  margin-bottom: 10px;
-  text-align: center;
-  font-size: 25px;
+.header-one,
+.header-two,
+.header-three {
+  text-align: left;
+  font-weight: 900;
+  padding-bottom: 5px;
+  color: white;
+}
+@media (min-width:768px) {
+  .header-one,.header-two, .header-three {
+  font-size: 35px;
+  padding-left: 50px;
+  }
+}
+.header-two {
+  padding-top: 10px;
+}
+.header-three {
+  padding-bottom: 10px;
 }
 .information {
   margin-left: 5vw;
   margin-right: 5vw;
-  font-size: 15px;
+  font-size: 25px;
   padding-bottom: 15px;
 }
 
@@ -260,32 +331,7 @@ export default {
   overflow-y: hidden !important;
   overflow-x: hidden !important;
 }
-.img-fluid {
-  height: 200px;
-  margin-bottom: 4em;
-}
-.image {
-  width: 13vw;
-  height: 200px;
-}
 
-@media (max-width: 768px) {
-  .image {
-    width: 75vw;
-    margin-top: 10px;
-  }
-}
-.text-center {
-  text-align: left;
-}
-.p-tag {
-  font-size: 25px;
-}
-.text-align {
-  margin-left: 20vw;
-  margin-right: 20vw;
-  margin-bottom: 4em;
-}
 .logo {
   height: 60px !important;
 }
@@ -294,10 +340,6 @@ export default {
   align-content: center;
   justify-content: center;
   align-items: center;
-}
-.center-button {
-  font-size: 1.5rem !important;
-  margin-bottom: 10px;
 }
 .head {
   text-align: center;
