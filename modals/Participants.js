@@ -27,12 +27,9 @@ const userSchema = mongoose.Schema({
   EventCode: {
     type: String
   },
-  AnswerSheet: {
-    type: Array
+  Score:{
+    type:Number
   },
-  Role: {
-    type: String
-  }
 });
 
 //this method search for a user by email and password.

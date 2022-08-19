@@ -13,7 +13,8 @@ router.post("/login", jsonParser, userController.Login)
 router.post("/resetPassword", jsonParser, userController.resetPassword)
 router.post("/deleteUser", jsonParser, userController.deleteUser)
 router.post("/addAnswer", jsonParser, userController.addAnswer)
-
+router.post("/updateScore", jsonParser, userController.updateScore)
+router.post("/getScore", jsonParser, userController.getScore)
 
 // router.post("/removeAnswer", jsonParser, userController.removeAnswer)
 

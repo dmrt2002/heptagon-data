@@ -22,12 +22,11 @@ exports.registerNewUser = async (req, res) => {
       Email: email,
       Organization: company,
       EventCode: code,
-      Role:"",
+      Score: null,
       PassCode:"",
       Department: "",
       Gender:"",
       Attempts:"1",
-      AnswerSheet: [],
     },
     async function (err, user) {
       if (err) {
@@ -326,3 +325,23 @@ exports.resetPassword = async (req, res) => {
   );
   res.status(200).json("email sent successfully")
 };
+
+exports.updateScore = async(req,res) => {
+   let param = req.body
+   await Participant.findOneAndUpdate(
+    {
+      _id: param.id,
+    },
+    {
+      Score: param.score,
+    }
+  );
+  res.status(200)
+}
+
+exports.getScore = async(req,res) => {
+    let param = req.body
+    console.log(param.id)
+    let user = await Participant.findOne({ _id: param.id });
+    res.status(200).json(user.Score)
+}

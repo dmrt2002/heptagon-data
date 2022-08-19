@@ -197,13 +197,13 @@ export default {
         command : () => {
           let currParticipant = currParticipantObj.value;
           let param = {
-            id: currParticipant._id,
-            attempts: currParticipant.attempts,
-            organization: currParticipant.organization,
-            department: currParticipant.department,
+            name: currParticipant.name,
+            company: currParticipant.organization,
             email:currParticipant.email
           };
-          store.dispatch("storeParticipantId", param);
+          store.dispatch("storeUserObj", param);
+          // let id =  currParticipant._id
+          // store.dispatch("storeId", id)
           router.push("/participantdetails");       
         }
       },

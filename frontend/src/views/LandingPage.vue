@@ -7,19 +7,26 @@
     </div>
     <div class="grid">
       <div class="col-12 md:col-5 align-text-center">
-        <h1 class="l-heading md:pl-6 lg:pl-8 pl-2 pr-4">Know Your DQ - Data Quotient</h1>
-        <p class="md:pl-6 lg:pl-8 pl-2 p-text" >This is an entry level assessment for data literacy. It is designed to help a person understand their relative position when it comes to understanding Data and Analytics. </p>
-        <p class="md:pl-6 lg:pl-8 pl-2 p-text">Please read each question carefully and choose the best option which mirrors your behavior/skills when it comes to dealing with data. The final report will be customized basis your inputs and hence any random responses may lead to an inaccurate recommendation for you.</p>
-        <p class="md:pl-6 lg:pl-8 pl-2 p-text" id="lastp">Thanks again for taking time out to participate in the DQ survey.</p>
-        <br>
+        <h1 class="l-heading md:pl-6 lg:pl-8 pl-2 pr-4">
+          Know Your DQ - Data Quotient
+        </h1>
+        <p class="md:pl-6 lg:pl-8 pl-2 p-text">
+          This is an entry level assessment for data literacy. It is designed to
+          help a person understand their relative position when it comes to
+          understanding Data and Analytics.
+        </p>
+        <p class="md:pl-6 lg:pl-8 pl-2 p-text">
+          Please read each question carefully and choose the best option which
+          mirrors your behavior/skills when it comes to dealing with data. The
+          final report will be customized basis your inputs and hence any random
+          responses may lead to an inaccurate recommendation for you.
+        </p>
+        <p class="md:pl-6 lg:pl-8 pl-2 p-text" id="lastp">
+          Thanks again for taking time out to participate in the DQ survey.
+        </p>
+        <br />
         <div class="md:pl-6 lg:pl-8 pl-2 mb-2">
-            <a  @click="redirect()" class="cta cursor-pointer">
-              <span>Start Test</span>
-              <svg width="13px" height="10px" viewBox="0 0 13 10">
-                <path d="M1,5 L11,5"></path>
-                <polyline points="8 1 12 5 8 9"></polyline>
-              </svg>
-            </a>
+          <Button @click="redirect();" label="Next" iconPos="right" class="my-button pi-button-lg" icon="pi pi-arrow-right" />
         </div>
       </div>
       <div class="col-12 md:col-7">
@@ -34,18 +41,22 @@
 </template>
 
 <script>
-import { useRouter } from 'vue-router'
+import { useRouter } from "vue-router";
+import Button from "primevue/button";
 export default {
-setup() {
+  components: {
+    Button,
+  },
+  setup() {
     let link = [
       "https://raw.githubusercontent.com/dmrt2002/images/696ad09814061b0a6d1ff1653ac680969870b760/heptagon.svg",
     ];
-    let router = useRouter()
+    let router = useRouter();
     const redirect = () => {
-        router.push('/questions')
-    }
-    return { link , redirect}
-}
+      router.push("/questions");
+    };
+    return { link, redirect };
+  },
 };
 </script>
 
@@ -56,6 +67,10 @@ setup() {
 }
 #lastp {
   padding-bottom: 3vh;
+}
+.my-button {
+  padding: 10px 40px !important;
+  font-size: 20px;
 }
 .background {
   background-color: rgba(241, 237, 246, 0.818);
@@ -72,34 +87,35 @@ setup() {
   .img-fluid {
     width: 100vw;
     height: 100vh;
-      object-fit: cover;
+    object-fit: cover;
   }
 }
 .align-center {
   min-height: calc(100vh - 100px);
 }
-.align-text-center{
-    margin-top: auto;
-    margin-bottom: auto;
+.align-text-center {
+  margin-top: auto;
+  margin-bottom: auto;
 }
 .p-text {
-    font-weight: 800 !important;
-    font-size: 25px;
+  font-weight: 800 !important;
+  font-size: 25px;
 }
-.l-heading{
-    font-size: 40px !important;
-    padding-bottom: 3vh;
-    font-weight: 1200 !important;
+.l-heading {
+  font-size: 40px !important;
+  padding-bottom: 3vh;
+  font-weight: 1200 !important;
 }
 .logo {
-    height: 60px !important;
+  height: 60px !important;
 }
 a {
   text-decoration: none;
   color: inherit;
 }
 
-.cta  , .cta-back {
+.cta,
+.cta-back {
   position: relative;
   margin: auto;
   padding: 19px 22px;
@@ -129,7 +145,8 @@ a {
   height: 56px;
   transition: all 0.3s ease;
 }
-.cta span, .cta-back span {
+.cta span,
+.cta-back span {
   position: relative;
   font-size: 25px;
   line-height: 18px;
@@ -138,7 +155,8 @@ a {
   text-transform: uppercase;
   vertical-align: middle;
 }
-.cta svg, .cta i {
+.cta svg,
+.cta i {
   position: relative;
   top: 0;
   margin-left: 10px;
@@ -150,14 +168,17 @@ a {
   transform: translateX(-5px);
   transition: all 0.3s ease;
 }
-.cta:hover:before, .cta-back:hover:before {
+.cta:hover:before,
+.cta-back:hover:before {
   width: 100%;
   background: lightblue;
 }
-.cta:hover svg, .cta-back i {
+.cta:hover svg,
+.cta-back i {
   transform: translateX(0);
 }
-.cta:active , .cta-back:active {
+.cta:active,
+.cta-back:active {
   transform: scale(0.96);
 }
 </style>

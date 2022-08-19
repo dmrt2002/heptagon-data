@@ -144,11 +144,11 @@ export default {
       if(state.selectedCountry === "") {
         errors.countrye = true
       }
+      else if(state.selectedCountry !== "") {
+        errors.countrye = false
       if(state.code === "") {
         state.code = "GENERAL"
       }
-      else if(state.selectedCountry !== "") {
-        errors.countrye = false
       try {
       let res = await axios.post('user/register', state)
       let id = res.data._id

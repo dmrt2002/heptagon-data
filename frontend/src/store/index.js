@@ -15,19 +15,12 @@ export default createStore({
       name:"",
       description:""
     },
-    participantObj: {
-      id:"",
-      email:"",
-      organization: "",
-      department:"",
-      gender: "",
-      attempts: ""
-    },
     userObj: {
       email:"",
       company:"",
       name:""
-    }
+    },
+    score: null
   },
   mutations: {
     saveQuestion(state,questNumb) {
@@ -56,11 +49,11 @@ export default createStore({
     storeEventId(state,obj) {
       state.eventObj = obj
     },
-    storeParticipantId(state,obj) {
-      state.participantObj = obj
-    },
     storeUserObj(state, obj) {
       state.userObj = obj
+    },
+    updateScore(state,score) {
+      state.score = score
     }
   },
   actions: {
@@ -85,11 +78,11 @@ export default createStore({
     storeEventId(context,id) {
       context.commit('storeEventId', id)
     },
-    storeParticipantId(context,id) {
-      context.commit('storeParticipantId', id)
-    },
     storeUserObj(context,obj) {
       context.commit('storeUserObj', obj)
+    },
+    updateScore(context, score) {
+      context.commit('updateScore', score)
     }
   },
   getters: {
@@ -113,6 +106,9 @@ export default createStore({
     },
     getUserObj(state) {
       return state.userObj
+    },
+    getScore(state) {
+      return state.score
     }
   }
 })

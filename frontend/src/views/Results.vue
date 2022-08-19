@@ -1,6 +1,6 @@
 <template>
   <div class="background">
-    <div class="flex align-items-start flex-wrap">
+    <div v-if="!hideContent" class="flex align-items-start flex-wrap">
       <div class="margin-left">
         <img :src="link[0]" class="logo" alt="" />
       </div>
@@ -22,160 +22,155 @@
           <div class="md:col-4 col-12">
             <div class="box">
               <div class="score">
-               {{ score }}
+                {{ score }}
               </div>
             </div>
           </div>
         </div>
       </div>
       <div class="align-items-center flex justify-content-center">
-        <Knob v-model="score" :valueColor="color" :size="200" readonly/>
+        <Knob v-model="score" :valueColor="color" :size="200" readonly />
       </div>
-            <div class="persona-header">
-        Persona Definition
-      </div>
-      <div
-        class="align-items-center flex justify-content-center  align-center"
-      >
+      <div class="persona-header">Persona Definition</div>
+      <div class="align-items-center flex justify-content-center align-center">
         <div>
           <div class="grid">
             <div class="md:col-6 col-12">
               <div class="info-box">
-              <div class="heading">Data Explorer</div>
-              <p class="information">
-                Your daily job involves working with some numbers. You
-                occasionally use tool like excel sheet to create
-                surveys/lists/reports etc. You share data inputs to others and
-                the quality of that data is important for the department You
-                often hear terms like “Big Data” “Analytics” “Insights” etc and
-                curious to update yourself. You want to know how you can become
-                more efficient and avoid reworks in tasks involving data
-              </p>
+                <div class="heading">Data Explorer</div>
+                <p class="information">
+                  Your daily job involves working with some numbers. You
+                  occasionally use tool like excel sheet to create
+                  surveys/lists/reports etc. You share data inputs to others and
+                  the quality of that data is important for the department You
+                  often hear terms like “Big Data” “Analytics” “Insights” etc
+                  and curious to update yourself. You want to know how you can
+                  become more efficient and avoid reworks in tasks involving
+                  data
+                </p>
               </div>
             </div>
             <div class="md:col-6 col-12">
               <div class="info-box-l">
-              <div class="heading">Data Operator</div>
-              <p class="information">
-                A significant part of your work involves collecting/collating
-                data from different sources. You may work with sources like CRM
-                / HRM / Supply ERP / Surveys etc. You make reports which is then
-                used by you or mostly by someone else for further analysis. You
-                make these data sheets in excel and often have a set calendar to
-                share with others
-              </p>
+                <div class="heading">Data Operator</div>
+                <p class="information">
+                  A significant part of your work involves collecting/collating
+                  data from different sources. You may work with sources like
+                  CRM / HRM / Supply ERP / Surveys etc. You make reports which
+                  is then used by you or mostly by someone else for further
+                  analysis. You make these data sheets in excel and often have a
+                  set calendar to share with others
+                </p>
               </div>
             </div>
           </div>
           <div class="grid">
-            <div class="col-12 md:col-6 ">
+            <div class="col-12 md:col-6">
               <div class="info-box">
-              <div class="heading">Data Interpreter</div>
-              <p class="information">
-                Your work involves reading various data tables / reports /
-                graphs / dashboards. You often are looking at solving tactical
-                problems in business. You generate reports describing What has
-                happened in your line of work From a given data set you often
-                try to identify what is causing a trend and come up with call to
-                action / suggestions / recommendations based on your analysis
-              </p>
+                <div class="heading">Data Interpreter</div>
+                <p class="information">
+                  Your work involves reading various data tables / reports /
+                  graphs / dashboards. You often are looking at solving tactical
+                  problems in business. You generate reports describing What has
+                  happened in your line of work From a given data set you often
+                  try to identify what is causing a trend and come up with call
+                  to action / suggestions / recommendations based on your
+                  analysis
+                </p>
               </div>
             </div>
             <div class="col-12 md:col-6">
               <div class="info-box-l">
-              <div class="heading">Data Influencer</div>
-              <p class="information" id="lastp">
-                Your daily job involves working with some numbers. You
-                occasionally use tool like excel sheet to create
-                surveys/lists/reports etc. You share data inputs to others and
-                the quality of that data is important for the department You
-                often hear terms like “Big Data” “Analytics” “Insights” etc and
-                curious to update yourself. You want to know how you can become
-                more efficient and avoid reworks in tasks involving data
-              </p>
+                <div class="heading">Data Influencer</div>
+                <p class="information" id="lastp">
+                  Your daily job involves working with some numbers. You
+                  occasionally use tool like excel sheet to create
+                  surveys/lists/reports etc. You share data inputs to others and
+                  the quality of that data is important for the department You
+                  often hear terms like “Big Data” “Analytics” “Insights” etc
+                  and curious to update yourself. You want to know how you can
+                  become more efficient and avoid reworks in tasks involving
+                  data
+                </p>
               </div>
             </div>
           </div>
         </div>
       </div>
     </div>
-    <div class="things-to-do-header">
-      Things to Improve your Dq Score
-    </div>
+    <div class="things-to-do-header">Things to Improve your Dq Score</div>
     <div class="grid">
       <div class="col">
         <div class="sub-box-l">
-        <div class="sub-header">
-          Data Literacy
-        </div>
-        <div class="sub-para">
-          Build your foundations and familiarize yoruself with the key terminologies associated with Data
-        </div>
-        </div>
-      </div>
-      <div class="col">
-        <div class="sub-box">
-        <div class="sub-header">
-          Data Analytics
-        </div>
-        <div class="sub-para">
-          Learn how to use the right tools to to mining insights from data
-        </div>
+          <div class="sub-header">Data Literacy</div>
+          <div class="sub-para">
+            Build your foundations and familiarize yoruself with the key
+            terminologies associated with Data
+          </div>
         </div>
       </div>
       <div class="col">
         <div class="sub-box">
-        <div class="sub-header">
-          Data Visualisation
-        </div>
-        <div class="sub-para">
-          Learn the art of presenting data visually.
-        </div>
+          <div class="sub-header">Data Analytics</div>
+          <div class="sub-para">
+            Learn how to use the right tools to to mining insights from data
+          </div>
         </div>
       </div>
       <div class="col">
         <div class="sub-box">
-        <div class="sub-header">
-          Data 2  insights
+          <div class="sub-header">Data Visualisation</div>
+          <div class="sub-para">Learn the art of presenting data visually.</div>
         </div>
-        <div class="sub-para">
-          Learn the art of connecting the data from data to information, information to insights and insights to actions
-        </div>
+      </div>
+      <div class="col">
+        <div class="sub-box">
+          <div class="sub-header">Data 2 insights</div>
+          <div class="sub-para">
+            Learn the art of connecting the data from data to information,
+            information to insights and insights to actions
+          </div>
         </div>
       </div>
       <div class="col">
         <div class="sub-box-r">
-        <div class="sub-header">
-          Data Story telling
-        </div>
-        <div class="sub-para">
-          learn how to use data and influence decisions by presenting insights in a compelling way
-        </div>
+          <div class="sub-header">Data Story telling</div>
+          <div class="sub-para">
+            learn how to use data and influence decisions by presenting insights
+            in a compelling way
+          </div>
         </div>
       </div>
     </div>
     <div class="align-items-center flex justify-content-center">
-      <a @click="redirect" class="cta cursor-pointer">
-        <span>Dowload your learning pathway</span>
-        <svg width="13px" height="10px" viewBox="0 0 13 10">
-          <path d="M1,5 L11,5"></path>
-          <polyline points="8 1 12 5 8 9"></polyline>
-        </svg>
-      </a>
+      <Button
+        @click="redirect()"
+        label="Download Pdf"
+        iconPos="right"
+        class="my-button pi-button-lg"
+        icon="pi pi-download"
+      />
     </div>
   </div>
 </template>
 
 <script>
 import { useStore } from "vuex";
-// import axios from "axios";
+import Button from "primevue/button";
+import axios from "axios";
 import { useRouter } from "vue-router";
 import { onMounted, reactive, ref } from "@vue/runtime-core";
 export default {
-  setup() {
+  components: {
+    Button,
+  },
+  props: ["admin"],
+  setup(props) {
     let store = useStore();
-    let score = ref(null)
-    let color = ref("")
+    let score = ref(null);
+    let propValue = ref(props.admin);
+    let hideContent = ref(null);
+    let color = ref("");
     const router = useRouter();
     let options = store.getters.getOptions;
     const userObj = reactive({
@@ -187,30 +182,50 @@ export default {
     let link = [
       "https://raw.githubusercontent.com/dmrt2002/images/696ad09814061b0a6d1ff1653ac680969870b760/heptagon.svg",
     ];
-    for (const element of options) {
-      if (count[element]) {
-        count[element] += 1;
-      } else {
-        count[element] = 1;
-      }
-    }
-    for(let i =1; i <= 4; i++) {
-      score.value = score.value + count[i] * i
-    }
-    score.value  = Math.ceil(score.value / 40 * 100)
-    if(score.value < 25) {
-      color.value = "Red"
-    }
-    else if(score.value < 50 && score.value > 25) {
-      color.value = "Yellow"
-    }
-    else if(score.value < 75 && score.value > 50) {
-      color.value = "Orange"
-    }
-    else if(score.value <= 100 && score.value > 75) {
-      color.value = "Green"
+    if (propValue.value == "true") {
+      hideContent.value = true;
     }
     onMounted(async () => {
+      if (propValue.value !== "true") {
+        for (const element of options) {
+          if (count[element]) {
+            count[element] += 1;
+          } else {
+            count[element] = 1;
+          }
+        }
+        for (let i = 1; i <= 4; i++) {
+          if (count[i]) {
+            score.value = score.value + count[i] * i;
+          }
+        }
+        score.value = Math.ceil((score.value / 40) * 100);
+        store.dispatch('updateScore', score.value)
+        let param = {
+          id: store.getters.getId,
+          score: score.value,
+        };
+        axios.post("/user/updateScore", param);
+      } else {
+        let param = {
+          id: store.getters.getId,
+        };
+        let res = await axios.post(
+          "/user/getScore",
+          param
+        );
+        score.value = res.data;
+        store.dispatch("updateScore", score.value)
+      }
+      if (score.value < 25) {
+        color.value = "Red";
+      } else if (score.value < 50 && score.value > 25) {
+        color.value = "Yellow";
+      } else if (score.value < 75 && score.value > 50) {
+        color.value = "Orange";
+      } else if (score.value <= 100 && score.value > 75) {
+        color.value = "Green";
+      }
       let user = store.getters.getUserObj;
       userObj.email = user.email;
       userObj.company = user.company;
@@ -219,7 +234,7 @@ export default {
     const redirect = () => {
       router.push("/template");
     };
-    return { link,  redirect, userObj, score, color };
+    return { link, redirect, userObj, score, color, hideContent };
   },
 };
 </script>
@@ -239,9 +254,16 @@ export default {
   font-size: 20px;
   padding-left: 15px;
 }
-.sub-box, .sub-box-r, .sub-box-l {
+.sub-box,
+.sub-box-r,
+.sub-box-l {
   background: rgb(227, 227, 244);
   height: 300px;
+  margin-bottom: 5vh;
+}
+.my-button {
+  padding: 10px 40px !important;
+  font-size: 20px;
   margin-bottom: 5vh;
 }
 .sub-box-r {
@@ -250,11 +272,12 @@ export default {
 .sub-box-l {
   margin-left: 2vw;
 }
-.persona-header, .things-to-do-header {
+.persona-header,
+.things-to-do-header {
   margin-left: 5vw;
   margin-bottom: 5vh;
   font-size: 35px;
-  color:blue;
+  color: blue;
   font-weight: 800;
 }
 #lastp {
@@ -265,7 +288,8 @@ export default {
   margin: 30px 55px;
   padding: 5vh 5vw;
 }
-.info-box, .info-box-l {
+.info-box,
+.info-box-l {
   background-color: rgb(227, 227, 244);
   padding-bottom: 5vh;
 }
@@ -280,7 +304,7 @@ export default {
   text-align: center;
   font-size: 50px;
 }
-.box{
+.box {
   background: whitesmoke;
   padding-top: 5vh;
   padding-bottom: 5vh;
@@ -306,10 +330,12 @@ export default {
   padding-bottom: 5px;
   color: white;
 }
-@media (min-width:768px) {
-  .header-one,.header-two, .header-three {
-  font-size: 35px;
-  padding-left: 50px;
+@media (min-width: 768px) {
+  .header-one,
+  .header-two,
+  .header-three {
+    font-size: 35px;
+    padding-left: 50px;
   }
 }
 .header-two {
