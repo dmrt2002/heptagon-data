@@ -214,6 +214,7 @@ export default {
           "/user/getScore",
           param
         );
+        console.log(res.data)
         score.value = res.data;
         store.dispatch("updateScore", score.value)
       }
