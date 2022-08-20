@@ -210,6 +210,7 @@ export default {
         let param = {
           id: store.getters.getId,
         };
+        console.log(param.id)
         let res = await axios.post(
           "/user/getScore",
           param
