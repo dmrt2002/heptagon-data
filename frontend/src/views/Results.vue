@@ -447,4 +447,18 @@ a {
 .cta-back:active {
   transform: scale(0.96);
 }
+@media( min-resolution: 150dpi) {
+  .information {
+    font-size: 15px;
+  }
+  .sub-header {
+      font-size: 25px
+  }
+  .sub-para {
+    font-size: 15px;
+  }
+  .header-one,.header-two,.header-three {
+    font-size: 30px;
+  }
+}
 </style>
