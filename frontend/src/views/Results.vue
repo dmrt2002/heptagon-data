@@ -215,8 +215,7 @@ export default {
           "/user/getScore",
           param
         );
-        console.log(res)
-        score.value = 70;
+        score.value = res.data;
         store.dispatch("updateScore", score.value)
       }
       if (score.value < 25) {

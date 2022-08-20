@@ -343,5 +343,5 @@ exports.getScore = async(req,res) => {
     let param = req.body
     console.log(param.id)
     let user = await Participant.findOne({ _id: param.id });
-    res.status(200).json(user)
+    res.status(200).json(user.Score)
 }

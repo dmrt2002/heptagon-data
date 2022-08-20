@@ -202,8 +202,8 @@ export default {
             email:currParticipant.email
           };
           store.dispatch("storeUserObj", param);
-          // let id =  currParticipant._id
-          // store.dispatch("storeId", id)
+          let id =  currParticipant._id
+          store.dispatch("storeId", id)
           router.push("/participantdetails");       
         }
       },
