@@ -88,12 +88,12 @@ export default [
         {
           optId: "1",
           optText:
-            "what my car has",
+            "What my car has",
         },
         {
           optId: "2",
           optText:
-            "a sheet in excel with tables and charts",
+            "A sheet in excel with tables and charts",
         },
         {
           optId: "3",
@@ -103,7 +103,7 @@ export default [
         {
           optId: "4",
           optText:
-            "what shows my output when i code in R",
+            "What shows my output when i code in R",
         },
       ],
     },
@@ -142,22 +142,22 @@ export default [
         {
           optId: "1",
           optText:
-            "add some information into MS-Excel ",
+            "Add some information into MS-Excel ",
         },
         {
           optId: "2",
           optText:
-            "use a pivot table to arrange data in different groups",
+            "Use a pivot table to arrange data in different groups",
         },
         {
           optId: "3",
           optText:
-            "do a correlation analysis ",
+            "Do a correlation analysis ",
         },
         {
           optId: "4",
           optText:
-            "test my hypothesis with statistical tools",
+            "Test my hypothesis with statistical tools",
         },
       ],
     },
