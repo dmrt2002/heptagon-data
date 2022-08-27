@@ -228,17 +228,32 @@ export default {
       let events = res.data;
       console.log(res.data[0].Name);
       const eventsProps = [];
+      console.log(typeof((res.data[0].Date)))
       for (let i = 0; i <= events.length; i++) {
-        eventsProps.push({
+        if(res.data[i].Date){
+          eventsProps.push({
           index: eventsProps.length + 1,
           name: res.data[i].Name,
           type: res.data[i].Type,
-          date: res.data[i].Date.toString().split("T")[0],
           code: res.data[i].Code,
           _id: res.data[i]._id,
           Edit: "Edit",
           created: res.data[i].created.toString().split("T")[0],
+          date: res.data[i].Date.toString().split("T")[0],
+          })
+        }
+        else {
+        eventsProps.push({
+          index: eventsProps.length + 1,
+          name: res.data[i].Name,
+          type: res.data[i].Type,
+          code: res.data[i].Code,
+          _id: res.data[i]._id,
+          Date: "",
+          Edit: "Edit",
+          created: res.data[i].created.toString().split("T")[0],
         });
+        }
         Events.value = eventsProps;
         console.log(Events.value);
       }

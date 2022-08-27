@@ -9,9 +9,11 @@
   },
   "dependencies": {
     "core-js": "^3.6.5",
+    "downloadjs": "^1.4.7",
     "file-loader": "^6.2.0",
     "html2canvas": "^1.4.1",
     "jspdf": "^2.5.1",
+    "pdf-lib": "^1.17.1",
     "primeflex": "^3.2.0",
     "primeicons": "^5.0.0",
     "primevue": "^3.12.6",
@@ -22,6 +24,7 @@
     "xlsx": "^0.18.5"
   },
   "devDependencies": {
+    "@types/downloadjs": "^1.4.3",
     "@vue/cli-plugin-babel": "~4.5.15",
     "@vue/cli-plugin-eslint": "~4.5.15",
     "@vue/cli-plugin-router": "~4.5.15",

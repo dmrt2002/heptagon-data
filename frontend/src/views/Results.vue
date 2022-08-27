@@ -98,7 +98,7 @@
         </div>
       </div>
     </div>
-    <div class="things-to-do-header">Things to Improve your Dq Score</div>
+    <div class="things-to-do-header">Things to Improve your DQ Score</div>
     <div class="grid">
       <div class="col">
         <div class="sub-box-l">
@@ -218,15 +218,7 @@ export default {
         score.value = res.data;
         store.dispatch("updateScore", score.value)
       }
-      if (score.value < 25) {
-        color.value = "Red";
-      } else if (score.value < 50 && score.value > 25) {
-        color.value = "Yellow";
-      } else if (score.value < 75 && score.value > 50) {
-        color.value = "Orange";
-      } else if (score.value <= 100 && score.value > 75) {
-        color.value = "Green";
-      }
+      color.value = "Blue"
       let user = store.getters.getUserObj;
       userObj.email = user.email;
       userObj.company = user.company;
