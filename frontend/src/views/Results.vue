@@ -144,7 +144,7 @@ export default {
   margin-bottom: 5vh;
 }
 .img-fluid {
-  height: 70vh;
+  height: 60vh;
   width: 45vw;
   margin-bottom: 25px;
 }
@@ -165,7 +165,7 @@ export default {
 }
 .header {
   background: #1850cf;
-  margin: 30px 55px;
+  margin: 20px 45px;
   padding: 5vh 5vw;
 }
 .score {
@@ -174,7 +174,7 @@ export default {
   font-size: 50px;
 }
 .align-center {
-  height: 70vh;
+  height: 60vh;
 }
 .box {
   background: whitesmoke;
