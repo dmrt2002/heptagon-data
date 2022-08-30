@@ -5,37 +5,45 @@
         <img :src="link[0]" class="logo" alt="" />
       </div>
     </div>
-      <div class="header">
-        <div class="grid">
-          <div class="md:col-8 col-12">
-            <h2 class="header-two">
-              {{ userObj.name }}
-            </h2>
-            <h3 class="header-one">
-              {{ userObj.email }}
-            </h3>
-            <h3 class="header-three">
-              {{ userObj.company }}
-            </h3>
-          </div>
-          <div class="md:col-4 col-12">
-            <div class="box">
-              <div class="score">
-                <div class="on-top">
-                  DQ Score
-                </div>
-                <div class="score-board">
-                  {{ score }}
-                </div>
+    <div class="main-header">
+      DQ Learning path
+    </div>
+    <div class="header">
+      <div class="grid">
+        <div class="md:col-8 col-12">
+          <h2 class="header-two">
+            {{ userObj.name }}
+          </h2>
+          <h3 class="header-one">
+            {{ userObj.email }}
+          </h3>
+          <h3 class="header-three">
+            {{ userObj.company }}
+          </h3>
+        </div>
+        <div class="md:col-4 col-12">
+          <div class="box">
+            <div class="score">
+              <div class="on-top">DQ Score</div>
+              <div class="score-board">
+                {{ score }}
               </div>
             </div>
           </div>
         </div>
+      </div>
     </div>
-    <div class="instruction">
-      Click here to download the Learning Path Report
-    </div>
-    <div class="align-items-center flex justify-content-center">
+    <div class="grid">
+      <div class="col-12 md:col-5">
+        <img class="img-fluid" :src="imageUrl" alt="" />
+      </div>
+      <div class="col-12 md:col-7">
+        <div class="align-items-center flex justify-content-center align-center">
+          <div>
+        <div class="instruction">
+          Click the download button to view your DQ Learning Path Report. This is an easy way to quickly see the score and the improvement suggestions. We recommend downloading copies directly to your desktop to ensure that you have DQ Learning Path Report readily available to share with others.
+        </div>
+        <div class="align-items-center flex justify-content-center" >
       <Button
         @click="redirect()"
         label="Download Pdf"
@@ -43,6 +51,10 @@
         class="my-button pi-button-lg"
         icon="pi pi-download"
       />
+      </div>
+      </div>
+    </div>
+      </div>
     </div>
   </div>
 </template>
@@ -71,6 +83,7 @@ export default {
       name: "",
     });
     const count = {};
+    let imageUrl = "https://hept-data.herokuapp.com/result.png"
     let link = [
       "https://raw.githubusercontent.com/dmrt2002/images/696ad09814061b0a6d1ff1653ac680969870b760/heptagon.svg",
     ];
@@ -92,7 +105,7 @@ export default {
           }
         }
         score.value = Math.ceil((score.value / 40) * 100);
-        store.dispatch('updateScore', score.value)
+        store.dispatch("updateScore", score.value);
         let param = {
           id: store.getters.getId,
           score: score.value,
@@ -102,13 +115,10 @@ export default {
         let param = {
           id: store.getters.getId,
         };
-        console.log(param.id)
-        let res = await axios.post(
-          "/user/getScore",
-          param
-        );
+        console.log(param.id);
+        let res = await axios.post("/user/getScore", param);
         score.value = res.data;
-        store.dispatch("updateScore", score.value)
+        store.dispatch("updateScore", score.value);
       }
       let user = store.getters.getUserObj;
       userObj.email = user.email;
@@ -118,7 +128,7 @@ export default {
     const redirect = () => {
       router.push("/template");
     };
-    return { link, redirect, userObj, score, hideContent };
+    return { link, redirect, userObj, imageUrl, score, hideContent };
   },
 };
 </script>
@@ -128,17 +138,33 @@ export default {
 * {
   font-family: "Raleway", sans-serif;
 }
-
 .my-button {
   padding: 10px 40px !important;
   font-size: 20px;
   margin-bottom: 5vh;
 }
+.img-fluid {
+  height: 70vh;
+  width: 45vw;
+  margin-bottom: 25px;
+}
+@media (max-width: 768px) {
+  .img-fluid {
+    height: 300px;
+    width: 100vw;
+  }
+}
 #lastp {
   margin-bottom: 10px;
 }
+.main-header {
+  font-size: 45px;
+  text-align: center;
+  color: #1850cf;
+  font-weight: 800;
+}
 .header {
-  background: #1850CF;
+  background: #1850cf;
   margin: 30px 55px;
   padding: 5vh 5vw;
 }
@@ -146,6 +172,9 @@ export default {
   color: black;
   text-align: center;
   font-size: 50px;
+}
+.align-center {
+  height: 70vh;
 }
 .box {
   background: whitesmoke;
@@ -164,17 +193,18 @@ export default {
   position: relative;
   bottom: 20px;
   font-weight: 900;
-  color: #1850CF;
+  color: #1850cf;
 }
 .instruction {
   text-align: center;
-  font-size: 30px;
+  font-size: 24px;
   margin-bottom: 5vh;
-  color: #1850CF;
+  color: #1850cf;
   font-weight: 800;
+  margin: 8vh 8vw;
 }
 .score-board {
-  color: #1850CF;
+  color: #1850cf;
 }
 .header-one,
 .header-two,
@@ -188,7 +218,7 @@ export default {
   .header-one,
   .header-two,
   .header-three {
-    font-size: 35px;
+    font-size: 2vw;
     padding-left: 50px;
   }
 }
@@ -213,8 +243,10 @@ a {
   text-decoration: none;
   color: inherit;
 }
-@media( min-resolution: 150dpi) {
-  .header-one,.header-two,.header-three {
+@media (min-resolution: 150dpi) {
+  .header-one,
+  .header-two,
+  .header-three {
     font-size: 30px;
   }
 }
