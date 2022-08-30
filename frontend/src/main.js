@@ -13,9 +13,7 @@ import "primeicons/primeicons.css";
 import "primeflex/primeflex.min.css";
 
 
-import Knob from "primevue/knob";
 const app = createApp(App);
-app.component("Knob", Knob);
 app.use(PrimeVue);
 app.use(ToastService);
 app.use(ConfirmationService)
