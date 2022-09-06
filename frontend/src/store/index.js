@@ -54,11 +54,17 @@ export default createStore({
     },
     updateScore(state,score) {
       state.score = score
+    },
+    removeOptions(state) {
+      state.options = []
     }
   },
   actions: {
     saveQuestion(context, questNumb) {
       context.commit('saveQuestion' , questNumb)
+    },
+    removeOptions(context) {
+      context.commit('removeOptions')
     },
     saveOption(context, option) {
       context.commit('saveOption', option)

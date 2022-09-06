@@ -30,6 +30,9 @@ const userSchema = mongoose.Schema({
   Score:{
     type:Number
   },
+  Date: {
+    type: String
+  }
 });
 
 //this method search for a user by email and password.

@@ -104,9 +104,24 @@
       <Column
         :key="field"
         dataKey="id"
-        field="Actions"
+        field="EventDate"
         header="Event Date"
       ></Column>
+      <Column :key="field" dataKey="id" id="btn" field="Edit" header="">
+        <template #body="{ data }">
+          <div @click="currParticipant(data)">
+            <i
+              class="pi pi-ellipsis-v"
+              @click="toggle"
+              aria-haspopup="true"
+              aria-controls="overlay_menu"
+              type="button"
+            >
+            </i>
+          </div>
+          <Menu id="overlay_tmenu" ref="menu" :model="items" :popup="true" />
+        </template>
+      </Column>
     </DataTable>
   </div>
 </template>
@@ -122,6 +137,8 @@ import Column from "primevue/column";
 import { FilterMatchMode } from "primevue/api";
 import InputText from "primevue/inputtext";
 import axios from "axios";
+import { useConfirm } from "primevue/useconfirm";
+import Menu from "primevue/menu";
 export default {
   components: {
     SidebarMenuAkahon,
@@ -129,6 +146,7 @@ export default {
     DataTable,
     Column,
     InputText,
+    Menu
   },
   setup() {
     const store = useStore();
@@ -136,12 +154,58 @@ export default {
     let obj = store.getters.getEventId;
     const Events = ref();
     const eventDetails = ref({});
+    const currParticipantObj = ref();
     const filters1 = ref({
       global: { value: null, matchMode: FilterMatchMode.CONTAINS },
     });
+    const confirm = useConfirm();
+    const toggle = (event) => {
+      menu.value.toggle(event);
+    };
+    const menu = ref();
+    const items = ref([
+      {
+        label: "Delete",
+        icon: "pi pi-trash",
+        command : () => {
+            confirm.require({
+                message: 'Are you sure you want to proceed?',
+                header: 'Confirmation',
+                icon: 'pi pi-exclamation-triangle',
+                accept: async() => {
+                  let param = {
+                       id : currParticipantObj.value._id
+                      }
+                  let res = await axios.post("/admin/removePartcipant",param)
+                   if(res.status === 200) {
+                        location.reload()
+                   }
+                  },
+                reject: () => {
+
+                }
+            });
+        }
+      },
+      {
+        label: "View",
+        icon: "pi pi-eye",
+        command : () => {
+          let currParticipant = currParticipantObj.value;
+          let param = {
+            name: currParticipant.name,
+            company: currParticipant.organization,
+            email:currParticipant.email
+          };
+          store.dispatch("storeUserObj", param);
+          let id =  currParticipant._id
+          store.dispatch("storeId", id)
+          router.push("/participantdetails");       
+        }
+      },
+    ]);
     onMounted(async () => {
       retrieveEvents();
-            console.log(router)
       let param = {
         id: obj["id"],
       };
@@ -154,10 +218,8 @@ export default {
           name: res.data.Name,
           description: res.data.Description,
         };
-        console.log(parameter);
         store.dispatch("storeEventId", parameter);
         eventDetails.value = res.data;
-        console.log(eventDetails.value);
       }
     });
     const YOUR_FILTER = ref("YOUR FILTER");
@@ -174,9 +236,7 @@ export default {
         id: obj["id"],
       }
       let res = await axios.post("/admin/getEventPartcipants", param);
-      console.log(res)
       let events = res.data;
-      console.log(res.data);
       const eventsProps = [];
       for (let i = 0; i <= events.length; i++) {
         eventsProps.push({
@@ -184,16 +244,19 @@ export default {
           name: res.data[i].FirstName,
           email: res.data[i].Email,
           organization: res.data[i].Organization,
-          assessment: "-",
+          assessment: res.data[i].Date,
           _id: res.data[i]._id,
-          actions: "",
+          EventDate: eventDetails.value['Date'],
+          Score: res.data[i].Score
         });
         Events.value = eventsProps;
-        console.log(Events.value);
       }
     };
+    const currParticipant = (Data) => {
+      currParticipantObj.value = Data;
+      store.dispatch("updateScore", Data.Score);
+    };
     const back = () => {
-      console.log("fuck you");
       router.push("/events");
     };
     const redirect = () => {
@@ -211,6 +274,10 @@ export default {
       matchModeOptions,
       Events,
       redirect,
+      currParticipant,
+      items,
+      menu,
+      toggle
     };
   },
 };

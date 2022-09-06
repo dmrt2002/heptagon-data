@@ -43,11 +43,17 @@
 <script>
 import { useRouter } from "vue-router";
 import Button from "primevue/button";
+import { useStore } from 'vuex'
 export default {
   components: {
     Button,
   },
   setup() {
+    let store = useStore();
+
+    store.dispatch("updateScore", null);
+    store.dispatch('saveQuestion', 1)
+    store.dispatch("removeOptions")
     let link = [
       "https://raw.githubusercontent.com/dmrt2002/images/696ad09814061b0a6d1ff1653ac680969870b760/heptagon.svg",
     ];

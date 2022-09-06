@@ -5,9 +5,7 @@
         <img :src="link[0]" class="logo" alt="" />
       </div>
     </div>
-    <div class="main-header">
-      DQ Learning path
-    </div>
+    <div class="main-header">DQ Learning path</div>
     <div class="header">
       <div class="grid">
         <div class="md:col-8 col-12">
@@ -38,22 +36,28 @@
         <img class="img-fluid" :src="imageUrl" alt="" />
       </div>
       <div class="col-12 md:col-7">
-        <div class="align-items-center flex justify-content-center align-center">
+        <div
+          class="align-items-center flex justify-content-center align-center"
+        >
           <div>
-        <div class="instruction">
-          Click the download button to view your DQ Learning Path Report. This is an easy way to quickly see the score and the improvement suggestions. We recommend downloading copies directly to your desktop to ensure that you have DQ Learning Path Report readily available to share with others.
+            <div class="instruction">
+              Click the download button to view your DQ Learning Path Report.
+              This is an easy way to quickly see the score and the improvement
+              suggestions. We recommend downloading copies directly to your
+              desktop to ensure that you have DQ Learning Path Report readily
+              available to share with others.
+            </div>
+            <div class="align-items-center flex justify-content-center">
+              <Button
+                @click="redirect()"
+                label="Download Pdf"
+                iconPos="right"
+                class="my-button pi-button-lg"
+                icon="pi pi-download"
+              />
+            </div>
+          </div>
         </div>
-        <div class="align-items-center flex justify-content-center" >
-      <Button
-        @click="redirect()"
-        label="Download Pdf"
-        iconPos="right"
-        class="my-button pi-button-lg"
-        icon="pi pi-download"
-      />
-      </div>
-      </div>
-    </div>
       </div>
     </div>
   </div>
@@ -83,7 +87,7 @@ export default {
       name: "",
     });
     const count = {};
-    let imageUrl = "https://hept-data.herokuapp.com/result.png"
+    let imageUrl = "https://hept-data.herokuapp.com/result.png";
     let link = [
       "https://raw.githubusercontent.com/dmrt2002/images/696ad09814061b0a6d1ff1653ac680969870b760/heptagon.svg",
     ];
@@ -91,6 +95,18 @@ export default {
       hideContent.value = true;
     }
     onMounted(async () => {
+      var today = new Date();
+      var date =
+        today.getFullYear() +
+        "-" +
+        (today.getMonth() + 1) +
+        "-" +
+        today.getDate();
+      let parameter = {
+        id: store.getters.getId,
+        date: date,
+      };
+ await axios.post("http://localhost:5000/admin/updateEventDate", parameter);
       if (propValue.value !== "true") {
         for (const element of options) {
           if (count[element]) {
@@ -115,7 +131,6 @@ export default {
         let param = {
           id: store.getters.getId,
         };
-        console.log(param.id);
         let res = await axios.post("/user/getScore", param);
         score.value = res.data;
         store.dispatch("updateScore", score.value);
@@ -126,7 +141,7 @@ export default {
       userObj.name = user.name;
     });
     const redirect = () => {
-      router.push("/template");
+      router.push("/redirect");
     };
     return { link, redirect, userObj, imageUrl, score, hideContent };
   },

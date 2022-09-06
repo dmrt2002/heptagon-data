@@ -226,9 +226,7 @@ export default {
         "/admin/retrieveAllEvents"
       );
       let events = res.data;
-      console.log(res.data[0].Name);
       const eventsProps = [];
-      console.log(typeof((res.data[0].Date)))
       for (let i = 0; i <= events.length; i++) {
         if(res.data[i].Date){
           eventsProps.push({
@@ -255,7 +253,6 @@ export default {
         });
         }
         Events.value = eventsProps;
-        console.log(Events.value);
       }
     };
     const redirect = () => {

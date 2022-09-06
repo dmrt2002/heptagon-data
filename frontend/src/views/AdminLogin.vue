@@ -21,20 +21,7 @@
             <span class="error pl-2" v-if="emaile">Enter valid Email</span>
           </div>
           <div class="p-2 center">
-            <Password v-model="password">
-              <template #header class="mt-10">
-                <h3>Pick a password</h3>
-              </template>
-              <template #footer="sp">
-                {{ sp.level }}
-                <Divider />
-                <p class="mt-2">Suggestions</p>
-                <ul class="pl-2 ml-2 mt-0" style="line-height: 1.5">
-                  <li>At least one number and special character</li>
-                  <li>Minimum 8 characters</li>
-                </ul>
-              </template>
-            </Password>
+            <Password v-model="password" :feedback="false" />
           </div>
           <span class="error pl-3" v-if="passworde">Invalid Password</span>
           <span class="error pl-3 text-center" v-if="invalidCredentialsE"
@@ -86,23 +73,18 @@ export default {
       password: "",
     });
     let redirect = async () => {
-      const regex = /\d/;
       if (state.email === "") {
         errors.emaile = true;
       } else {
         errors.emaile = false;
       }
-      if (
-        state.password === "" ||
-        state.password.length < 8 ||
-        !regex.test(state.password)
-      ) {
+      if (state.password === "") {
         errors.passworde = true;
       } else {
         errors.passworde = false;
         try {
-          await axios.post("admin/adminlogin", state);
-          router.push("/adminpanel");
+          await axios.post("/admin/adminlogin", state);
+          router.push("/events");
           errors.emaile = false;
         } catch (e) {
           console.log(e);

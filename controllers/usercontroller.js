@@ -14,30 +14,37 @@ exports.registerNewUser = async (req, res) => {
   var company = req.body.company;
   var country = req.body.selectedCountry;
   var code = req.body.code
-
-  Participant.create(
-    {
-      FirstName: firstName,
-      LastName: lastName,
-      Email: email,
-      Organization: company,
-      EventCode: code,
-      Score: null,
-      PassCode:"",
-      Department: "",
-      Gender:"",
-      Attempts:"1",
-    },
-    async function (err, user) {
-      if (err) {
-        console.log("Error creating User: ", err);
-        res.status(400).json(err);
-      } else {
-        console.log("User Created: ", user);
-        res.status(201).json(user);
+  let participants = await Participant.find();
+  let match = []
+  match = participants.filter((obj) => obj.Email === email)
+  if(match) {
+    Participant.create(
+      {
+        FirstName: firstName,
+        LastName: lastName,
+        Email: email,
+        Organization: company,
+        EventCode: code,
+        Score: null,
+        PassCode:"",
+        Department: "",
+        Gender:"",
+        Date:"",
+        Attempts:"1",
+      },
+      async function (err, user) {
+        if (err) {
+          console.log("Error creating User: ", err);
+          res.status(400).json(err);
+        } else {
+          console.log("User Created: ", user);
+          res.status(201).json(user);
+        }
       }
-    }
-  );
+    );
+  } else {
+    res.status(401).json("User already Created")
+  }
 };
 
 exports.updateRole = async (req, res) => {
@@ -315,7 +322,7 @@ exports.resetPassword = async (req, res) => {
       console.log("Email sent: " + info.response);
     }
   });
-  let updated = await Participants.findOneAndUpdate(
+   await Participants.findOneAndUpdate(
     {
       Email: email,
     },
@@ -341,7 +348,19 @@ exports.updateScore = async(req,res) => {
 
 exports.getScore = async(req,res) => {
     let param = req.body
-    console.log(param.id)
     let user = await Participant.findOne({ _id: param.id });
     res.status(200).json(user.Score)
+}
+
+exports.updateEventDate = async(req,res) => {
+  let param = req.body
+  await Participant.findOneAndUpdate(
+    {
+      _id: param.id,
+    },
+    {
+      Date: param.date,
+    }
+  );
+  res.status(200).send("helo")
 }

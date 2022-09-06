@@ -13,7 +13,9 @@ import bulkUpload from '../views/bulkUpload.vue'
 import EventEdit from '../views/EventEdit.vue'
 import PartcipantDetails from '../views/ParticipantDetails.vue'
 import LoginPage from '../views/LoginPage.vue'
-import template from '../views/template.vue'
+import redirect from '../views/Redirect.vue'
+import redirectTwo from '../views/RedirectTwo.vue'
+import AssesmentTwo from "../views/AssesmentTwo.vue"
 
 const routes = [
   {
@@ -87,9 +89,19 @@ const routes = [
     component: LoginPage
   },
   {
-    path: '/template',
-    name: 'template',
-    component: template
+    path: '/redirect',
+    name: 'redirect',
+    component: redirect
+  },
+  {
+    path: '/redirect02',
+    name: 'redirect02',
+    component: redirectTwo
+  },
+  {
+    path: '/assesment',
+    name: 'assesment',
+    component: AssesmentTwo
   }
 ]
 

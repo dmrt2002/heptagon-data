@@ -214,7 +214,6 @@ export default {
       types.value = resp.data.filter((c, index) => {
         return resp.data.indexOf(c) === index
       })
-      console.log(types.value)
     });
     const retrieveEvents = async () => {
       let res = await axios.post("/admin/retrieveAllParticipants");

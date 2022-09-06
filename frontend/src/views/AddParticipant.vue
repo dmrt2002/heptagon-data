@@ -75,7 +75,6 @@ export default {
     ]);
     let obj;
     obj = store.getters.getEventId
-    console.log(obj['code'])
     const state = reactive({
       FirstName: "",
       LastNmae: "",
@@ -102,8 +101,8 @@ export default {
       router.go(-1)
     }
     const submit = async () => {
-       let res = await axios.post('/admin/addParticipant' , state)
-       console.log(res)
+        await axios.post('/admin/addParticipant' , state)
+
       toast.add({
         severity: "success",
         summary: "Created Successfully",

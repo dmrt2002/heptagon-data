@@ -1,5 +1,6 @@
 <template>
   <div class="background">
+    <Toast position="top-right" />
     <div class="flex align-items-start flex-wrap">
       <div class="margin-left">
         <img :src="link[0]" class="logo" alt="" />
@@ -86,6 +87,8 @@ import { countrynames } from '../countries'
 import { useRouter } from 'vue-router'
 import axios from 'axios'
 import { useStore } from 'vuex'
+import { useToast } from "primevue/usetoast";
+import Toast from "primevue/toast";
 import { reactive, ref, toRefs } from "vue";
 export default {
   components: {
@@ -93,6 +96,7 @@ export default {
     InputText,
     Dropdown,
     Button,
+    Toast,
   },
   setup() {
     let link = [
@@ -100,6 +104,7 @@ export default {
     ];
     const countries = ref(countrynames);
     const store = useStore()
+    const toast = useToast()
     const errors =  reactive({
       emaile: false,
       firstNamee: false,
@@ -166,7 +171,16 @@ export default {
       errors.companye = false
       errors.countrye = false
       } catch(e) {
-        console.log(e)
+        toast.add({
+              severity: "info",
+              summary: "Email already in use",
+              life: 6000,
+            });
+        state.firstName = ""
+        state.lastName = ""
+        state.company = ""
+        state.code = ""
+        state.email = ""
       }
       }
     }

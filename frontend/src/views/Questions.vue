@@ -20,7 +20,7 @@ export default {
     let refresh = ref(0)
     let questionval = ref(true)
     let ne = ref(store.getters.getQuestion)
-    if(ne.value === 11) {
+    if(ne.value === 11 && store.getters.getScore !== null) {
       questionval.value = false
       router.push('/results')
     }
@@ -29,7 +29,7 @@ export default {
       let value = n.value  + 1
       store.dispatch('saveQuestion', value)
       n.value++;
-      if(n.value === 11) {
+      if(n.value === 11 && store.getters.getScore !== "") {
         router.push('/results')
       } else {
         questionval.value = true

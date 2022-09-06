@@ -125,7 +125,6 @@ export default {
     ];
     let selected = ref(false);
     let n = ref(store.getters.getQuestion);
-    console.log(n.value);
     if (n.value === 11) {
       router.push("/results");
     }
@@ -146,8 +145,7 @@ export default {
         questionId: n.value,
         userId: store.getters.getId,
       };
-      let res = await axios.post("user/addAnswer", param);
-      console.log(res);
+      await axios.post("user/addAnswer", param);
       store.dispatch("saveOption", value);
       context.emit("submit", value);
     };
