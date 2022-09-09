@@ -16,6 +16,7 @@ import LoginPage from '../views/LoginPage.vue'
 import redirect from '../views/Redirect.vue'
 import redirectTwo from '../views/RedirectTwo.vue'
 import AssesmentTwo from "../views/AssesmentTwo.vue"
+import ResultsTwo from '../views/ResultsTwo.vue'
 
 const routes = [
   {
@@ -102,6 +103,11 @@ const routes = [
     path: '/assesment',
     name: 'assesment',
     component: AssesmentTwo
+  },
+  {
+    path: '/assesmentresults',
+    name: 'assesmentresults',
+    component: ResultsTwo
   }
 ]
 

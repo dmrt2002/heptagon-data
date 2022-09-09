@@ -1,5 +1,5 @@
 <template>
-  <div :class="currentClass">
+  <div class="bg-1">
     <div class="flex align-items-start flex-wrap">
       <div class="margin-left">
         <img :src="link[0]" class="logo" alt="" />
@@ -119,7 +119,6 @@ export default {
   setup(props, context) {
     let store = useStore();
     let router = useRouter();
-    let currentClass = ref(store.getters.getClass);
     let link = [
       "https://raw.githubusercontent.com/dmrt2002/images/696ad09814061b0a6d1ff1653ac680969870b760/heptagon.svg",
     ];
@@ -166,18 +165,14 @@ export default {
       select,
       selected,
       link,
-      currentClass,
     };
   },
 };
 </script>
 
 <style scoped>
-.bg-1,
-.bg-2,
-.bg-3,
-.bg-4,
-.bg-5 {
+.bg-1
+ {
   min-height: 100vh;
   overflow-y: hidden !important;
   overflow-x: hidden !important;
@@ -200,24 +195,6 @@ export default {
 .field-radiobutton {
   padding: 10px;
 }
-.question-number {
-  color: #2130b1;
-  font-weight: 900;
-  font-size: 5rem;
-}
-.center-item {
-  margin-left: 35vw;
-  margin-right: 35vw;
-}
-@media (max-width: 700px) {
-  .center-item {
-    margin-left: 10vw;
-    margin-right: 10vw;
-  }
-}
-.padding-a {
-  padding-top: 5px;
-}
 .img-fluid {
   height: 70vh;
   width: 45vw;
@@ -228,73 +205,6 @@ a {
   color: inherit;
 }
 
-.cta,
-.cta-back {
-  position: relative;
-  margin: auto;
-  padding: 19px 22px;
-  transition: all 0.2s ease;
-}
-.cta:before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  display: block;
-  border-radius: 28px;
-  background: rgba(10, 217, 240, 0.9);
-  width: 56px;
-  height: 56px;
-  transition: all 0.3s ease;
-}
-.cta-back:before {
-  content: "";
-  position: absolute;
-  top: 0;
-  right: 0;
-  display: block;
-  border-radius: 28px;
-  background: rgba(10, 217, 240, 0.9);
-  width: 56px;
-  height: 56px;
-  transition: all 0.3s ease;
-}
-.cta span,
-.cta-back span {
-  position: relative;
-  font-size: 20px;
-  line-height: 18px;
-  font-weight: 900;
-  letter-spacing: 0.25em;
-  text-transform: uppercase;
-  vertical-align: middle;
-}
-.cta svg,
-.cta i {
-  position: relative;
-  top: 0;
-  margin-left: 10px;
-  fill: none;
-  stroke-linecap: round;
-  stroke-linejoin: round;
-  stroke: #111;
-  stroke-width: 2;
-  transform: translateX(-5px);
-  transition: all 0.3s ease;
-}
-.cta:hover:before,
-.cta-back:hover:before {
-  width: 100%;
-  background: lightblue;
-}
-.cta:hover svg,
-.cta-back i {
-  transform: translateX(0);
-}
-.cta:active,
-.cta-back:active {
-  transform: scale(0.96);
-}
 .q-size {
   font-size: 35px;
 }

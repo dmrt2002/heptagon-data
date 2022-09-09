@@ -6,8 +6,6 @@ export default createStore({
   state: {
     questionNumber: 1,
     options: [],
-    classes: ["bg-1","bg-1","bg-1","bg-1","bg-1"],
-    class: 0,
     userId: "",
     eventObj:{
       id:"",
@@ -20,6 +18,8 @@ export default createStore({
       company:"",
       name:""
     },
+    catOneScore: null,
+    catTwoScore: null,
     score: null
   },
   mutations: {
@@ -28,16 +28,6 @@ export default createStore({
     },
     saveOption(state,option) {
       state.options.push(option)
-    },
-    updateClass(state) {
-      if(state.class > 4) {
-        state.class = 0
-      } else {
-        state.class++
-      }
-    },
-    degradeClass(state) {
-      state.class--;
     },
     deleteOption(state) {
       state.options.shift()
@@ -57,6 +47,12 @@ export default createStore({
     },
     removeOptions(state) {
       state.options = []
+    },
+    updateCatOneScore(state, score) {
+      state.catOneScore = score
+    },
+    updateCatTwoScore(state, score) {
+      state.catTwoScore = score
     }
   },
   actions: {
@@ -72,12 +68,6 @@ export default createStore({
     deleteOption(context) {
       context.commit('deleteOption')
     },
-    updateClass(context) {
-      context.commit('updateClass')
-    },
-    degradeClass(context) {
-      context.commit('degradeClass')
-    },
     storeId(context, id) {
       context.commit('storeId', id)
     },
@@ -89,6 +79,12 @@ export default createStore({
     },
     updateScore(context, score) {
       context.commit('updateScore', score)
+    },
+    updateCatOneScore(context, score) {
+      context.commit('updateCatOneScore', score)
+    },
+    updateCatTwoScore(context, score) {
+      context.commit('updateCatTwoScore', score)
     }
   },
   getters: {
@@ -97,9 +93,6 @@ export default createStore({
     },
     getOptions(state) {
       return state.options
-    },
-    getClass(state) {
-      return state.classes[state.class]
     },
     getId(state) {
       return state.userId
@@ -115,6 +108,12 @@ export default createStore({
     },
     getScore(state) {
       return state.score
-    }
+    },
+    getCatOneScore(state) {
+      return state.catOneScore
+    },
+    getCatTwoScore(state) {
+      return state.catTwoScore
+    } 
   }
 })
