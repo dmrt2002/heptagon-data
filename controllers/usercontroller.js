@@ -1,5 +1,4 @@
-const { default: axios } = require("axios");
-const User = require("../modals/User");
+
 const Admin = require("../modals/Admin");
 const Event = require("../modals/Events");
 const Participant = require("../modals/Participants");
@@ -25,6 +24,8 @@ exports.registerNewUser = async (req, res) => {
         Email: email,
         Organization: company,
         EventCode: code,
+        CatOneScore: null,
+        CatTwoScore: null,
         Score: null,
         PassCode:"",
         Department: "",
@@ -45,21 +46,6 @@ exports.registerNewUser = async (req, res) => {
   } else {
     res.status(401).json("User already Created")
   }
-};
-
-exports.updateRole = async (req, res) => {
-  let userId = req.body.userId;
-  let role = req.body.role;
-  let user = await User.findOne({ _id: userId });
-  console.log(user);
-  let updated = await User.findOneAndUpdate(
-    {
-      _id: userId,
-    },
-    {
-      role: role,
-    }
-  );
 };
 
 exports.adminLogin = async (req, res) => {
@@ -363,4 +349,34 @@ exports.updateEventDate = async(req,res) => {
     }
   );
   res.status(200).send("helo")
+}
+
+exports.updateCatScores = async(req,res) => {
+  let param = req.body
+  await Participant.findOneAndUpdate(
+    {
+      _id: param.id,
+    },
+    {
+      CatOneScore: param.catOneScore,
+    }
+  );
+    await Participant.findOneAndUpdate(
+      {
+        _id: param.id,
+      },
+      {
+        CatTwoScore: param.catTwoScore,
+      }
+  );
+}
+
+exports.getCatScores = async(req,res) => {
+  let param = req.body
+  let user = await Participant.findOne({ _id: param.id });
+  let scores = {
+    catOne: user.CatOneScore,
+    catTwo: user.CatTwoScore
+  }
+  res.status(200).send(scores)
 }

@@ -106,7 +106,7 @@ export default {
         id: store.getters.getId,
         date: date,
       };
- await axios.post("http://localhost:5000/admin/updateEventDate", parameter);
+ await axios.post("/admin/updateEventDate", parameter);
       if (propValue.value !== "true") {
         for (const element of options) {
           if (count[element]) {

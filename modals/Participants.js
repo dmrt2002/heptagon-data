@@ -27,6 +27,12 @@ const userSchema = mongoose.Schema({
   EventCode: {
     type: String
   },
+  CatOneScore: {
+    type: String
+  },
+  CatTwoScore: {
+    type : String
+  },
   Score:{
     type:Number
   },

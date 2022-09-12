@@ -17,6 +17,7 @@ import redirect from '../views/Redirect.vue'
 import redirectTwo from '../views/RedirectTwo.vue'
 import AssesmentTwo from "../views/AssesmentTwo.vue"
 import ResultsTwo from '../views/ResultsTwo.vue'
+import AssesmentTwoHome from '../views/AssesmentTwoHome.vue'
 
 const routes = [
   {
@@ -108,6 +109,11 @@ const routes = [
     path: '/assesmentresults',
     name: 'assesmentresults',
     component: ResultsTwo
+  },
+  {
+    path: '/assesmenttwohome',
+    name: 'assesmenthome',
+    component: AssesmentTwoHome
   }
 ]
 

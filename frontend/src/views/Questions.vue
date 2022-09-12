@@ -33,7 +33,6 @@ export default {
         router.push('/results')
       } else {
         questionval.value = true
-        store.dispatch('updateClass')
          refresh.value++
       }
     }
@@ -44,7 +43,6 @@ export default {
       }
       else {
       store.dispatch('deleteOption')
-      store.dispatch('degradeClass')
       refresh.value++
       }
     }

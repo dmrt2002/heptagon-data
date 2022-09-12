@@ -11,6 +11,7 @@ export default createStore({
       id:"",
       code:"",
       name:"",
+      type:"",
       description:""
     },
     userObj: {
@@ -114,6 +115,9 @@ export default createStore({
     },
     getCatTwoScore(state) {
       return state.catTwoScore
-    } 
+    } ,
+    getEventType(state)  {
+      return state.eventObj.type
+    }
   }
 })

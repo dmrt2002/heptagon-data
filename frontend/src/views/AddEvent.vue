@@ -71,11 +71,8 @@ export default {
     const toast = useToast();
     const router = useRouter();
     const cities = ref([
-      { name: "New York", code: "NY" },
-      { name: "Rome", code: "RM" },
-      { name: "London", code: "LDN" },
-      { name: "Istanbul", code: "IST" },
-      { name: "Paris", code: "PRS" },
+      { name: "Type-1", code: "T1" },
+      { name: "Type-2", code: "T2" },
     ]);
     const state = reactive({
       EventName: "",

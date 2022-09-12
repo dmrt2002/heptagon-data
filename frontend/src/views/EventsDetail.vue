@@ -211,13 +211,16 @@ export default {
       };
       if (obj["id"] !== "") {
         let res = await axios.post("/admin/getEventDetails", param);
-        res.data.Date = res.data.Date.toString().split("T")[0];
+        if(res.data.Date !== null )
+           res.data.Date = res.data.Date.toString().split("T")[0];
         let parameter = {
           id: res.data._id,
           code: res.data.Code,
           name: res.data.Name,
+          type: res.data.Type,
           description: res.data.Description,
         };
+        console.log({parameter})
         store.dispatch("storeEventId", parameter);
         eventDetails.value = res.data;
       }
