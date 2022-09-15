@@ -155,7 +155,7 @@ export default {
         state.code = "GENERAL-1"
       }
       try {
-      let res = await axios.post('https://dqassessment.heptagon.tech/user/register', state)
+      let res = await axios.post('/user/register', state)
       let id = res.data._id
       store.dispatch('storeId', id)
       let user = {
