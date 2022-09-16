@@ -107,7 +107,6 @@ import RadioButton from "primevue/radiobutton";
 import { ref } from "vue";
 import Button from "primevue/button";
 import questions from "../questions";
-import axios from "axios";
 import { useStore } from "vuex";
 import { useRouter } from "vue-router";
 export default {
@@ -120,7 +119,7 @@ export default {
     let store = useStore();
     let router = useRouter();
     let link = [
-      "https://raw.githubusercontent.com/dmrt2002/images/696ad09814061b0a6d1ff1653ac680969870b760/heptagon.svg",
+      "http://dqassessment.heptagon.tech/heptagon.svg",
     ];
     let selected = ref(false);
     let n = ref(store.getters.getQuestion);
@@ -139,12 +138,6 @@ export default {
     let imageUrl = questions[n.value - 1].imageUrl;
     let submit = async () => {
       let value = option.value;
-      let param = {
-        optId: value,
-        questionId: n.value,
-        userId: store.getters.getId,
-      };
-      await axios.post("user/addAnswer", param);
       store.dispatch("saveOption", value);
       context.emit("submit", value);
     };

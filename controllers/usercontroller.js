@@ -35,10 +35,8 @@ exports.registerNewUser = async (req, res) => {
       },
       async function (err, user) {
         if (err) {
-          console.log("Error creating User: ", err);
           res.status(400).json(err);
         } else {
-          console.log("User Created: ", user);
           res.status(201).json(user);
         }
       }
@@ -82,35 +80,13 @@ exports.retriveAllParticipants = async (req, res) => {
 
 exports.deleteUser = async (req, res) => {
   let userId = req.body.userId;
-  await User.find({ _id: userId }).deleteOne();
+  await Participant.find({ _id: userId }).deleteOne();
   res.status(201).json("Succesfully deleted");
-};
-
-exports.addAnswer = async (req, res) => {
-  const optId = req.body.optId;
-  let userId = req.body.userId;
-  const qid = req.body.questionId;
-  console.log(qid, userId, optId);
-  let updated = await User.findOneAndUpdate(
-    {
-      _id: userId,
-    },
-    {
-      $push: {
-        answerSheet: {
-          optId: optId,
-          questionId: qid,
-        },
-      },
-    }
-  );
-  res.status(200).json("fuck you");
 };
 
 exports.addEvent = (req, res) => {
   let event = req.body;
   event.EventType = event.EventType.name;
-  console.log(event);
   Event.create({
     Name: event.EventName,
     Code: event.EventCode,
@@ -167,7 +143,6 @@ exports.addParticipant = async (req, res) => {
 exports.getEventDetails = async (req, res) => {
   let id = req.body.id;
   let resp = await Event.find({ _id: id });
-  console.log(resp[0])
   res.status(200).json(resp[0]);
 };
 
@@ -178,7 +153,6 @@ exports.eventBulkUpdate = async (req, res) => {
 
 exports.bulkUpload = async (req, res) => {
   const obj = req.body;
-  console.log(obj);
   Participant.insertMany(obj)
     .then(function () {
       console.log("Data inserted");
@@ -225,10 +199,8 @@ exports.bulkUpload = async (req, res) => {
 };
 
 exports.updateEvent = async (req, res) => {
-  console.log(req.body);
   let replaceObj = req.body;
   let original = await Event.findOne({ _id: replaceObj._id });
-  console.log(replaceObj.name);
   replaceObj.type = replaceObj.type.name;
   let updated = await Event.findOneAndUpdate(
     {
@@ -260,7 +232,6 @@ exports.removePartcipant = async (req, res) => {
 exports.getEventPartcipants = async (req, res) => {
   let id = req.body.id;
   let event = await Event.find({ _id: id });
-  console.log(event[0].Code);
   let participants = await Participant.find();
   res
     .status(200)
@@ -272,7 +243,6 @@ exports.Login = async (req, res) => {
     const email = req.body.email;
     const password = req.body.password;
     const user = await Participants.findByCredentials(email, password);
-    console.log(user);
     if (user === "Email not registered") {
       return res.status(400).json(user);
     } else if (user === null) {
@@ -348,7 +318,7 @@ exports.updateEventDate = async(req,res) => {
       Date: param.date,
     }
   );
-  res.status(200).send("helo")
+  res.status(200)
 }
 
 exports.updateCatScores = async(req,res) => {

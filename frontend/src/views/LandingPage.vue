@@ -55,7 +55,7 @@ export default {
     store.dispatch('saveQuestion', 1)
     store.dispatch("removeOptions")
     let link = [
-      "https://raw.githubusercontent.com/dmrt2002/images/696ad09814061b0a6d1ff1653ac680969870b760/heptagon.svg",
+      "https://dqassessment.heptagon.tech/heptagon.svg",
     ];
     let router = useRouter();
     const redirect = () => {
